@@ -4,5 +4,8 @@ obj
 
 # mstest test results
 TestResults
+
 *.user
 *.suo
+NuGet
+Source/packages/*
