@@ -14,14 +14,14 @@ namespace BlogMonster.Infrastructure
         private static Markdown CreateMarkdownTransformer()
         {
             var options = new MarkdownOptions
-            {
-                AutoHyperlink = false,
-                AutoNewLines = false,
-                EmptyElementSuffix = "/>",
-                EncodeProblemUrlCharacters = true,
-                LinkEmails = true,
-                StrictBoldItalic = false,
-            };
+                              {
+                                  AutoHyperlink = false,
+                                  AutoNewLines = false,
+                                  EmptyElementSuffix = "/>",
+                                  EncodeProblemUrlCharacters = true,
+                                  LinkEmails = true,
+                                  StrictBoldItalic = false,
+                              };
             var markdown = new Markdown(options);
             return markdown;
         }

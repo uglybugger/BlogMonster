@@ -13,6 +13,7 @@
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -47,14 +48,31 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\SolutionInfo.cs">
+      <Link>Properties\SolutionInfo.cs</Link>
+    </Compile>
+    <Compile Include="Configuration\AssemblyConfigurator.cs" />
+    <Compile Include="Configuration\BlogMonsterConfigurationException.cs" />
+    <Compile Include="Configuration\BlogMonsterConfigurator.cs" />
+    <Compile Include="Configuration\ControllerConfigurator.cs" />
+    <Compile Include="Configuration\FilterConfigurator.cs" />
+    <Compile Include="Configuration\FinalConfigurator.cs" />
+    <Compile Include="Configuration\ISettings.cs" />
+    <Compile Include="Configuration\Settings.cs" />
+    <Compile Include="Controllers\BlogPostAssembliesProvider.cs" />
+    <Compile Include="Controllers\BlogPostResourceNameFilter.cs" />
+    <Compile Include="ServiceLocator.cs" />
+    <Compile Include="Infrastructure\AssemblyResourceReader.cs" />
     <Compile Include="Controllers\BlogMonsterController.cs" />
     <Compile Include="Infrastructure\ArchiveProvider.cs" />
     <Compile Include="Domain\Entities\BlogPost.cs" />
+    <Compile Include="Infrastructure\BlogPostExtractionFailedException.cs" />
     <Compile Include="Infrastructure\BlogPostLoader.cs" />
     <Compile Include="Infrastructure\BlogPostRepositoryFactory.cs" />
+    <Compile Include="Infrastructure\IBlogPostAssembliesProvider.cs" />
+    <Compile Include="Infrastructure\IBlogPostResourceNameFilter.cs" />
     <Compile Include="Infrastructure\MemoryRepository.cs" />
     <Compile Include="Web\CustomFeedResult.cs" />
-    <Compile Include="Domain\Repositories\EmbeddedResourceBlogPostRepository.cs" />
     <Compile Include="Infrastructure\EmbeddedResourceImagePathMapper.cs" />
     <Compile Include="Infrastructure\IArchiveProvider.cs" />
     <Compile Include="Infrastructure\IEmbeddedResourceImagePathMapper.cs" />
@@ -83,6 +101,7 @@
     <None Include="MakeNuGetGoNow.bat" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>$(ProjectDir)MakeNuGetGoNow.bat $(SolutionDir) $(ProjectDir)</PostBuildEvent>

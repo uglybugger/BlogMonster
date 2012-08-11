@@ -6,6 +6,7 @@ using BlogMonster.Domain.Entities;
 using BlogMonster.Domain.Queries;
 using BlogMonster.Domain.Repositories;
 using BlogMonster.Extensions;
+using BlogMonster.Infrastructure;
 using BlogMonster.Web;
 using BlogMonster.Web.ViewModels;
 
@@ -15,12 +16,17 @@ namespace BlogMonster.Controllers
     {
         private readonly BlogPostViewModelFactory _blogPostViewModelFactory;
         private readonly IRepository<BlogPost> _repository;
+        private readonly AssemblyResourceReader _assemblyResourceReader;
 
-        protected BlogMonsterController(IRepository<BlogPost> repository,
-                                        BlogPostViewModelFactory blogPostViewModelFactory)
+        protected BlogMonsterController() : this(ServiceLocator.BlogPostRepository, ServiceLocator.BlogPostViewModelFactory, ServiceLocator.AssemblyResourceReader)
+        {
+        }
+
+        private BlogMonsterController(IRepository<BlogPost> repository, BlogPostViewModelFactory blogPostViewModelFactory, AssemblyResourceReader assemblyResourceReader)
         {
             _repository = repository;
             _blogPostViewModelFactory = blogPostViewModelFactory;
+            _assemblyResourceReader = assemblyResourceReader;
         }
 
         public virtual ActionResult Index()
@@ -46,7 +52,7 @@ namespace BlogMonster.Controllers
             var tokens = id.Split('.');
             var imageName = string.Join(".", tokens.Skip(7).ToArray());
             var mimeType = "image/{0}".FormatWith(tokens.Last()).ToLowerInvariant();
-            using (var stream = typeof (EmbeddedResourceBlogPostRepository).Assembly.GetManifestResourceStream(id))
+            using (var stream = _assemblyResourceReader.GetManifestResourceStream(id))
             {
                 if (stream == null) throw new InvalidOperationException();
 

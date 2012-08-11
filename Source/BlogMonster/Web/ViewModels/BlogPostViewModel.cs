@@ -8,11 +8,13 @@ namespace BlogMonster.Web.ViewModels
         private readonly BlogPost _post;
         private readonly BlogPost _previousPost;
         private readonly BlogPost _nextPost;
-        private readonly string _permalinkFor;
+        private readonly string _permalink;
+        private readonly string _previousPermalink;
+        private readonly string _nextPermalink;
 
         public string Permalink
         {
-            get { return _permalinkFor; }
+            get { return _permalink; }
         }
 
         public string DisqusIdentifier
@@ -47,7 +49,7 @@ namespace BlogMonster.Web.ViewModels
 
         public string PreviousHref
         {
-            get { return _previousPost.Coalesce(post => _permalinkFor, null); }
+            get { return _previousPermalink; }
         }
 
         public string PreviousTitle
@@ -57,7 +59,7 @@ namespace BlogMonster.Web.ViewModels
 
         public string NextHref
         {
-            get { return _nextPost.Coalesce(post => _permalinkFor, null); }
+            get { return _nextPermalink; }
         }
 
         public string NextTitle
@@ -65,13 +67,14 @@ namespace BlogMonster.Web.ViewModels
             get { return _nextPost.Coalesce(p => p.Title, null); }
         }
 
-
-        public BlogPostViewModel(BlogPost post, BlogPost previousPost, BlogPost nextPost, string permalinkFor)
+        public BlogPostViewModel(BlogPost post, BlogPost previousPost, BlogPost nextPost, string permalink, string previousPermalink, string nextPermalink)
         {
             _post = post;
             _previousPost = previousPost;
             _nextPost = nextPost;
-            _permalinkFor = permalinkFor;
+            _permalink = permalink;
+            _previousPermalink = previousPermalink;
+            _nextPermalink = nextPermalink;
         }
     }
 }

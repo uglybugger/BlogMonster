@@ -15,8 +15,10 @@ namespace BlogMonster.Web.ViewModels
 
         public BlogPostViewModel Create(BlogPost post, BlogPost previousPost, BlogPost nextPost)
         {
-            var permalinkFor = "{0}/Home/Post/{1}".FormatWith(_siteBaseUrlProvider.BaseUrl, post.Id);
-            return new BlogPostViewModel(post, previousPost, nextPost, permalinkFor);
+            var permalink = "{0}/Home/Post/{1}".FormatWith(_siteBaseUrlProvider.BaseUrl, post.Id);
+            var previousPermalink = "{0}/Home/Post/{1}".FormatWith(_siteBaseUrlProvider.BaseUrl, previousPost.Id);
+            var nextPermalink = "{0}/Home/Post/{1}".FormatWith(_siteBaseUrlProvider.BaseUrl, nextPost.Id);
+            return new BlogPostViewModel(post, previousPost, nextPost, permalink, previousPermalink, nextPermalink);
         }
     }
 }

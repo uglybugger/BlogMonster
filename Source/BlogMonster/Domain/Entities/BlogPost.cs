@@ -8,5 +8,6 @@ namespace BlogMonster.Domain.Entities
         public DateTimeOffset PostDate { get; set; }
         public string Title { get; set; }
         public string Html { get; set; }
+        public string[] Permalinks { get; set; }
     }
 }

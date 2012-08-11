@@ -7,7 +7,12 @@ namespace BlogMonster.Infrastructure
 {
     public class MemoryRepository<T> : IRepository<T> where T : class
     {
-        readonly List<T> _items = new List<T>();
+        private readonly List<T> _items = new List<T>();
+
+        public void Add(T item)
+        {
+            _items.Add(item);
+        }
 
         public IEnumerable<T> GetAll()
         {
@@ -22,7 +27,6 @@ namespace BlogMonster.Infrastructure
         public T Query(QuerySingle<T> query)
         {
             return query.Filter(_items.AsQueryable());
-
         }
     }
 }
