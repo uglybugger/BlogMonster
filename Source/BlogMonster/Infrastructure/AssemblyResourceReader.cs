@@ -1,12 +1,12 @@
 using System;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using BlogMonster.Configuration;
+using BlogMonster.Extensions;
 
 namespace BlogMonster.Infrastructure
 {
-    public class AssemblyResourceReader
+    public class AssemblyResourceReader : IAssemblyResourceReader
     {
         private readonly ISettings _settings;
 
@@ -15,21 +15,15 @@ namespace BlogMonster.Infrastructure
             _settings = settings;
         }
 
-        public Stream GetManifestResourceStream(string id)
+        public Stream GetBestMatchingResourceStream(string id)
         {
-            var assembly = AssemblyContainingResourceId(id);
-            if (assembly == null) throw new InvalidOperationException("No resource with the given ID was found.");
+            foreach (var assembly in _settings.BlogPostAssemblies)
+            {
+                var match = assembly.GetManifestResourceNames().SingleOrDefault(resourceName => resourceName.Contains(id));
+                if (match != null) return assembly.GetManifestResourceStream(match);
+            }
 
-            return assembly.GetManifestResourceStream(id);
-        }
-
-        public Assembly AssemblyContainingResourceId(string id)
-        {
-            var assembly = _settings.BlogPostAssemblies
-                .Where(a => a.GetManifestResourceNames().Contains(id))
-                .SingleOrDefault();
-
-            return assembly;
+            throw new InvalidOperationException("Could not find a resource matching ID {0}".FormatWith(id));
         }
     }
 }

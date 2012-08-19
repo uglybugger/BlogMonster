@@ -5,22 +5,22 @@ using UniMock.Core.BaseTests;
 
 namespace BlogMonster.Tests.Scenarios
 {
-    public class SinglePostScenario : IScenario
+    public class SinglePostWithImageScenario : IScenario
     {
         private readonly UnitTestBlogPostAssemblyScenario _unitTestBlogPostAssemblyScenario;
         private readonly IBlogPostResourceNameFilter _blogPostResourceNameFilter;
 
-        public SinglePostScenario(UnitTestBlogPostAssemblyScenario unitTestBlogPostAssemblyScenario)
+        public SinglePostWithImageScenario(UnitTestBlogPostAssemblyScenario unitTestBlogPostAssemblyScenario)
         {
             _unitTestBlogPostAssemblyScenario = unitTestBlogPostAssemblyScenario;
-            _blogPostResourceNameFilter = new SinglePostFilter();
+            _blogPostResourceNameFilter = new SinglePostWithImageFilter();
         }
 
-        private class SinglePostFilter : IBlogPostResourceNameFilter
+        private class SinglePostWithImageFilter : IBlogPostResourceNameFilter
         {
             public IEnumerable<string> Filter(IEnumerable<string> resourceNames)
             {
-                return resourceNames.Where(rn => rn.Contains(".SinglePost."));
+                return resourceNames.Where(rn => rn.Contains(".SinglePostWithImage."));
             }
         }
 

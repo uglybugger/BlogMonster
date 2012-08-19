@@ -52,6 +52,7 @@
       <Link>Properties\SolutionInfo.cs</Link>
     </Compile>
     <Compile Include="Configuration\AssemblyConfigurator.cs" />
+    <Compile Include="Configuration\AuthorConfigurator.cs" />
     <Compile Include="Configuration\BlogMonsterConfigurationException.cs" />
     <Compile Include="Configuration\BlogMonsterConfigurator.cs" />
     <Compile Include="Configuration\ControllerConfigurator.cs" />
@@ -59,8 +60,11 @@
     <Compile Include="Configuration\FinalConfigurator.cs" />
     <Compile Include="Configuration\ISettings.cs" />
     <Compile Include="Configuration\Settings.cs" />
+    <Compile Include="Configuration\SiteBaseUrlConfigurator.cs" />
     <Compile Include="Controllers\BlogPostAssembliesProvider.cs" />
     <Compile Include="Controllers\BlogPostResourceNameFilter.cs" />
+    <None Include="Controllers\HomeController.cs.pp" />
+    <Compile Include="Infrastructure\IAssemblyResourceReader.cs" />
     <Compile Include="ServiceLocator.cs" />
     <Compile Include="Infrastructure\AssemblyResourceReader.cs" />
     <Compile Include="Controllers\BlogMonsterController.cs" />
@@ -90,7 +94,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Domain\Queries\GetPostAfterQuery.cs" />
     <Compile Include="Domain\Queries\GetPostBeforeQuery.cs" />
-    <Compile Include="Domain\Queries\GetPostByIdQuery.cs" />
+    <Compile Include="Domain\Queries\GetPostByPermalinkQuery.cs" />
     <Compile Include="Domain\Queries\MostRecentPostsQuery.cs" />
     <Compile Include="Web\ViewModels\ArchiveViewModel.cs" />
     <Compile Include="Web\ViewModels\BlogPostViewModel.cs" />

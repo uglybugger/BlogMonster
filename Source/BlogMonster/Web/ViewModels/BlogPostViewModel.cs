@@ -1,5 +1,7 @@
+using System.Linq;
 using BlogMonster.Domain.Entities;
 using BlogMonster.Extensions;
+using BlogMonster.Infrastructure;
 
 namespace BlogMonster.Web.ViewModels
 {
@@ -8,18 +10,16 @@ namespace BlogMonster.Web.ViewModels
         private readonly BlogPost _post;
         private readonly BlogPost _previousPost;
         private readonly BlogPost _nextPost;
-        private readonly string _permalink;
-        private readonly string _previousPermalink;
-        private readonly string _nextPermalink;
+        private readonly ISiteBaseUrlProvider _siteBaseUrlProvider;
 
         public string Permalink
         {
-            get { return _permalink; }
+            get { return "{0}/{1}/Post/{2}".FormatWith(_siteBaseUrlProvider.AbsoluteUrl, _siteBaseUrlProvider.BlogMonsterControllerRelativeUrl, _post.Permalinks.First()); }
         }
 
         public string DisqusIdentifier
         {
-            get { return _post.Id; }
+            get { return _post.Permalinks.First(); }
         }
 
         public string Title
@@ -49,7 +49,7 @@ namespace BlogMonster.Web.ViewModels
 
         public string PreviousHref
         {
-            get { return _previousPermalink; }
+            get { return _previousPost.Coalesce(p => "{0}/Post/{1}".FormatWith(_siteBaseUrlProvider.BlogMonsterControllerRelativeUrl, p.Permalinks.First()), null); }
         }
 
         public string PreviousTitle
@@ -59,7 +59,7 @@ namespace BlogMonster.Web.ViewModels
 
         public string NextHref
         {
-            get { return _nextPermalink; }
+            get { return _nextPost.Coalesce(p => "{0}/Post/{1}".FormatWith(_siteBaseUrlProvider.BlogMonsterControllerRelativeUrl, p.Permalinks.First()), null); }
         }
 
         public string NextTitle
@@ -67,14 +67,12 @@ namespace BlogMonster.Web.ViewModels
             get { return _nextPost.Coalesce(p => p.Title, null); }
         }
 
-        public BlogPostViewModel(BlogPost post, BlogPost previousPost, BlogPost nextPost, string permalink, string previousPermalink, string nextPermalink)
+        public BlogPostViewModel(BlogPost post, BlogPost previousPost, BlogPost nextPost, ISiteBaseUrlProvider siteBaseUrlProvider)
         {
             _post = post;
             _previousPost = previousPost;
             _nextPost = nextPost;
-            _permalink = permalink;
-            _previousPermalink = previousPermalink;
-            _nextPermalink = nextPermalink;
+            _siteBaseUrlProvider = siteBaseUrlProvider;
         }
     }
 }

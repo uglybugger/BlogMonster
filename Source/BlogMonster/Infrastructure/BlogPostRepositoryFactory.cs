@@ -1,3 +1,4 @@
+using System.Linq;
 using BlogMonster.Domain.Entities;
 using BlogMonster.Domain.Repositories;
 

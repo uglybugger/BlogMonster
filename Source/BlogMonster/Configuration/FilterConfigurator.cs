@@ -14,9 +14,9 @@ namespace BlogMonster.Configuration
             _controllerType = controllerType;
         }
 
-        public FinalConfigurator WithResourceNameFilter(Func<string, bool> resourceNameFilter)
+        public AuthorConfigurator WithResourceNameFilter(Func<string, bool> resourceNameFilter)
         {
-            return new FinalConfigurator(_assemblies, _controllerType, resourceNameFilter);
+            return new AuthorConfigurator(_assemblies, _controllerType, resourceNameFilter);
         }
     }
 }

@@ -2,7 +2,8 @@ namespace BlogMonster.Infrastructure
 {
     public interface ISiteBaseUrlProvider
     {
-        string BaseUrl { get; }
-        string ImageBaseUrl { get; }
+        string AbsoluteUrl { get; }
+        string BlogMonsterControllerRelativeUrl { get; }
+        string ImageRelativeUrl { get; }
     }
 }

@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Web.Mvc;
+using BlogMonster.Configuration;
 using BlogMonster.Domain.Entities;
 using BlogMonster.Domain.Queries;
 using BlogMonster.Domain.Repositories;
@@ -16,17 +18,22 @@ namespace BlogMonster.Controllers
     {
         private readonly BlogPostViewModelFactory _blogPostViewModelFactory;
         private readonly IRepository<BlogPost> _repository;
-        private readonly AssemblyResourceReader _assemblyResourceReader;
+        private readonly IAssemblyResourceReader _assemblyResourceReader;
+        private readonly ISettings _settings;
+        private readonly IArchiveProvider _archiveProvider;
 
-        protected BlogMonsterController() : this(ServiceLocator.BlogPostRepository, ServiceLocator.BlogPostViewModelFactory, ServiceLocator.AssemblyResourceReader)
+        protected BlogMonsterController()
+            : this(ServiceLocator.BlogPostRepository, ServiceLocator.BlogPostViewModelFactory, ServiceLocator.AssemblyResourceReader, ServiceLocator.Settings, ServiceLocator.ArchiveProvider)
         {
         }
 
-        private BlogMonsterController(IRepository<BlogPost> repository, BlogPostViewModelFactory blogPostViewModelFactory, AssemblyResourceReader assemblyResourceReader)
+        private BlogMonsterController(IRepository<BlogPost> repository, BlogPostViewModelFactory blogPostViewModelFactory, IAssemblyResourceReader assemblyResourceReader, ISettings settings, IArchiveProvider archiveProvider)
         {
+            _archiveProvider = archiveProvider;
             _repository = repository;
             _blogPostViewModelFactory = blogPostViewModelFactory;
             _assemblyResourceReader = assemblyResourceReader;
+            _settings = settings;
         }
 
         public virtual ActionResult Index()
@@ -37,22 +44,27 @@ namespace BlogMonster.Controllers
 
         public virtual ActionResult Post(string id)
         {
-            var post = _repository.Query(new GetPostByIdQuery(id));
+            var post = _repository.Query(new GetPostByPermalinkQuery(id));
             return ShowPost(post);
         }
 
-        public ActionResult Rss()
+        public virtual ActionResult Rss()
         {
             var items = _repository.Query(new MostRecentPostsQuery(100));
-            return new CustomFeedResult(items);
+            return new CustomFeedResult(items, _settings.Author);
         }
 
-        public ActionResult Image(string id)
+        public virtual ActionResult Image(string id)
         {
+            // Image resource name will look something like this:
+            // Posts._2009._2009._10._12._1007._1000.Screenshot1.jpg
+
             var tokens = id.Split('.');
-            var imageName = string.Join(".", tokens.Skip(7).ToArray());
+            var imageName = string.Join(".", tokens.Skip(5).ToArray());
             var mimeType = "image/{0}".FormatWith(tokens.Last()).ToLowerInvariant();
-            using (var stream = _assemblyResourceReader.GetManifestResourceStream(id))
+            var imagePath = string.Join("._", tokens.Take(5).ToArray());
+            var resourceName = "{0}.{1}".FormatWith( imagePath, imageName);
+            using (var stream = _assemblyResourceReader.GetBestMatchingResourceStream(resourceName))
             {
                 if (stream == null) throw new InvalidOperationException();
 
@@ -63,6 +75,12 @@ namespace BlogMonster.Controllers
                     return File(bytes, mimeType, imageName);
                 }
             }
+        }
+
+        public virtual ActionResult Archive()
+        {
+            var viewModel = new ArchiveViewModel(_archiveProvider.Posts);
+            return PartialView("Archive", viewModel);
         }
 
         protected virtual ActionResult ShowPost(BlogPost post)

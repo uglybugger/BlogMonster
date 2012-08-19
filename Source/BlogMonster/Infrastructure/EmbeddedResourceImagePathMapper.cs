@@ -11,7 +11,7 @@ namespace BlogMonster.Infrastructure
 
         public EmbeddedResourceImagePathMapper(ISiteBaseUrlProvider siteBaseUrlProvider)
         {
-            _imageHandlerBaseUrl = siteBaseUrlProvider.ImageBaseUrl;
+            _imageHandlerBaseUrl = siteBaseUrlProvider.ImageRelativeUrl;
         }
 
         public string ReMapImagePaths(string markdown, string baseResourceName)

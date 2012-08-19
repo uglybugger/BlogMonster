@@ -9,28 +9,26 @@ namespace BlogMonster.Web
 {
     public class CustomFeedResult : RssFeedResult
     {
-        public CustomFeedResult(IEnumerable<BlogPost> items)
-            : base(CreateFeedFromItems(items))
+        public CustomFeedResult(IEnumerable<BlogPost> items, SyndicationPerson author)
+            : base(CreateFeedFromItems(items, author))
         {
         }
 
-        private static SyndicationFeed CreateFeedFromItems(IEnumerable<BlogPost> items)
+        private static SyndicationFeed CreateFeedFromItems(IEnumerable<BlogPost> items, SyndicationPerson author)
         {
-            var uglybugger = new SyndicationPerson("andrewh@uglybugger.org", "Andrew Harcourt", "http://www.uglybugger.org/");
-
             var feedItems = items
                 .OrderByDescending(item => item.PostDate)
-                .Select(post => new SyndicationItem(post.Title, post.Html, new Uri("http://www.uglybugger.org/Home/Post/{0}".FormatWith(post.Id)))
+                .Select(post => new SyndicationItem(post.Title, post.Html, new Uri("http://www.uglybugger.org/Home/Post/{0}".FormatWith(post.Permalinks.First())))
                                     {
                                         Content = new TextSyndicationContent(post.Html, TextSyndicationContentKind.XHtml),
-                                        Id = post.Id,
+                                        Id = post.Permalinks.First(),
                                         PublishDate = post.PostDate,
                                         LastUpdatedTime = post.PostDate,
                                         Summary = new TextSyndicationContent(post.Html, TextSyndicationContentKind.XHtml),
                                         Title = new TextSyndicationContent(post.Title),
-                                        BaseUri = new Uri("http://www.uglybugger.org/Home/Post/{0}".FormatWith(post.Id)),
+                                        BaseUri = new Uri("http://www.uglybugger.org/Home/Post/{0}".FormatWith(post.Permalinks.First())),
                                     })
-                .Do(item => item.Authors.Add(uglybugger))
+                .Do(item => item.Authors.Add(author))
                 .ToArray();
 
             var feed = new SyndicationFeed(feedItems)
@@ -45,7 +43,7 @@ namespace BlogMonster.Web
                                LastUpdatedTime = feedItems.FirstOrDefault().Coalesce(item => item.PublishDate, DateTimeOffset.MinValue),
                                Title = new TextSyndicationContent("Life, the Universe and Everything"),
                            };
-            feed.Authors.Add(uglybugger);
+            feed.Authors.Add(author);
 
             return feed;
         }

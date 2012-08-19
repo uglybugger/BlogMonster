@@ -18,20 +18,27 @@ namespace BlogMonster
         private static readonly IMarkDownTransformer _markDownTransformer;
         private static readonly IBlogPostAssembliesProvider _blogPostAssembliesProvider;
         private static readonly IBlogPostResourceNameFilter _blogPostResourceNameFilter;
-        private static readonly AssemblyResourceReader _assemblyResourceReader;
+        private static readonly IAssemblyResourceReader _assemblyResourceReader;
+        private static readonly IArchiveProvider _archiveProvider;
 
         static ServiceLocator()
         {
             _settings = new Settings();
             _assemblyResourceReader = new AssemblyResourceReader(_settings);
-            _siteBaseUrlProvider = new SiteBaseUrlProvider();
+            _siteBaseUrlProvider = new SiteBaseUrlProvider(_settings);
             _markDownTransformer = new MarkDownTransformer();
             _imagePathMapper = new EmbeddedResourceImagePathMapper(_siteBaseUrlProvider);
             _blogPostAssembliesProvider = new BlogPostAssembliesProvider(_settings);
             _blogPostResourceNameFilter = new BlogPostResourceNameFilter(_settings);
             _blogPostLoader = new BlogPostLoader(_imagePathMapper, _markDownTransformer, _blogPostAssembliesProvider, _blogPostResourceNameFilter);
             _blogPostRepository = new BlogPostRepositoryFactory(_blogPostLoader).Create();
+            _archiveProvider = new ArchiveProvider(_blogPostRepository);
             _blogPostViewModelFactory = new BlogPostViewModelFactory(_siteBaseUrlProvider);
+        }
+
+        public static ISettings Settings
+        {
+            get { return _settings; }
         }
 
         public static BlogPostViewModelFactory BlogPostViewModelFactory
@@ -44,9 +51,14 @@ namespace BlogMonster
             get { return _blogPostRepository; }
         }
 
-        public static AssemblyResourceReader AssemblyResourceReader
+        public static IAssemblyResourceReader AssemblyResourceReader
         {
             get { return _assemblyResourceReader; }
+        }
+
+        public static IArchiveProvider ArchiveProvider
+        {
+            get { return _archiveProvider; }
         }
     }
 }

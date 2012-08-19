@@ -1,5 +1,6 @@
 using System;
 using System.Reflection;
+using System.ServiceModel.Syndication;
 
 namespace BlogMonster.Configuration
 {
@@ -8,5 +9,7 @@ namespace BlogMonster.Configuration
         Assembly[] BlogPostAssemblies { get; }
         Type ControllerType { get; }
         Func<string, bool> ResourceNameFilter { get; }
+        SyndicationPerson Author { get; }
+        string Url { get; }
     }
 }

@@ -1,23 +1,30 @@
-﻿using System.Diagnostics;
+﻿using BlogMonster.Configuration;
 using BlogMonster.Extensions;
 
 namespace BlogMonster.Infrastructure
 {
     public class SiteBaseUrlProvider : ISiteBaseUrlProvider
     {
-        public string BaseUrl
+        private readonly ISettings _settings;
+
+        public SiteBaseUrlProvider(ISettings settings)
         {
-            get { return Debugger.IsAttached ? string.Empty : AbsoluteBaseUrl; }
+            _settings = settings;
         }
 
-        public string ImageBaseUrl
+        public string AbsoluteUrl
         {
-            get { return "{0}/Image/Image/".FormatWith(BaseUrl.TrimEnd('/')); }
+            get { return _settings.Url; }
         }
 
-        private static string AbsoluteBaseUrl
+        public string BlogMonsterControllerRelativeUrl
         {
-            get { return "http://www.uglybugger.org"; }
+            get { return "/{0}".FormatWith(_settings.ControllerType.Name.Replace("Controller", string.Empty)); }
+        }
+
+        public string ImageRelativeUrl
+        {
+            get { return "{0}/Image/".FormatWith(BlogMonsterControllerRelativeUrl.TrimEnd('/')); }
         }
     }
 }

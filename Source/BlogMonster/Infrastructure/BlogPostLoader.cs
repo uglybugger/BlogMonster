@@ -38,6 +38,7 @@ namespace BlogMonster.Infrastructure
         private IEnumerable<BlogPost> LoadBlogPostsFromAssembly(Assembly assembly)
         {
             var blogPosts = _blogPostResourceNameFilter.Filter(assembly.GetManifestResourceNames())
+                .AsParallel()
                 .Select(resourceName => TryLoadBlogPost(resourceName, assembly))
                 .NotNull()
                 .ToArray();
@@ -61,7 +62,6 @@ namespace BlogMonster.Infrastructure
 
                 return new BlogPost
                            {
-                               Id = id,
                                Permalinks =  permalinks.ToArray(),
                                Title = title,
                                PostDate = postDate,
@@ -145,7 +145,7 @@ namespace BlogMonster.Infrastructure
         private static string ExtractTitleFromResourceName(string resourceName, string resourceBasePath)
         {
             var title = resourceName;
-            title = title.Replace(resourceBasePath, string.Empty);
+            title = title.Replace(resourceBasePath + ".", string.Empty);
             title = title.Replace(".markdown", string.Empty);
             return title;
         }
