@@ -60,5 +60,10 @@ namespace BlogMonster
         {
             get { return _archiveProvider; }
         }
+
+        public static ISiteBaseUrlProvider SiteBaseUrlProvider
+        {
+            get { return _siteBaseUrlProvider; }
+        }
     }
 }

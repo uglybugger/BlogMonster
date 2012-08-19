@@ -1,6 +1,5 @@
 using System;
 using System.Reflection;
-using System.ServiceModel.Syndication;
 
 namespace BlogMonster.Configuration
 {
@@ -9,19 +8,19 @@ namespace BlogMonster.Configuration
         private readonly Assembly[] _assemblies;
         private readonly Type _controllerType;
         private readonly Func<string, bool> _resourceNameFilter;
-        private readonly SyndicationPerson _author;
+        private readonly RssFeedSettings _rssFeedSettings;
 
-        internal SiteBaseUrlConfigurator(Assembly[] assemblies, Type controllerType, Func<string, bool> resourceNameFilter, SyndicationPerson author)
+        internal SiteBaseUrlConfigurator(Assembly[] assemblies, Type controllerType, Func<string, bool> resourceNameFilter, RssFeedSettings rssFeedSettings)
         {
             _assemblies = assemblies;
             _controllerType = controllerType;
             _resourceNameFilter = resourceNameFilter;
-            _author = author;
+            _rssFeedSettings = rssFeedSettings;
         }
 
         public FinalConfigurator WithSiteBaseUrl(string url)
         {
-            return new FinalConfigurator(_assemblies, _controllerType, _resourceNameFilter, _author, url);
+            return new FinalConfigurator(_assemblies, _controllerType, _resourceNameFilter, _rssFeedSettings, url);
         }
     }
 }

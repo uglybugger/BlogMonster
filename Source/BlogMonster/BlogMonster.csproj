@@ -52,13 +52,14 @@
       <Link>Properties\SolutionInfo.cs</Link>
     </Compile>
     <Compile Include="Configuration\AssemblyConfigurator.cs" />
-    <Compile Include="Configuration\AuthorConfigurator.cs" />
+    <Compile Include="Configuration\RssFeedConfigurator.cs" />
     <Compile Include="Configuration\BlogMonsterConfigurationException.cs" />
     <Compile Include="Configuration\BlogMonsterConfigurator.cs" />
     <Compile Include="Configuration\ControllerConfigurator.cs" />
     <Compile Include="Configuration\FilterConfigurator.cs" />
     <Compile Include="Configuration\FinalConfigurator.cs" />
     <Compile Include="Configuration\ISettings.cs" />
+    <Compile Include="Configuration\RssFeedSettings.cs" />
     <Compile Include="Configuration\Settings.cs" />
     <Compile Include="Configuration\SiteBaseUrlConfigurator.cs" />
     <Compile Include="Controllers\BlogPostAssembliesProvider.cs" />

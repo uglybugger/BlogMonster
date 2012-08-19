@@ -5,5 +5,6 @@ namespace BlogMonster.Infrastructure
         string AbsoluteUrl { get; }
         string BlogMonsterControllerRelativeUrl { get; }
         string ImageRelativeUrl { get; }
+        string BlogMonsterControllerAbsoluteUrl { get; }
     }
 }

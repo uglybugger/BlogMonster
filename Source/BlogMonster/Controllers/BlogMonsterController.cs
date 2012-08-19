@@ -21,15 +21,17 @@ namespace BlogMonster.Controllers
         private readonly IAssemblyResourceReader _assemblyResourceReader;
         private readonly ISettings _settings;
         private readonly IArchiveProvider _archiveProvider;
+        private readonly ISiteBaseUrlProvider _siteBaseUrlProvider;
 
         protected BlogMonsterController()
-            : this(ServiceLocator.BlogPostRepository, ServiceLocator.BlogPostViewModelFactory, ServiceLocator.AssemblyResourceReader, ServiceLocator.Settings, ServiceLocator.ArchiveProvider)
+            : this(ServiceLocator.BlogPostRepository, ServiceLocator.BlogPostViewModelFactory, ServiceLocator.AssemblyResourceReader, ServiceLocator.Settings, ServiceLocator.ArchiveProvider, ServiceLocator.SiteBaseUrlProvider)
         {
         }
 
-        private BlogMonsterController(IRepository<BlogPost> repository, BlogPostViewModelFactory blogPostViewModelFactory, IAssemblyResourceReader assemblyResourceReader, ISettings settings, IArchiveProvider archiveProvider)
+        private BlogMonsterController(IRepository<BlogPost> repository, BlogPostViewModelFactory blogPostViewModelFactory, IAssemblyResourceReader assemblyResourceReader, ISettings settings, IArchiveProvider archiveProvider, ISiteBaseUrlProvider siteBaseUrlProvider)
         {
             _archiveProvider = archiveProvider;
+            _siteBaseUrlProvider = siteBaseUrlProvider;
             _repository = repository;
             _blogPostViewModelFactory = blogPostViewModelFactory;
             _assemblyResourceReader = assemblyResourceReader;
@@ -51,7 +53,7 @@ namespace BlogMonster.Controllers
         public virtual ActionResult Rss()
         {
             var items = _repository.Query(new MostRecentPostsQuery(100));
-            return new CustomFeedResult(items, _settings.Author);
+            return new CustomFeedResult(items, _settings.RssFeedSettings, _siteBaseUrlProvider.BlogMonsterControllerAbsoluteUrl);
         }
 
         public virtual ActionResult Image(string id)

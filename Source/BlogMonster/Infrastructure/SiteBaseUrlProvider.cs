@@ -26,5 +26,10 @@ namespace BlogMonster.Infrastructure
         {
             get { return "{0}/Image/".FormatWith(BlogMonsterControllerRelativeUrl.TrimEnd('/')); }
         }
+
+        public string BlogMonsterControllerAbsoluteUrl
+        {
+            get { return "{0}{1}/Post".FormatWith(AbsoluteUrl, BlogMonsterControllerRelativeUrl); }
+        }
     }
 }
