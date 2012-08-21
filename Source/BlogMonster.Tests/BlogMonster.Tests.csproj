@@ -33,16 +33,19 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Autofac">
+    <Reference Include="Autofac, Version=2.6.3.862, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Autofac.2.6.3.862\lib\NET40\Autofac.dll</HintPath>
     </Reference>
-    <Reference Include="Autofac.Configuration">
+    <Reference Include="Autofac.Configuration, Version=2.6.3.862, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Autofac.2.6.3.862\lib\NET40\Autofac.Configuration.dll</HintPath>
     </Reference>
-    <Reference Include="NSubstitute">
-      <HintPath>..\packages\NSubstitute.1.4.2.0\lib\NET40\NSubstitute.dll</HintPath>
+    <Reference Include="NSubstitute, Version=1.4.3.0, Culture=neutral, PublicKeyToken=92dd2e9066daa5ca, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NSubstitute.1.4.3.0\lib\NET40\NSubstitute.dll</HintPath>
     </Reference>
-    <Reference Include="nunit.framework">
+    <Reference Include="nunit.framework, Version=2.6.1.12217, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <HintPath>..\packages\NUnit.2.6.1\lib\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="Shouldly">
@@ -55,23 +58,28 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="UniMock.Core, Version=1.2.0.6, Culture=neutral, PublicKeyToken=792d774958d966cc, processorArchitecture=MSIL">
+    <Reference Include="UniMock.Core, Version=2.0.0.1, Culture=neutral, PublicKeyToken=792d774958d966cc, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\UniMock.Core.1.2.0.6\lib\net40\UniMock.Core.dll</HintPath>
+      <HintPath>..\packages\UniMock.Core.2.0.0.1\lib\net40\UniMock.Core.dll</HintPath>
     </Reference>
-    <Reference Include="UniMock.WithNSubstitute, Version=1.2.0.6, Culture=neutral, PublicKeyToken=792d774958d966cc, processorArchitecture=MSIL">
+    <Reference Include="UniMock.WithNSubstitute, Version=2.0.0.1, Culture=neutral, PublicKeyToken=792d774958d966cc, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\UniMock.WithNSubstitute.1.2.0.6\lib\net40\UniMock.WithNSubstitute.dll</HintPath>
+      <HintPath>..\packages\UniMock.WithNSubstitute.2.0.0.1\lib\net40\UniMock.WithNSubstitute.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\SolutionInfo.cs">
       <Link>Properties\SolutionInfo.cs</Link>
     </Compile>
+    <Compile Include="IntegrationTestFor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\AssemblyInfoForUniMock.cs" />
+    <Compile Include="Properties\AssemblyInfoForUniMockWithNSubstitute.cs" />
     <Compile Include="Scenarios\SinglePostWithImageScenario.cs" />
     <Compile Include="Scenarios\UnitTestBlogPostAssemblyScenario.cs" />
     <Compile Include="Scenarios\SinglePostScenario.cs" />
+    <Compile Include="TestFor.cs" />
+    <Compile Include="UniMockSamples\WhenDoingBar.cs" />
     <Compile Include="WhenLoadingOneSimpleBlogPost.cs" />
     <Compile Include="WhenLoadingOneSimpleBlogPostWithOneImage.cs" />
     <Compile Include="WhenTheTestFrameworkRuns.cs" />
@@ -88,8 +96,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="LICENCE.txt" />
     <EmbeddedResource Include="SinglePostWithImage\2012.08.19.2116.1000\ImageInception.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="LICENCE.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />

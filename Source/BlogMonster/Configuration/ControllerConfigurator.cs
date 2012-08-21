@@ -16,9 +16,9 @@ namespace BlogMonster.Configuration
 
         public FilterConfigurator WithControllerExtendingBlogMonsterController(Type controllerType)
         {
-            if (!typeof (BlogMonsterController).IsAssignableFrom(controllerType))
+            if (!typeof (BlogMonsterControllerBase).IsAssignableFrom(controllerType))
             {
-                throw new BlogMonsterConfigurationException("{0} must inherit from {1}".FormatWith(controllerType.FullName, typeof (BlogMonsterController).FullName));
+                throw new BlogMonsterConfigurationException("{0} must inherit from {1}".FormatWith(controllerType.FullName, typeof (BlogMonsterControllerBase).FullName));
             }
 
             return new FilterConfigurator(_assemblies, controllerType);

@@ -64,11 +64,14 @@
     <Compile Include="Configuration\SiteBaseUrlConfigurator.cs" />
     <Compile Include="Controllers\BlogPostAssembliesProvider.cs" />
     <Compile Include="Controllers\BlogPostResourceNameFilter.cs" />
-    <None Include="Controllers\HomeController.cs.pp" />
+    <Content Include="Controllers\BlogMonsterController.cs.pp" />
+    <Compile Include="Domain\Queries\CurrentPostsQuery.cs" />
     <Compile Include="Infrastructure\IAssemblyResourceReader.cs" />
+    <Compile Include="Infrastructure\IClock.cs" />
+    <Compile Include="Infrastructure\SystemClock.cs" />
     <Compile Include="ServiceLocator.cs" />
     <Compile Include="Infrastructure\AssemblyResourceReader.cs" />
-    <Compile Include="Controllers\BlogMonsterController.cs" />
+    <Compile Include="Controllers\BlogMonsterControllerBase.cs" />
     <Compile Include="Infrastructure\ArchiveProvider.cs" />
     <Compile Include="Domain\Entities\BlogPost.cs" />
     <Compile Include="Infrastructure\BlogPostExtractionFailedException.cs" />
@@ -76,7 +79,7 @@
     <Compile Include="Infrastructure\BlogPostRepositoryFactory.cs" />
     <Compile Include="Infrastructure\IBlogPostAssembliesProvider.cs" />
     <Compile Include="Infrastructure\IBlogPostResourceNameFilter.cs" />
-    <Compile Include="Infrastructure\MemoryRepository.cs" />
+    <Compile Include="Infrastructure\BlogPostMemoryRepository.cs" />
     <Compile Include="Web\CustomFeedResult.cs" />
     <Compile Include="Infrastructure\EmbeddedResourceImagePathMapper.cs" />
     <Compile Include="Infrastructure\IArchiveProvider.cs" />
@@ -95,7 +98,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Domain\Queries\GetPostAfterQuery.cs" />
     <Compile Include="Domain\Queries\GetPostBeforeQuery.cs" />
-    <Compile Include="Domain\Queries\GetPostByPermalinkQuery.cs" />
+    <Compile Include="Domain\Queries\GetPostByIdQuery.cs" />
     <Compile Include="Domain\Queries\MostRecentPostsQuery.cs" />
     <Compile Include="Web\ViewModels\ArchiveViewModel.cs" />
     <Compile Include="Web\ViewModels\BlogPostViewModel.cs" />
@@ -103,8 +106,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="BlogMonster.nuspec" />
+    <Content Include="Controllers\HomeController.cs.pp" />
     <None Include="MakeNuGetGoNow.bat" />
     <None Include="packages.config" />
+    <Content Include="Views\Shared\_Archive.cshtml.pp" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -29,7 +29,9 @@ namespace BlogMonster.Infrastructure
         public IEnumerable<BlogPost> LoadPosts()
         {
             var blogPosts = _blogPostAssembliesProvider.Assemblies
+                .AsParallel()
                 .SelectMany(LoadBlogPostsFromAssembly)
+                .OrderByDescending(p => p.PostDate)
                 .ToArray();
 
             return blogPosts;
@@ -57,12 +59,12 @@ namespace BlogMonster.Infrastructure
                 if (!ExtractBaseResourcePathAndPostDate(resourceName, out resourceBasePath, out postDate)) return null;
                 var id = ExtractId(postDate);
                 var title = ExtractTitle(resourceName, resourceBasePath, assembly);
-                var permalinks = ExtractPermalinks(resourceBasePath, assembly, id);
+                var permalinks = ExtractPermalinks(resourceBasePath, assembly, title, id);
                 var html = ExtractHtml(resourceName, assembly, id);
 
                 return new BlogPost
                            {
-                               Permalinks =  permalinks.ToArray(),
+                               Permalinks = permalinks.ToArray(),
                                Title = title,
                                PostDate = postDate,
                                Html = html,
@@ -74,34 +76,38 @@ namespace BlogMonster.Infrastructure
             }
         }
 
-      
-        private bool ExtractBaseResourcePathAndPostDate(string resourceName, out string resourcePath, out DateTimeOffset postDate)
+        private static bool ExtractBaseResourcePathAndPostDate(string resourceName, out string resourcePath, out DateTimeOffset postDate)
         {
             var tokens = resourceName.Split('.');
 
             // just scan through all the tokens and see if we can pick out a set of tokens that look like a post directory
-            for (var i = 0; i < tokens.Length; i++)
+            for (var i = 0; i < tokens.Length - 5; i++)
             {
+                var slidingTokens = tokens
+                    .Skip(i)
+                    .Take(5)
+                    .Select(t => t.Trim('_'))
+                    .ToArray();
+
+                int year;
+                int month;
+                int day;
+                int time;
+                int offset;
+
+                if (!int.TryParse(slidingTokens[0], out year)) continue;
+                if (!int.TryParse(slidingTokens[1], out month)) continue;
+                if (!int.TryParse(slidingTokens[2], out day)) continue;
+                if (!int.TryParse(slidingTokens[3], out time)) continue;
+                if (!int.TryParse(slidingTokens[4], out offset)) continue;
+
+                var hour = time/100;
+                var minute = time%100;
+
                 try
                 {
-                    var idTokens = tokens
-                        .Skip(i)
-                        .Take(5)
-                        .Select(t => t.Trim('_'))
-                        .ToArray();
-
-                    var dateTokens = idTokens
-                        .Select(int.Parse)
-                        .ToArray();
-
-                    var year = dateTokens[0];
-                    var month = dateTokens[1];
-                    var day = dateTokens[2];
-                    var hour = dateTokens[3] / 100;
-                    var minute = dateTokens[3] % 100;
-                    var offset = new TimeSpan(dateTokens[4] / 100, dateTokens[4] % 100, 0);
-
-                     postDate = new DateTimeOffset(year, month, day, hour, minute, 0, offset);
+                    var offsetTimeSpan = new TimeSpan(offset/100, offset%100, 0);
+                    postDate = new DateTimeOffset(year, month, day, hour, minute, 0, offsetTimeSpan);
                     resourcePath = string.Join(".", tokens.Take(i + 5));
                     return true;
                 }
@@ -116,19 +122,19 @@ namespace BlogMonster.Infrastructure
             return false;
         }
 
-        private string ExtractId(DateTimeOffset postDate)
+        private static string ExtractId(DateTimeOffset postDate)
         {
             var id = "{0:0000}.{1:00}.{2:00}.{3:00}{4:00}.{5:00}{6:00}".FormatWith(postDate.Year,
-                                                                      postDate.Month,
-                                                                      postDate.Day,
-                                                                      postDate.Hour,
-                                                                      postDate.Minute,
-                                                                      postDate.Offset.Hours,
-                                                                      postDate.Offset.Minutes);
+                                                                                   postDate.Month,
+                                                                                   postDate.Day,
+                                                                                   postDate.Hour,
+                                                                                   postDate.Minute,
+                                                                                   postDate.Offset.Hours,
+                                                                                   postDate.Offset.Minutes);
             return id;
         }
 
-        private string ExtractTitle(string resourceName, string resourceBasePath, Assembly assembly)
+        private static string ExtractTitle(string resourceName, string resourceBasePath, Assembly assembly)
         {
             string title;
             var overrideTitleResourceName = "{0}.Title.txt".FormatWith(resourceBasePath);
@@ -150,9 +156,11 @@ namespace BlogMonster.Infrastructure
             return title;
         }
 
-        private IEnumerable<string> ExtractPermalinks(string resourceBasePath, Assembly assembly, string id)
+        private static IEnumerable<string> ExtractPermalinks(string resourceBasePath, Assembly assembly, string title, string id)
         {
             var permalinks = new List<string>();
+
+            // add links provided by author. these take precedence
             var permalinkResourceName = "{0}.Permalinks.txt".FormatWith(resourceBasePath);
             using (var stream = assembly.GetManifestResourceStream(permalinkResourceName))
             {
@@ -162,6 +170,18 @@ namespace BlogMonster.Infrastructure
                     permalinks.AddRange(blob.Split('\r', '\n'));
                 }
             }
+
+            // see if we can figure one out
+            var slug = title
+                .Replace("'", string.Empty)
+                .RegexReplace(@"\W", " ")
+                .ToLowerInvariant()
+                .Split(new[] {" "}, StringSplitOptions.RemoveEmptyEntries)
+                .Join("_")
+                ;
+            permalinks.Add(slug);
+
+            // default to the id if nothing else
             permalinks.Add(id);
 
             var result = permalinks
@@ -171,7 +191,6 @@ namespace BlogMonster.Infrastructure
                 ;
             return result;
         }
-
 
         private string ExtractHtml(string resourceName, Assembly assembly, string id)
         {

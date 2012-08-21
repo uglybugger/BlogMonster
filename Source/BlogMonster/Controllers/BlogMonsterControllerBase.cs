@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Web.Mvc;
@@ -14,21 +13,32 @@ using BlogMonster.Web.ViewModels;
 
 namespace BlogMonster.Controllers
 {
-    public abstract class BlogMonsterController : Controller
+    public abstract class BlogMonsterControllerBase : Controller
     {
+        private readonly IArchiveProvider _archiveProvider;
+        private readonly IAssemblyResourceReader _assemblyResourceReader;
         private readonly BlogPostViewModelFactory _blogPostViewModelFactory;
         private readonly IRepository<BlogPost> _repository;
-        private readonly IAssemblyResourceReader _assemblyResourceReader;
         private readonly ISettings _settings;
-        private readonly IArchiveProvider _archiveProvider;
         private readonly ISiteBaseUrlProvider _siteBaseUrlProvider;
 
-        protected BlogMonsterController()
-            : this(ServiceLocator.BlogPostRepository, ServiceLocator.BlogPostViewModelFactory, ServiceLocator.AssemblyResourceReader, ServiceLocator.Settings, ServiceLocator.ArchiveProvider, ServiceLocator.SiteBaseUrlProvider)
+        protected BlogMonsterControllerBase()
+            : this(
+                ServiceLocator.BlogPostRepository,
+                ServiceLocator.BlogPostViewModelFactory,
+                ServiceLocator.AssemblyResourceReader,
+                ServiceLocator.Settings,
+                ServiceLocator.ArchiveProvider,
+                ServiceLocator.SiteBaseUrlProvider)
         {
         }
 
-        private BlogMonsterController(IRepository<BlogPost> repository, BlogPostViewModelFactory blogPostViewModelFactory, IAssemblyResourceReader assemblyResourceReader, ISettings settings, IArchiveProvider archiveProvider, ISiteBaseUrlProvider siteBaseUrlProvider)
+        private BlogMonsterControllerBase(IRepository<BlogPost> repository,
+                                          BlogPostViewModelFactory blogPostViewModelFactory,
+                                          IAssemblyResourceReader assemblyResourceReader,
+                                          ISettings settings,
+                                          IArchiveProvider archiveProvider,
+                                          ISiteBaseUrlProvider siteBaseUrlProvider)
         {
             _archiveProvider = archiveProvider;
             _siteBaseUrlProvider = siteBaseUrlProvider;
@@ -38,22 +48,26 @@ namespace BlogMonster.Controllers
             _settings = settings;
         }
 
-        public virtual ActionResult Index()
-        {
-            var post = _repository.Query(new MostRecentPostsQuery(1)).First();
-            return ShowPost(post);
-        }
-
         public virtual ActionResult Post(string id)
         {
-            var post = _repository.Query(new GetPostByPermalinkQuery(id));
+            var post = id == null
+                           ? _repository.Query(new MostRecentPostsQuery(1)).First()
+                           : _repository.Query(new GetPostByIdQuery(id));
+            if (post == null) return Redirect("/");
+
+            var preferredPermalink = post.Permalinks.First();
+            var redirectUrl = "/blog/{0}".FormatWith(preferredPermalink);
+
+            if (id == null) return Redirect(redirectUrl); // don't set permanent redirects on our landing page
+            if (preferredPermalink != id)
+                return RedirectPermanent(redirectUrl); // otherwise use permanent redirects so that commenting systems (e.g. disqus) will update themselves
             return ShowPost(post);
         }
 
         public virtual ActionResult Rss()
         {
             var items = _repository.Query(new MostRecentPostsQuery(100));
-            return new CustomFeedResult(items, _settings.RssFeedSettings, _siteBaseUrlProvider.BlogMonsterControllerAbsoluteUrl);
+            return new CustomFeedResult(items, _settings.RssFeedSettings, _siteBaseUrlProvider.AbsoluteUrl);
         }
 
         public virtual ActionResult Image(string id)
@@ -65,7 +79,7 @@ namespace BlogMonster.Controllers
             var imageName = string.Join(".", tokens.Skip(5).ToArray());
             var mimeType = "image/{0}".FormatWith(tokens.Last()).ToLowerInvariant();
             var imagePath = string.Join("._", tokens.Take(5).ToArray());
-            var resourceName = "{0}.{1}".FormatWith( imagePath, imageName);
+            var resourceName = "{0}.{1}".FormatWith(imagePath, imageName);
             using (var stream = _assemblyResourceReader.GetBestMatchingResourceStream(resourceName))
             {
                 if (stream == null) throw new InvalidOperationException();
@@ -82,7 +96,7 @@ namespace BlogMonster.Controllers
         public virtual ActionResult Archive()
         {
             var viewModel = new ArchiveViewModel(_archiveProvider.Posts);
-            return PartialView("Archive", viewModel);
+            return PartialView("_Archive", viewModel);
         }
 
         protected virtual ActionResult ShowPost(BlogPost post)

@@ -1,78 +1,97 @@
-using System.Linq;
-using BlogMonster.Domain.Entities;
-using BlogMonster.Extensions;
-using BlogMonster.Infrastructure;
-
 namespace BlogMonster.Web.ViewModels
 {
     public class BlogPostViewModel
     {
-        private readonly BlogPost _post;
-        private readonly BlogPost _previousPost;
-        private readonly BlogPost _nextPost;
-        private readonly ISiteBaseUrlProvider _siteBaseUrlProvider;
+        private readonly string _disqusIdentifier;
+        private readonly string _permalink;
+        private readonly string _html;
+        private readonly string _nextHref;
+        private readonly string _nextTitle;
+        private readonly string _postDate;
+        private readonly string _postMonth;
+        private readonly string _postYear;
+        private readonly string _previousHref;
+        private readonly string _previousTitle;
+        private readonly string _title;
 
-        public string Permalink
+        public BlogPostViewModel(string disqusIdentifier,
+                                 string title,
+                                 string permalink,
+                                 string postDate,
+                                 string html,
+                                 string postYear,
+                                 string postMonth,
+                                 string previousHref,
+                                 string previousTitle,
+                                 string nextHref,
+                                 string nextTitle)
         {
-            get { return "{0}/{1}/Post/{2}".FormatWith(_siteBaseUrlProvider.AbsoluteUrl, _siteBaseUrlProvider.BlogMonsterControllerRelativeUrl, _post.Permalinks.First()); }
+            _disqusIdentifier = disqusIdentifier;
+            _title = title;
+            _permalink = permalink;
+            _postDate = postDate;
+            _html = html;
+            _postYear = postYear;
+            _postMonth = postMonth;
+            _previousHref = previousHref;
+            _previousTitle = previousTitle;
+            _nextHref = nextHref;
+            _nextTitle = nextTitle;
         }
 
         public string DisqusIdentifier
         {
-            get { return _post.Permalinks.First(); }
+            get { return _disqusIdentifier; }
         }
 
         public string Title
         {
-            get { return _post.Title; }
+            get { return _title; }
+        }
+
+        public string Permalink
+        {
+            get { return _permalink; }
         }
 
         public string PostDate
         {
-            get { return _post.PostDate.ToLocalTime().ToString("dd/MM/yyyy"); }
+            get { return _postDate; }
         }
 
         public string Html
         {
-            get { return _post.Html; }
+            get { return _html; }
         }
 
         public string PostYear
         {
-            get { return _post.PostDate.ToLocalTime().ToString("yyyy"); }
+            get { return _postYear; }
         }
 
         public string PostMonth
         {
-            get { return _post.PostDate.ToLocalTime().ToString("MMMM"); }
+            get { return _postMonth; }
         }
 
         public string PreviousHref
         {
-            get { return _previousPost.Coalesce(p => "{0}/Post/{1}".FormatWith(_siteBaseUrlProvider.BlogMonsterControllerRelativeUrl, p.Permalinks.First()), null); }
+            get { return _previousHref; }
         }
 
         public string PreviousTitle
         {
-            get { return _previousPost.Coalesce(p => p.Title, null); }
+            get { return _previousTitle; }
         }
 
         public string NextHref
         {
-            get { return _nextPost.Coalesce(p => "{0}/Post/{1}".FormatWith(_siteBaseUrlProvider.BlogMonsterControllerRelativeUrl, p.Permalinks.First()), null); }
+            get { return _nextHref; }
         }
 
         public string NextTitle
         {
-            get { return _nextPost.Coalesce(p => p.Title, null); }
-        }
-
-        public BlogPostViewModel(BlogPost post, BlogPost previousPost, BlogPost nextPost, ISiteBaseUrlProvider siteBaseUrlProvider)
-        {
-            _post = post;
-            _previousPost = previousPost;
-            _nextPost = nextPost;
-            _siteBaseUrlProvider = siteBaseUrlProvider;
+            get { return _nextTitle; }
         }
     }
 }
