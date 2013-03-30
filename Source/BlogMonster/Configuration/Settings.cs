@@ -1,5 +1,7 @@
 using System;
 using System.Reflection;
+using System.Web.Mvc;
+using System.Web.Routing;
 
 namespace BlogMonster.Configuration
 {
@@ -36,13 +38,27 @@ namespace BlogMonster.Configuration
             get { return _rssFeedSettings; }
         }
 
-        internal static void Configure(Assembly[] blogPostAssemblies, Type controllerType, Func<string, bool> resourceNameFilter, RssFeedSettings rssFeedSettings, string url)
+        internal static void Configure(Assembly[] blogPostAssemblies, Type controllerType, Func<string, bool> resourceNameFilter, RssFeedSettings rssFeedSettings, string url, RouteCollection routeTable)
         {
             _resourceNameFilter = resourceNameFilter;
             _controllerType = controllerType;
             _blogPostAssemblies = blogPostAssemblies;
             _url = url;
             _rssFeedSettings = rssFeedSettings;
+
+            var controllerName = controllerType.Name.Replace("Controller", string.Empty);
+
+            routeTable.MapRoute(
+                         name: "blog",
+                         url: "blog/{id}",
+                         defaults: new { controller = controllerName, action = "Index", id = UrlParameter.Optional }
+                         );
+
+            routeTable.MapRoute(
+                         name: "blog",
+                         url: "blog/{year}/{month}/{day}/{id}",
+                         defaults: new { controller = controllerName, action = "Index" }
+                         );
         }
     }
 }

@@ -18,9 +18,9 @@ namespace BlogMonster.Configuration
             _rssFeedSettings = rssFeedSettings;
         }
 
-        public FinalConfigurator WithSiteBaseUrl(string url)
+        public RouteTableConfigurator WithSiteBaseUrl(string siteBaseUrl)
         {
-            return new FinalConfigurator(_assemblies, _controllerType, _resourceNameFilter, _rssFeedSettings, url);
+            return new RouteTableConfigurator(_assemblies, _controllerType, _resourceNameFilter, _rssFeedSettings, siteBaseUrl);
         }
     }
 }

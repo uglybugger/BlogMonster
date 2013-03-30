@@ -51,6 +51,7 @@
       <Link>Properties\SolutionInfo.cs</Link>
     </Compile>
     <Compile Include="Configuration\AssemblyConfigurator.cs" />
+    <Compile Include="Configuration\RouteTableConfigurator.cs" />
     <Compile Include="Configuration\RssFeedConfigurator.cs" />
     <Compile Include="Configuration\BlogMonsterConfigurationException.cs" />
     <Compile Include="Configuration\BlogMonsterConfigurator.cs" />

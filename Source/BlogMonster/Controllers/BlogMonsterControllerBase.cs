@@ -54,16 +54,16 @@ namespace BlogMonster.Controllers
             return RedirectToPost(post, false);
         }
 
-        public virtual ActionResult PostById(string id)
+        public virtual ActionResult Index(string id)
         {
             var post = _repository.Query(new GetPostByIdQuery(id));
-            return RedirectToPost(post);
+            return ShowPost(post);
         }
 
         public virtual ActionResult PostByDateAndId(int year, int month, int day, string id)
         {
             var post = _repository.Query(new GetPostByDateAndIdQuery(year, month, day, id));
-            return ShowPost(post);
+            return RedirectToPost(post);
         }
 
         public virtual ActionResult Rss()
@@ -105,9 +105,12 @@ namespace BlogMonster.Controllers
         {
             if (post == null) return Redirect("/");
 
-            // use permanent redirects so that commenting systems (e.g. disqus) will update themselves
             var url = post.BuildRelativeUrl();
-            return RedirectPermanent(url);
+
+            // we sometimes use permanent redirects so that commenting systems (e.g. disqus) will update themselves
+            return allowPermanentRedirect
+                       ? RedirectPermanent(url)
+                       : Redirect(url);
         }
 
         protected virtual ActionResult ShowPost(BlogPost post)
