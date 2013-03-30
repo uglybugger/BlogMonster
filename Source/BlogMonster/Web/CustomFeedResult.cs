@@ -20,28 +20,25 @@ namespace BlogMonster.Web
             var feedItems = items
                 .OrderByDescending(item => item.PostDate)
                 .Select(post => new SyndicationItem(post.Title, post.Html, new Uri("{0}{1}".FormatWith(siteBaseUrl, post.BuildRelativeUrl())))
-                                    {
-                                        Content = new TextSyndicationContent(post.Html, TextSyndicationContentKind.XHtml),
-                                        Id = post.BuildRssId(),
-                                        PublishDate = post.PostDate,
-                                        LastUpdatedTime = post.PostDate,
-                                        Summary = new TextSyndicationContent(post.Html, TextSyndicationContentKind.XHtml),
-                                        Title = new TextSyndicationContent(post.Title),
-                                    })
+                {
+                    Content = new TextSyndicationContent(post.Html, TextSyndicationContentKind.XHtml),
+                    Id = post.BuildRssId(),
+                    PublishDate = post.PostDate,
+                    LastUpdatedTime = post.PostDate,
+                    Summary = new TextSyndicationContent(post.Html, TextSyndicationContentKind.XHtml),
+                    Title = new TextSyndicationContent(post.Title),
+                })
                 .Do(item => item.Authors.Add(rssFeedSettings.Author))
                 .ToArray();
 
-            var feed = new SyndicationFeed(feedItems)
-                           {
-                               Id = rssFeedSettings.FeedId,
-                               Title = new TextSyndicationContent(rssFeedSettings.Title),
-                               Description = new TextSyndicationContent(rssFeedSettings.Description),
-                               ImageUrl = new Uri(rssFeedSettings.ImageUrl),
-                               BaseUri = new Uri(siteBaseUrl),
-                               Language = rssFeedSettings.Language,
-                               Copyright = new TextSyndicationContent(rssFeedSettings.Copyright),
-                               LastUpdatedTime = feedItems.FirstOrDefault().Coalesce(item => item.PublishDate, DateTimeOffset.MinValue),
-                           };
+            var feed = new SyndicationFeed(rssFeedSettings.Title, rssFeedSettings.Description, new Uri(siteBaseUrl), feedItems)
+            {
+                Id = rssFeedSettings.FeedId,
+                ImageUrl = new Uri(rssFeedSettings.ImageUrl),
+                Language = rssFeedSettings.Language,
+                Copyright = new TextSyndicationContent(rssFeedSettings.Copyright),
+                LastUpdatedTime = feedItems.FirstOrDefault().Coalesce(item => item.PublishDate, DateTimeOffset.MinValue),
+            };
             feed.Authors.Add(rssFeedSettings.Author);
             feed.Links.Add(new SyndicationLink(new Uri(siteBaseUrl)));
 
