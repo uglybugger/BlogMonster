@@ -108,14 +108,14 @@
   <ItemGroup>
     <None Include="BlogMonster.nuspec" />
     <Content Include="Controllers\HomeController.cs.pp" />
-    <None Include="MakeNuGetGoNow.bat" />
     <None Include="packages.config" />
     <Content Include="Views\Shared\_Archive.cshtml.pp" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>$(ProjectDir)MakeNuGetGoNow.bat $(SolutionDir) $(ProjectDir)</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
