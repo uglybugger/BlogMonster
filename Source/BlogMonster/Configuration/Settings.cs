@@ -62,7 +62,7 @@ namespace BlogMonster.Configuration
             routeTable.MapRoute(
                 name: "blogPostByDate",
                 url: "blog/{year}/{month}/{day}/{id}",
-                defaults: new {controller = controllerName, action = "Index"}
+                defaults: new {controller = controllerName, action = "PostByDateAndId"}
                 );
             routeTable.MapRoute(
                 name: "blog",
