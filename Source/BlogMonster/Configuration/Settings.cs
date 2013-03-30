@@ -38,7 +38,12 @@ namespace BlogMonster.Configuration
             get { return _rssFeedSettings; }
         }
 
-        internal static void Configure(Assembly[] blogPostAssemblies, Type controllerType, Func<string, bool> resourceNameFilter, RssFeedSettings rssFeedSettings, string url, RouteCollection routeTable)
+        internal static void Configure(Assembly[] blogPostAssemblies,
+                                       Type controllerType,
+                                       Func<string, bool> resourceNameFilter,
+                                       RssFeedSettings rssFeedSettings,
+                                       string url,
+                                       RouteCollection routeTable)
         {
             _resourceNameFilter = resourceNameFilter;
             _controllerType = controllerType;
@@ -49,16 +54,21 @@ namespace BlogMonster.Configuration
             var controllerName = controllerType.Name.Replace("Controller", string.Empty);
 
             routeTable.MapRoute(
-                         name: "blogPost",
-                         url: "blog/{id}",
-                         defaults: new { controller = controllerName, action = "Index", id = UrlParameter.Optional }
-                         );
+                name: "blogPostById",
+                url: "blog/{id}",
+                defaults: new {controller = controllerName, action = "PostById"}
+                );
 
             routeTable.MapRoute(
-                         name: "blogPostByDate",
-                         url: "blog/{year}/{month}/{day}/{id}",
-                         defaults: new { controller = controllerName, action = "Index" }
-                         );
+                name: "blogPostByDate",
+                url: "blog/{year}/{month}/{day}/{id}",
+                defaults: new {controller = controllerName, action = "Index"}
+                );
+            routeTable.MapRoute(
+                name: "blog",
+                url: "blog",
+                defaults: new {controller = controllerName, action = "Index"}
+                );
         }
     }
 }

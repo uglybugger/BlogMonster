@@ -54,7 +54,7 @@ namespace BlogMonster.Controllers
             return RedirectToPost(post, false);
         }
 
-        public virtual ActionResult Index(string id)
+        public virtual ActionResult PostById(string id)
         {
             var post = _repository.Query(new GetPostByIdQuery(id));
             return ShowPost(post);
