@@ -7,12 +7,12 @@ namespace BlogMonster.Extensions
     {
         public static string BuildRelativeUrl(this BlogPost post)
         {
-            return "/blog/{0}/{1}/{2}/{3}".FormatWith(post.PostDate.Year, post.PostDate.Month, post.PostDate.Day, post.Permalinks.First());
+            return "/blog/{0}".FormatWith(post.Permalinks.First());
         }
 
         public static string BuildRssId(this BlogPost post)
         {
-            return "{0}.{1}.{2}.{3}".FormatWith(post.PostDate.Year, post.PostDate.Month, post.PostDate.Day, post.Permalinks.First());
+            return "{0}".FormatWith(post.Permalinks.First());
         }
     }
 }

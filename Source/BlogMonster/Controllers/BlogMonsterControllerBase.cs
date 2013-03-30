@@ -51,7 +51,7 @@ namespace BlogMonster.Controllers
         public virtual ActionResult Index()
         {
             var post = _repository.Query(new MostRecentPostsQuery(1)).First();
-            return RedirectToPost(post);
+            return RedirectToPost(post, false);
         }
 
         public virtual ActionResult PostById(string id)
@@ -101,7 +101,7 @@ namespace BlogMonster.Controllers
             return PartialView("_Archive", viewModel);
         }
 
-        protected virtual ActionResult RedirectToPost(BlogPost post)
+        protected virtual ActionResult RedirectToPost(BlogPost post, bool allowPermanentRedirect = true)
         {
             if (post == null) return Redirect("/");
 
