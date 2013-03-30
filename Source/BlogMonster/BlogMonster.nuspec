@@ -13,5 +13,8 @@
     <releaseNotes></releaseNotes>
     <copyright>Copyright 2012 Andrew Harcourt</copyright>
     <tags>blog rss git embedded markdown</tags>
+    <dependencies>
+      <dependency id="MarkdownSharp" version="1.13.0.0" />
+    </dependencies>
   </metadata>
 </package>
