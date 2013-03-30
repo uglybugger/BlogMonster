@@ -1,7 +1,8 @@
 <?xml version="1.0"?>
-<package >
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>BlogMonster</id>
+    <version>1.0.0.0</version>
     <title>The Blog Monster says, "Grr!"</title>
     <authors>Andrew Harcourt</authors>
     <owners>Andrew Harcourt</owners>
