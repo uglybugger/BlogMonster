@@ -49,13 +49,13 @@ namespace BlogMonster.Configuration
             var controllerName = controllerType.Name.Replace("Controller", string.Empty);
 
             routeTable.MapRoute(
-                         name: "blog",
+                         name: "blogPost",
                          url: "blog/{id}",
                          defaults: new { controller = controllerName, action = "Index", id = UrlParameter.Optional }
                          );
 
             routeTable.MapRoute(
-                         name: "blog",
+                         name: "blogPostByDate",
                          url: "blog/{year}/{month}/{day}/{id}",
                          defaults: new { controller = controllerName, action = "Index" }
                          );
