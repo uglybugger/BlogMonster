@@ -63,6 +63,8 @@
     <Compile Include="Configuration\Settings.cs" />
     <Compile Include="Configuration\SiteBaseUrlConfigurator.cs" />
     <Compile Include="Controllers\BlogPostAssembliesProvider.cs" />
+    <Compile Include="Domain\Queries\GetPostByDateAndIdQuery.cs" />
+    <Compile Include="Extensions\BlogPostExtensions.cs" />
     <Compile Include="Controllers\BlogPostResourceNameFilter.cs" />
     <Content Include="Controllers\BlogMonsterController.cs.pp" />
     <Compile Include="Domain\Queries\CurrentPostsQuery.cs" />

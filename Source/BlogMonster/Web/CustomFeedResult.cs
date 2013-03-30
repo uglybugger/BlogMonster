@@ -19,10 +19,10 @@ namespace BlogMonster.Web
         {
             var feedItems = items
                 .OrderByDescending(item => item.PostDate)
-                .Select(post => new SyndicationItem(post.Title, post.Html, new Uri("{0}/blog/{1}".FormatWith(siteBaseUrl, post.Permalinks.First())))
+                .Select(post => new SyndicationItem(post.Title, post.Html, new Uri("{0}{1}".FormatWith(siteBaseUrl, post.BuildRelativeUrl())))
                                     {
                                         Content = new TextSyndicationContent(post.Html, TextSyndicationContentKind.XHtml),
-                                        Id = post.Permalinks.First(),
+                                        Id = post.BuildRssId(),
                                         PublishDate = post.PostDate,
                                         LastUpdatedTime = post.PostDate,
                                         Summary = new TextSyndicationContent(post.Html, TextSyndicationContentKind.XHtml),

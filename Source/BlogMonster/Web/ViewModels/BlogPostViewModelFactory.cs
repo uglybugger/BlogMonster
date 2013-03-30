@@ -16,17 +16,17 @@ namespace BlogMonster.Web.ViewModels
 
         public BlogPostViewModel Create(BlogPost post, BlogPost previousPost, BlogPost nextPost)
         {
-            string disqusIdentifier = post.Permalinks.First();
-            string title = post.Title;
-            string permalink = "{0}/blog/{1}".FormatWith(_siteBaseUrlProvider.AbsoluteUrl, post.Permalinks.First());
-            string postDate = post.PostDate.ToLocalTime().ToString("dd/MM/yyyy");
-            string html = post.Html;
-            string postYear = post.PostDate.ToLocalTime().ToString("yyyy");
-            string postMonth = post.PostDate.ToLocalTime().ToString("MMMM");
-            string previousHref = previousPost.Coalesce(p => "/blog/{0}".FormatWith(p.Permalinks.First()), null);
-            string previousTitle = previousPost.Coalesce(p => p.Title, null);
-            string nextHref = nextPost.Coalesce(p => "/blog/{0}".FormatWith(p.Permalinks.First()), null);
-            string nextTitle = nextPost.Coalesce(p => p.Title, null);
+            var disqusIdentifier = post.Permalinks.First();
+            var title = post.Title;
+            var permalink = "{0}{1}".FormatWith(_siteBaseUrlProvider.AbsoluteUrl, post.BuildRelativeUrl());
+            var postDate = post.PostDate.ToLocalTime().ToString("dd/MM/yyyy");
+            var html = post.Html;
+            var postYear = post.PostDate.ToLocalTime().ToString("yyyy");
+            var postMonth = post.PostDate.ToLocalTime().ToString("MMMM");
+            var previousHref = previousPost.Coalesce(p => p.BuildRelativeUrl(), null);
+            var previousTitle = previousPost.Coalesce(p => p.Title, null);
+            var nextHref = nextPost.Coalesce(p => p.BuildRelativeUrl(), null);
+            var nextTitle = nextPost.Coalesce(p => p.Title, null);
 
             return new BlogPostViewModel(disqusIdentifier, title, permalink, postDate, html, postYear, postMonth, previousHref, previousTitle, nextHref, nextTitle);
         }

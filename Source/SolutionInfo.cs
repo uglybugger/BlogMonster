@@ -7,5 +7,5 @@
 [assembly: AssemblyCopyright("Copyright © 2012 Andrew Harcourt. Released under MIT Licence.")]
 [assembly: AssemblyTrademark("")]
 
-[assembly: AssemblyVersion("0.0.0.47")]
-[assembly: AssemblyFileVersion("0.0.0.47")]
+[assembly: AssemblyVersion("0.0.0.51")]
+[assembly: AssemblyFileVersion("0.0.0.51")]

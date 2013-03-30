@@ -48,19 +48,21 @@ namespace BlogMonster.Controllers
             _settings = settings;
         }
 
-        public virtual ActionResult Post(string id)
+        public virtual ActionResult Index()
         {
-            var post = id == null
-                           ? _repository.Query(new MostRecentPostsQuery(1)).First()
-                           : _repository.Query(new GetPostByIdQuery(id));
-            if (post == null) return Redirect("/");
+            var post = _repository.Query(new MostRecentPostsQuery(1)).First();
+            return RedirectToPost(post);
+        }
 
-            var preferredPermalink = post.Permalinks.First();
-            var redirectUrl = "/blog/{0}".FormatWith(preferredPermalink);
+        public virtual ActionResult PostById(string id)
+        {
+            var post = _repository.Query(new GetPostByIdQuery(id));
+            return RedirectToPost(post);
+        }
 
-            if (id == null) return Redirect(redirectUrl); // don't set permanent redirects on our landing page
-            if (preferredPermalink != id)
-                return RedirectPermanent(redirectUrl); // otherwise use permanent redirects so that commenting systems (e.g. disqus) will update themselves
+        public virtual ActionResult PostByDateAndId(int year, int month, int day, string id)
+        {
+            var post = _repository.Query(new GetPostByDateAndIdQuery(year, month, day, id));
             return ShowPost(post);
         }
 
@@ -97,6 +99,15 @@ namespace BlogMonster.Controllers
         {
             var viewModel = new ArchiveViewModel(_archiveProvider.Posts);
             return PartialView("_Archive", viewModel);
+        }
+
+        protected virtual ActionResult RedirectToPost(BlogPost post)
+        {
+            if (post == null) return Redirect("/");
+
+            // use permanent redirects so that commenting systems (e.g. disqus) will update themselves
+            var url = post.BuildRelativeUrl();
+            return RedirectPermanent(url);
         }
 
         protected virtual ActionResult ShowPost(BlogPost post)
