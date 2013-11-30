@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 
 namespace BlogMonster.Infrastructure
 {
@@ -7,17 +6,7 @@ namespace BlogMonster.Infrastructure
     {
         public DateTimeOffset UtcNow
         {
-            get
-            {
-                return ShouldLieAboutDate()
-                           ? DateTimeOffset.MaxValue
-                           : DateTimeOffset.UtcNow;
-            }
-        }
-
-        private static bool ShouldLieAboutDate()
-        {
-            return Debugger.IsAttached;
+            get { return DateTimeOffset.UtcNow; }
         }
     }
 }

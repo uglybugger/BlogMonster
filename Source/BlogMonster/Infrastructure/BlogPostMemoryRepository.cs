@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using BlogMonster.Domain.Entities;
 using BlogMonster.Domain.Queries;
@@ -38,7 +39,14 @@ namespace BlogMonster.Infrastructure
 
         private IQueryable<BlogPost> CurrentPosts()
         {
-            return new CurrentPostsQuery(_clock.UtcNow).Filter(_items.AsQueryable());
+            return ShouldLieAboutDate
+                ? _items.AsQueryable()
+                : new CurrentPostsQuery(_clock.UtcNow).Filter(_items.AsQueryable());
+        }
+
+        private static bool ShouldLieAboutDate
+        {
+            get { return Debugger.IsAttached; }
         }
     }
 }
