@@ -7,7 +7,9 @@ namespace BlogMonster.Extensions
     {
         public static string BuildRelativeUrl(this BlogPost post)
         {
-            return "/blog/{0}".FormatWith(post.Permalinks.First());
+            var firstPermalink = post.Permalinks.First();
+            var sanitisedPermalink = firstPermalink.RemoveCharacters(":/.# \\");
+            return "/blog/{0}".FormatWith(sanitisedPermalink);
         }
 
         public static string BuildRssId(this BlogPost post)

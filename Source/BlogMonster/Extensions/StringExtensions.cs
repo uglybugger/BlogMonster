@@ -32,5 +32,16 @@ namespace BlogMonster.Extensions
         {
             return Regex.Replace(s, pattern, replacement);
         }
+
+        public static string RemoveCharacters(this string s, string toRemove)
+        {
+            var working = s;
+            foreach (var c in toRemove.ToCharArray())
+            {
+                working = working.Replace(c.ToString(), string.Empty);
+            }
+
+            return working;
+        }
     }
 }
