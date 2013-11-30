@@ -10,7 +10,7 @@ namespace BlogMonster
         private readonly IClock _clock;
         private readonly Func<T> _valueFunc;
         private readonly object _mutex = new object();
-        private DateTimeOffset _cachedValueGenerationTimestamp;
+        private DateTimeOffset? _cachedValueGenerationTimestamp;
         private T _cachedValue;
 
         public Cached(TimeSpan cacheTimeout, IClock clock, Func<T> valueFunc)
@@ -39,7 +39,8 @@ namespace BlogMonster
 
         private bool CachePeriodHasExpired()
         {
-            return _clock.UtcNow > (_cachedValueGenerationTimestamp + _cacheTimeout);
+            if (!_cachedValueGenerationTimestamp.HasValue) return true;
+            return _clock.UtcNow > (_cachedValueGenerationTimestamp.Value + _cacheTimeout);
         }
     }
 }
