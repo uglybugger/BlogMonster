@@ -4,6 +4,7 @@ using System.Linq;
 using System.ServiceModel.Syndication;
 using System.Xml;
 using BlogMonster.Domain.Entities;
+using BlogMonster.Extensions;
 
 namespace BlogMonster.Infrastructure.BlogPostLoaders
 {
@@ -34,13 +35,21 @@ namespace BlogMonster.Infrastructure.BlogPostLoaders
         private static BlogPost MapToBlogPost(SyndicationItem syndicationItem)
         {
             var html = LoadContent(syndicationItem);
+            var link = syndicationItem.Title.Text
+                                      .Replace("'", string.Empty)
+                                      .RegexReplace(@"\W", " ")
+                                      .ToLowerInvariant()
+                                      .Split(new[] {" "}, StringSplitOptions.RemoveEmptyEntries)
+                                      .Join("_");
+
             var post = new BlogPost
                        {
                            Title = syndicationItem.Title.Text,
                            PostDate = syndicationItem.PublishDate,
                            Html = html,
-                           Permalinks = syndicationItem.Links.Select(l => l.Uri.ToString()).ToArray(),
+                           Permalinks = new[] {link},
                        };
+
             return post;
         }
 

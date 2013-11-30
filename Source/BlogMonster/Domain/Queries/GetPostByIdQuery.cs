@@ -20,9 +20,7 @@ namespace BlogMonster.Domain.Queries
 
         private bool IsExactMatch(BlogPost item)
         {
-            if (item.Permalinks.Any(pl => pl == _id)) return true;
-            if (item.GetSanitisedPermalink() == _id) return true;
-            return false;
+            return item.Permalinks.Any(pl => pl == _id);
         }
 
         private bool IsApproximateMatch(BlogPost item)
