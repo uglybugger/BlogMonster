@@ -14,7 +14,7 @@ using UniMock.Core.BaseTests;
 namespace BlogMonster.Tests
 {
     [TestFixture]
-    public class WhenLoadingOneSimpleBlogPostWithOneImage : TestFor<BlogPostLoader, SinglePostWithImageScenario>
+    public class WhenLoadingOneSimpleBlogPostWithOneImage : TestFor<EmbeddedResourceBlogPostLoader, SinglePostWithImageScenario>
     {
         private const string _someImageControllerPath = "/Some/Image";
         private BlogPost[] _result;
@@ -30,7 +30,7 @@ namespace BlogMonster.Tests
                 .ForUniMock();
         }
 
-        protected override BlogPostLoader GivenSubject()
+        protected override EmbeddedResourceBlogPostLoader GivenSubject()
         {
             Stub<ISiteBaseUrlProvider>().ImageRelativeUrl.ReturnsForAnyArgs(_someImageControllerPath);
             return base.GivenSubject();

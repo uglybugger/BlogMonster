@@ -79,6 +79,7 @@
     <Compile Include="Scenarios\SinglePostScenario.cs" />
     <Compile Include="TestFor.cs" />
     <Compile Include="UniMockSamples\WhenDoingBar.cs" />
+    <Compile Include="WhenImportingPostsFromAnInstagramFeed.cs" />
     <Compile Include="WhenLoadingOneSimpleBlogPost.cs" />
     <Compile Include="WhenLoadingOneSimpleBlogPostWithOneImage.cs" />
     <Compile Include="WhenTheTestFrameworkRuns.cs" />

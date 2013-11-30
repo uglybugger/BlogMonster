@@ -9,7 +9,7 @@ using UniMock.Core.BaseTests;
 namespace BlogMonster.Tests
 {
     [TestFixture]
-    public class WhenLoadingOneSimpleBlogPost : TestFor<BlogPostLoader, SinglePostScenario>
+    public class WhenLoadingOneSimpleBlogPost : TestFor<EmbeddedResourceBlogPostLoader, SinglePostScenario>
     {
         private BlogPost[] _result;
 

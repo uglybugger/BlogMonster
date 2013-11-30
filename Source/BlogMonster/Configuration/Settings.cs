@@ -1,7 +1,9 @@
 using System;
+using System.Collections.Generic;
 using System.Reflection;
 using System.Web.Mvc;
 using System.Web.Routing;
+using BlogMonster.Infrastructure;
 
 namespace BlogMonster.Configuration
 {
@@ -12,6 +14,7 @@ namespace BlogMonster.Configuration
         private static Func<string, bool> _resourceNameFilter;
         private static RssFeedSettings _rssFeedSettings;
         private static string _url;
+        private static IBlogPostLoader[] _additionalBlogPostLoaders;
 
         public Assembly[] BlogPostAssemblies
         {
@@ -38,36 +41,36 @@ namespace BlogMonster.Configuration
             get { return _rssFeedSettings; }
         }
 
+        public IEnumerable<IBlogPostLoader> AdditionalBlogPostLoaders
+        {
+            get { return _additionalBlogPostLoaders; }
+        }
+
         internal static void Configure(Assembly[] blogPostAssemblies,
                                        Type controllerType,
                                        Func<string, bool> resourceNameFilter,
                                        RssFeedSettings rssFeedSettings,
                                        string url,
-                                       RouteCollection routeTable)
+                                       RouteCollection routeTable,
+                                       IBlogPostLoader[] additionalBlogPostLoaders)
         {
             _resourceNameFilter = resourceNameFilter;
             _controllerType = controllerType;
             _blogPostAssemblies = blogPostAssemblies;
             _url = url;
             _rssFeedSettings = rssFeedSettings;
+            _additionalBlogPostLoaders = additionalBlogPostLoaders;
 
             var controllerName = controllerType.Name.Replace("Controller", string.Empty);
 
-            routeTable.MapRoute(
-                name: "blogPostById",
-                url: "blog/{id}",
-                defaults: new {controller = controllerName, action = "PostById"}
+            routeTable.MapRoute("blogPostById", "blog/{id}", new {controller = controllerName, action = "PostById"}
                 );
 
-            routeTable.MapRoute(
-                name: "blogPostByDate",
-                url: "blog/{year}/{month}/{day}/{id}",
-                defaults: new {controller = controllerName, action = "PostByDateAndId"}
+            routeTable.MapRoute("blogPostByDate",
+                "blog/{year}/{month}/{day}/{id}",
+                new {controller = controllerName, action = "PostByDateAndId"}
                 );
-            routeTable.MapRoute(
-                name: "blog",
-                url: "blog",
-                defaults: new {controller = controllerName, action = "Index"}
+            routeTable.MapRoute("blog", "blog", new {controller = controllerName, action = "Index"}
                 );
         }
     }

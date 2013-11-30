@@ -51,6 +51,7 @@
     <Compile Include="..\SolutionInfo.cs">
       <Link>Properties\SolutionInfo.cs</Link>
     </Compile>
+    <Compile Include="Cached.cs" />
     <Compile Include="Configuration\AssemblyConfigurator.cs" />
     <Compile Include="Configuration\RouteTableConfigurator.cs" />
     <Compile Include="Configuration\RssFeedConfigurator.cs" />
@@ -69,7 +70,9 @@
     <Compile Include="Controllers\BlogPostResourceNameFilter.cs" />
     <Content Include="Controllers\BlogMonsterController.cs.pp" />
     <Compile Include="Domain\Queries\CurrentPostsQuery.cs" />
+    <Compile Include="Infrastructure\BlogPostLoaders\RssBlogPostLoader.cs" />
     <Compile Include="Infrastructure\IAssemblyResourceReader.cs" />
+    <Compile Include="Infrastructure\BlogPostLoaders\IBlogPostLoader.cs" />
     <Compile Include="Infrastructure\IClock.cs" />
     <Compile Include="Infrastructure\SystemClock.cs" />
     <Compile Include="ServiceLocator.cs" />
@@ -78,7 +81,7 @@
     <Compile Include="Infrastructure\ArchiveProvider.cs" />
     <Compile Include="Domain\Entities\BlogPost.cs" />
     <Compile Include="Infrastructure\BlogPostExtractionFailedException.cs" />
-    <Compile Include="Infrastructure\BlogPostLoader.cs" />
+    <Compile Include="Infrastructure\BlogPostLoaders\EmbeddedResourceBlogPostLoader.cs" />
     <Compile Include="Infrastructure\BlogPostRepositoryFactory.cs" />
     <Compile Include="Infrastructure\IBlogPostAssembliesProvider.cs" />
     <Compile Include="Infrastructure\IBlogPostResourceNameFilter.cs" />
