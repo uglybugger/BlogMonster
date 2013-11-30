@@ -20,17 +20,19 @@ namespace BlogMonster.Domain.Queries
 
         private bool IsExactMatch(BlogPost item)
         {
-            return item.Permalinks.Any(pl => pl == _id);
+            if (item.Permalinks.Any(pl => pl == _id)) return true;
+            if (item.GetSanitisedPermalink() == _id) return true;
+            return false;
         }
 
         private bool IsApproximateMatch(BlogPost item)
         {
             return item.Permalinks.Any(permalink =>
-                                           {
-                                               var tokens = permalink.Split('.');
-                                               var permalinkWithoutTimeOffset = tokens.Take(tokens.Length - 1).Join(".");
-                                               return _id == permalinkWithoutTimeOffset;
-                                           });
+                                       {
+                                           var tokens = permalink.Split('.');
+                                           var permalinkWithoutTimeOffset = tokens.Take(tokens.Length - 1).Join(".");
+                                           return _id == permalinkWithoutTimeOffset;
+                                       });
         }
     }
 }
