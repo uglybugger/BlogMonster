@@ -8,39 +8,38 @@ namespace BlogMonster
     {
         private readonly TimeSpan _cacheTimeout;
         private readonly IClock _clock;
-        private readonly Func<T> _valueFunc;
         private readonly object _mutex = new object();
-        private DateTimeOffset? _cachedValueGenerationTimestamp;
+        private readonly Func<T> _valueFunc;
         private T _cachedValue;
+        private DateTimeOffset _cachedValueExpiryTime;
 
         public Cached(TimeSpan cacheTimeout, IClock clock, Func<T> valueFunc)
         {
             _cacheTimeout = cacheTimeout;
             _clock = clock;
             _valueFunc = valueFunc;
+            _cachedValueExpiryTime = DateTimeOffset.MinValue;
         }
 
         public T Value
         {
             get
             {
-                if (CachePeriodHasExpired()) _cachedValue = null;
-                if (_cachedValue != null) return _cachedValue;
+                var cachedValue = _cachedValue;
+                if (cachedValue != null && _clock.UtcNow < _cachedValueExpiryTime) return cachedValue;
+
                 lock (_mutex)
                 {
                     Thread.MemoryBarrier();
-                    if (_cachedValue != null) return _cachedValue;
+
+                    cachedValue = _cachedValue;
+                    if (cachedValue != null && _clock.UtcNow < _cachedValueExpiryTime) return cachedValue;
+
                     _cachedValue = _valueFunc();
-                    _cachedValueGenerationTimestamp = _clock.UtcNow;
+                    _cachedValueExpiryTime = _clock.UtcNow.Add(_cacheTimeout);
                     return _cachedValue;
                 }
             }
-        }
-
-        private bool CachePeriodHasExpired()
-        {
-            if (!_cachedValueGenerationTimestamp.HasValue) return true;
-            return _clock.UtcNow > (_cachedValueGenerationTimestamp.Value + _cacheTimeout);
         }
     }
 }
