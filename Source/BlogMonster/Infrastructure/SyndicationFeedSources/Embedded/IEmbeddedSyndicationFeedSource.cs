@@ -1,6 +1,6 @@
 using System.IO;
 
-namespace BlogMonster.Configuration
+namespace BlogMonster.Infrastructure.SyndicationFeedSources.Embedded
 {
     public interface IEmbeddedSyndicationFeedSource : ISyndicationFeedSource
     {

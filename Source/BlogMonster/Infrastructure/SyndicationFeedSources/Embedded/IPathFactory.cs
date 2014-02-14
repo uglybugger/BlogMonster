@@ -1,6 +1,6 @@
 using System;
 
-namespace BlogMonster.Infrastructure
+namespace BlogMonster.Infrastructure.SyndicationFeedSources.Embedded
 {
     public interface IPathFactory
     {

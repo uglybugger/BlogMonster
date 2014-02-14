@@ -1,9 +1,8 @@
 using System;
 using System.ServiceModel.Syndication;
 using System.Xml;
-using BlogMonster.Infrastructure;
 
-namespace BlogMonster.Configuration
+namespace BlogMonster.Infrastructure.SyndicationFeedSources.Remote
 {
     public class RemoteSyndicationFeedSource : ISyndicationFeedSource
     {

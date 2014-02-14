@@ -1,6 +1,6 @@
 using System.ServiceModel.Syndication;
 
-namespace BlogMonster.Configuration
+namespace BlogMonster.Infrastructure.SyndicationFeedSources
 {
     public interface ISyndicationFeedSource
     {

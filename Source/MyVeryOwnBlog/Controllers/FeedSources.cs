@@ -2,6 +2,8 @@
 using System.Diagnostics;
 using System.ServiceModel.Syndication;
 using BlogMonster.Configuration;
+using BlogMonster.Infrastructure.SyndicationFeedSources;
+using BlogMonster.Infrastructure.SyndicationFeedSources.Embedded;
 using MyVeryOwnBlog.Posts;
 
 namespace MyVeryOwnBlog.Controllers

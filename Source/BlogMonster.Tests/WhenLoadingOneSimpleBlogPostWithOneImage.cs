@@ -3,6 +3,7 @@ using System.Linq;
 using System.ServiceModel.Syndication;
 using BlogMonster.Configuration;
 using BlogMonster.Extensions;
+using BlogMonster.Infrastructure.SyndicationFeedSources.Embedded;
 using NUnit.Framework;
 using Shouldly;
 

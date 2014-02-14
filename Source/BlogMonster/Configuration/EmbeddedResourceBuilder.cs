@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Reflection;
 using BlogMonster.Infrastructure;
-using BlogMonster.Infrastructure.BlogPostLoaders;
+using BlogMonster.Infrastructure.SyndicationFeedSources.Embedded;
 
 namespace BlogMonster.Configuration
 {

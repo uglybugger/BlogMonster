@@ -4,9 +4,8 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.ServiceModel.Syndication;
-using BlogMonster.Infrastructure;
 
-namespace BlogMonster.Configuration
+namespace BlogMonster.Infrastructure.SyndicationFeedSources.Embedded
 {
     public class EmbeddedSyndicationFeedService : StaticSyndicationFeedSource, IEmbeddedSyndicationFeedSource
     {

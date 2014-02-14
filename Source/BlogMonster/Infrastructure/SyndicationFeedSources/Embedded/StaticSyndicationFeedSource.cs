@@ -1,9 +1,8 @@
 using System;
 using System.Linq;
 using System.ServiceModel.Syndication;
-using BlogMonster.Infrastructure;
 
-namespace BlogMonster.Configuration
+namespace BlogMonster.Infrastructure.SyndicationFeedSources.Embedded
 {
     public class StaticSyndicationFeedSource : ISyndicationFeedSource
     {

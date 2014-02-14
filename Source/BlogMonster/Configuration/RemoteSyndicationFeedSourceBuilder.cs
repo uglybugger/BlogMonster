@@ -1,5 +1,6 @@
 using System;
 using BlogMonster.Infrastructure;
+using BlogMonster.Infrastructure.SyndicationFeedSources.Remote;
 
 namespace BlogMonster.Configuration
 {

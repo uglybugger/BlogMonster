@@ -30,7 +30,7 @@ namespace BlogMonster.Extensions
         }
 
         /// <summary>
-        ///   Forces enumeration to allow chains of Do(xxx).Do(yyy).Do(zzz).Done() to be used.
+        ///     Forces enumeration to allow chains of Do(xxx).Do(yyy).Do(zzz).Done() to be used.
         /// </summary>
         /// <typeparam name="T"> </typeparam>
         /// <param name="source"> </param>

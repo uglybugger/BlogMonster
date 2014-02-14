@@ -1,6 +1,6 @@
 using MarkdownSharp;
 
-namespace BlogMonster.Infrastructure
+namespace BlogMonster.Infrastructure.SyndicationFeedSources.Embedded
 {
     public class MarkDownTransformer : IMarkDownTransformer
     {

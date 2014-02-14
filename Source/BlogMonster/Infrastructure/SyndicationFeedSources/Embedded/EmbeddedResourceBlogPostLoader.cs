@@ -7,7 +7,7 @@ using System.ServiceModel.Syndication;
 using BlogMonster.Configuration;
 using BlogMonster.Extensions;
 
-namespace BlogMonster.Infrastructure.BlogPostLoaders
+namespace BlogMonster.Infrastructure.SyndicationFeedSources.Embedded
 {
     public class EmbeddedResourceBlogPostLoader
     {
@@ -22,7 +22,8 @@ namespace BlogMonster.Infrastructure.BlogPostLoaders
                                               IMarkDownTransformer markDownTransformer,
                                               Assembly[] assemblies,
                                               RssFeedSettings feedSettings,
-                                              Func<string, bool> blogPostResourceNameFilter, IEmbeddedResourceImagePathMapper imagePathMapper)
+                                              Func<string, bool> blogPostResourceNameFilter,
+                                              IEmbeddedResourceImagePathMapper imagePathMapper)
         {
             _pathFactory = pathFactory;
             _markDownTransformer = markDownTransformer;
@@ -57,6 +58,7 @@ namespace BlogMonster.Infrastructure.BlogPostLoaders
         private IEnumerable<SyndicationItem> LoadSyndicationItemsFromAssembly(Assembly assembly)
         {
             var syndicationItems = assembly.GetManifestResourceNames()
+                                           .AsParallel()
                                            .Where(_blogPostResourceNameFilter)
                                            .Select(resourceName => TryLoadSyndicationItem(resourceName, assembly))
                                            .NotNull()

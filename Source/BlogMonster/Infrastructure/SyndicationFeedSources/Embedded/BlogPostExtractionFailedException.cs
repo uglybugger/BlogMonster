@@ -1,7 +1,7 @@
 using System;
 using System.Runtime.Serialization;
 
-namespace BlogMonster.Infrastructure
+namespace BlogMonster.Infrastructure.SyndicationFeedSources.Embedded
 {
     [Serializable]
     public class BlogPostExtractionFailedException : Exception
