@@ -1,7 +1,5 @@
-using BlogMonster.Domain.Entities;
+using BlogMonster.Configuration;
 using BlogMonster.Tests;
-using BlogMonster.Tests.Scenarios;
-using BlogMonster.Tests.UniMockSamples;
 using UniMock.Core.Attributes;
 
 /*
@@ -16,7 +14,7 @@ using UniMock.Core.Attributes;
  * test project so that you can see how to structure your tests.
  */
 
-[assembly: AssembliesToStub(typeof (WhenDoingBar), typeof (BlogPost))]
+[assembly: AssembliesToStub(typeof (BlogMonsterBuilder))]
 
 /*
  * The second thing you'll need to do is to tell UniMock where it can find all your test scenarios. Don't worry if
@@ -24,7 +22,7 @@ using UniMock.Core.Attributes;
  * assemblies for now and we'll come to scenarios later.
  */
 
-[assembly: ScenarioAssemblies(typeof (TestFor<>), typeof (SinglePostScenario))]
+[assembly: ScenarioAssemblies(typeof (TestFor<>))]
 
 /*
  * Finally, thank you for taking the time to try out UniMock. I hope you find it useful. Please drop me a line

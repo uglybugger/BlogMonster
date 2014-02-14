@@ -1,27 +1,39 @@
-﻿using System.Linq;
-using BlogMonster.Domain.Entities;
-using BlogMonster.Infrastructure;
-using BlogMonster.Tests.Scenarios;
+﻿using System;
+using System.Linq;
+using System.ServiceModel.Syndication;
+using BlogMonster.Configuration;
 using NUnit.Framework;
 using Shouldly;
-using UniMock.Core.BaseTests;
 
 namespace BlogMonster.Tests
 {
     [TestFixture]
-    public class WhenLoadingOneSimpleBlogPost : TestFor<EmbeddedResourceBlogPostLoader, SinglePostScenario>
+    public class WhenLoadingOneSimpleBlogPost : TestFor<IEmbeddedSyndicationFeedSource>
     {
-        private BlogPost[] _result;
+        protected override IEmbeddedSyndicationFeedSource GivenSubject()
+        {
+            return BlogMonsterBuilder.FromEmbeddedResources(GetType().Assembly)
+                                     .WithResourceNameFilter(s => s.Contains(".SinglePost.") && s.EndsWith(".markdown"))
+                                     .WithRssSettings(new RssFeedSettings("feedId",
+                                                                          "title",
+                                                                          "description",
+                                                                          new SyndicationPerson(),
+                                                                          "http://www.example.com/image.jpg",
+                                                                          "language",
+                                                                          "copyright",
+                                                                          new Uri("http://www.example.com/")))
+                                     .WithBaseUris(new Uri("http://www.example.com"), new Uri("http://www.example.com/image/"))
+                                     .Grr();
+        }
 
         protected override void When()
         {
-            _result = Subject.LoadFeed().ToArray();
         }
 
         [Test]
         public void ThereShouldBeOneBlogPost()
         {
-            _result.Count().ShouldBe(1);
+            Subject.Feed.Items.Count().ShouldBe(1);
         }
     }
 }

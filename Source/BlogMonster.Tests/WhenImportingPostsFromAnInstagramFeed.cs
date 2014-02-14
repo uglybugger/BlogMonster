@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using BlogMonster.Infrastructure.BlogPostLoaders;
+using BlogMonster.Configuration;
 using NUnit.Framework;
 using Shouldly;
 
@@ -12,11 +12,10 @@ namespace BlogMonster.Tests
         [Test]
         public void ThereShouldBeAtLeastOnePost()
         {
-            var rssPostLoader = new RssBlogPostLoader(new Uri("http://widget.stagram.com/rss/n/yolo"));
+            var syndicationFeedSource = BlogMonsterBuilder.FromUrl(new Uri("http://widget.stagram.com/rss/n/yolo"))
+                                                          .Grr();
 
-            var posts = rssPostLoader.LoadPosts();
-
-            posts.Count().ShouldBeGreaterThan(0);
+            syndicationFeedSource.Feed.Items.Count().ShouldBeGreaterThan(0);
         }
     }
 }

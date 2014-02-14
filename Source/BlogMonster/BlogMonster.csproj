@@ -64,13 +64,10 @@
     <Compile Include="Configuration\StaticSyndicationFeedSource.cs" />
     <Compile Include="Extensions\CollectionExtensions.cs" />
     <Compile Include="Extensions\SyndicationHelpers.cs" />
-    <Compile Include="Infrastructure\IAssemblyResourceReader.cs" />
     <Compile Include="Infrastructure\IClock.cs" />
     <Compile Include="Infrastructure\SystemClock.cs" />
     <Compile Include="Infrastructure\BlogPostExtractionFailedException.cs" />
     <Compile Include="Infrastructure\BlogPostLoaders\EmbeddedResourceBlogPostLoader.cs" />
-    <Compile Include="Infrastructure\IBlogPostAssembliesProvider.cs" />
-    <Compile Include="Infrastructure\IBlogPostResourceNameFilter.cs" />
     <Compile Include="Infrastructure\EmbeddedResourceImagePathMapper.cs" />
     <Compile Include="Infrastructure\IEmbeddedResourceImagePathMapper.cs" />
     <Compile Include="Infrastructure\IMarkDownTransformer.cs" />

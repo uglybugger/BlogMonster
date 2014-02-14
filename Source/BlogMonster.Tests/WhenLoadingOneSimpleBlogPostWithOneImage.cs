@@ -1,61 +1,48 @@
+using System;
 using System.Linq;
-using Autofac;
+using System.ServiceModel.Syndication;
 using BlogMonster.Configuration;
-using BlogMonster.Domain.Entities;
-using BlogMonster.Infrastructure;
-using BlogMonster.Tests.Scenarios;
-using NSubstitute;
-using NSubstitute.Core;
+using BlogMonster.Extensions;
 using NUnit.Framework;
 using Shouldly;
-using UniMock.Core;
-using UniMock.Core.BaseTests;
 
 namespace BlogMonster.Tests
 {
     [TestFixture]
-    public class WhenLoadingOneSimpleBlogPostWithOneImage : TestFor<EmbeddedResourceBlogPostLoader, SinglePostWithImageScenario>
+    public class WhenLoadingOneSimpleBlogPostWithOneImage : TestFor<IEmbeddedSyndicationFeedSource>
     {
         private const string _someImageControllerPath = "/Some/Image";
-        private BlogPost[] _result;
 
-        public void RegisterMarkDownTransformationStuff(ContainerBuilder builder)
+        protected override IEmbeddedSyndicationFeedSource GivenSubject()
         {
-            builder.RegisterType<MarkDownTransformer>()
-                 .AsImplementedInterfaces()
-                 .ForUniMock();
-
-            builder.RegisterType<EmbeddedResourceImagePathMapper>()
-                .AsImplementedInterfaces()
-                .ForUniMock();
-        }
-
-        protected override EmbeddedResourceBlogPostLoader GivenSubject()
-        {
-            Stub<IPathFactory>().ImageRelativeUrl.ReturnsForAnyArgs(_someImageControllerPath);
-            return base.GivenSubject();
-        }
-
-        private string OnRemapImagePaths(CallInfo callInfo)
-        {
-            return (string) callInfo.Args()[0];
+            return BlogMonsterBuilder.FromEmbeddedResources(GetType().Assembly)
+                                     .WithResourceNameFilter(s => s.Contains(".SinglePostWithImage.") && s.EndsWith(".markdown"))
+                                     .WithRssSettings(new RssFeedSettings("feedId",
+                                                                          "title",
+                                                                          "description",
+                                                                          new SyndicationPerson(),
+                                                                          "http://www.example.com/image.jpg",
+                                                                          "language",
+                                                                          "copyright",
+                                                                          new Uri("http://www.example.com")))
+                                     .WithBaseUris(new Uri("http://www.example.com"), new Uri("http://www.example.com/" + _someImageControllerPath + "/"))
+                                     .Grr();
         }
 
         protected override void When()
         {
-            _result = Subject.LoadFeed().ToArray();
         }
 
         [Test]
         public void ThereShouldBeOneBlogPost()
         {
-            _result.Count().ShouldBe(1);
+            Subject.Feed.Items.Count().ShouldBe(1);
         }
 
         [Test]
         public void ThereShouldBeARelativeLinkToAnImageControllerAction()
         {
-            _result.Single().Html.ShouldContain(_someImageControllerPath);
+            Subject.Feed.Items.Single().Content.ToHtml().ShouldContain(_someImageControllerPath);
         }
     }
 }
