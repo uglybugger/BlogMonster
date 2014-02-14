@@ -3,72 +3,94 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using BlogMonster.Domain.Entities;
+using System.ServiceModel.Syndication;
+using BlogMonster.Configuration;
 using BlogMonster.Extensions;
 
-namespace BlogMonster.Infrastructure
+namespace BlogMonster.Infrastructure.BlogPostLoaders
 {
-    public class EmbeddedResourceBlogPostLoader : IBlogPostLoader
+    public class EmbeddedResourceBlogPostLoader
     {
-        private readonly IBlogPostAssembliesProvider _blogPostAssembliesProvider;
-        private readonly IBlogPostResourceNameFilter _blogPostResourceNameFilter;
-        private readonly IEmbeddedResourceImagePathMapper _imagePathMapper;
+        private readonly RssFeedSettings _feedSettings;
+        private readonly Func<string, bool> _blogPostResourceNameFilter;
+        private readonly IPathFactory _pathFactory;
         private readonly IMarkDownTransformer _markDownTransformer;
+        private readonly Assembly[] _assemblies;
+        private readonly IEmbeddedResourceImagePathMapper _imagePathMapper;
 
-        public EmbeddedResourceBlogPostLoader(IEmbeddedResourceImagePathMapper imagePathMapper,
-                              IMarkDownTransformer markDownTransformer,
-                              IBlogPostAssembliesProvider blogPostAssembliesProvider,
-                              IBlogPostResourceNameFilter blogPostResourceNameFilter)
+        public EmbeddedResourceBlogPostLoader(IPathFactory pathFactory,
+                                              IMarkDownTransformer markDownTransformer,
+                                              Assembly[] assemblies,
+                                              RssFeedSettings feedSettings,
+                                              Func<string, bool> blogPostResourceNameFilter, IEmbeddedResourceImagePathMapper imagePathMapper)
         {
-            _imagePathMapper = imagePathMapper;
+            _pathFactory = pathFactory;
             _markDownTransformer = markDownTransformer;
-            _blogPostAssembliesProvider = blogPostAssembliesProvider;
+            _assemblies = assemblies;
+
+            _feedSettings = feedSettings;
             _blogPostResourceNameFilter = blogPostResourceNameFilter;
+            _imagePathMapper = imagePathMapper;
         }
 
-        public IEnumerable<BlogPost> LoadPosts()
+        public SyndicationFeed LoadFeed()
         {
-            var blogPosts = _blogPostAssembliesProvider.Assemblies
-                .AsParallel()
-                .SelectMany(LoadBlogPostsFromAssembly)
-                .OrderByDescending(p => p.PostDate)
+            var syndicationItems = _assemblies
+                .SelectMany(LoadSyndicationItemsFromAssembly)
+                .OrderByDescending(p => p.PublishDate)
                 .ToArray();
 
-            return blogPosts;
+            var feed = new SyndicationFeed(_feedSettings.Title, _feedSettings.Description, _feedSettings.FeedHomeUri, syndicationItems)
+                       {
+                           Id = _feedSettings.FeedId,
+                           ImageUrl = new Uri(_feedSettings.ImageUrl),
+                           Language = _feedSettings.Language,
+                           Copyright = new TextSyndicationContent(_feedSettings.Copyright),
+                           LastUpdatedTime = syndicationItems.FirstOrDefault().Coalesce(item => item.PublishDate, DateTimeOffset.MinValue),
+                       };
+            feed.Authors.Add(_feedSettings.Author);
+            feed.Links.Add(new SyndicationLink(_feedSettings.FeedHomeUri));
+
+            return feed;
         }
 
-        private IEnumerable<BlogPost> LoadBlogPostsFromAssembly(Assembly assembly)
+        private IEnumerable<SyndicationItem> LoadSyndicationItemsFromAssembly(Assembly assembly)
         {
-            var blogPosts = _blogPostResourceNameFilter.Filter(assembly.GetManifestResourceNames())
-                .AsParallel()
-                .Select(resourceName => TryLoadBlogPost(resourceName, assembly))
-                .NotNull()
-                .ToArray();
+            var syndicationItems = assembly.GetManifestResourceNames()
+                                           .Where(_blogPostResourceNameFilter)
+                                           .Select(resourceName => TryLoadSyndicationItem(resourceName, assembly))
+                                           .NotNull()
+                                           .ToArray();
 
-            return blogPosts;
+            return syndicationItems;
         }
 
-        private BlogPost TryLoadBlogPost(string resourceName, Assembly assembly)
+        private SyndicationItem TryLoadSyndicationItem(string resourceName, Assembly assembly)
         {
-            if (!resourceName.EndsWith(".markdown")) return null;
-
             try
             {
                 string resourceBasePath;
                 DateTimeOffset postDate;
                 if (!ExtractBaseResourcePathAndPostDate(resourceName, out resourceBasePath, out postDate)) return null;
-                var id = ExtractId(postDate);
+                var resourceId = ExtractId(postDate);
                 var title = ExtractTitle(resourceName, resourceBasePath, assembly);
-                var permalinks = ExtractPermalinks(resourceBasePath, assembly, title, id);
-                var html = ExtractHtml(resourceName, assembly, id);
+                var internalPermalinks = ExtractInternalPermalinks(resourceBasePath, assembly, title, resourceId).ToArray();
+                var id = internalPermalinks.First();
+                var postUri = _pathFactory.GetUriForPost(id);
+                var externalPermalinks = internalPermalinks.Select(pl => _pathFactory.GetUriForPost(pl)).ToArray();
+                var html = ExtractHtml(resourceName, assembly, resourceId);
 
-                return new BlogPost
-                           {
-                               Permalinks = permalinks.ToArray(),
-                               Title = title,
-                               PostDate = postDate,
-                               Html = html,
-                           };
+                var syndicationItem = new SyndicationItem(title, html, postUri)
+                                      {
+                                          Id = id,
+                                          PublishDate = postDate,
+                                          LastUpdatedTime = postDate,
+                                          Summary = new TextSyndicationContent(html, TextSyndicationContentKind.XHtml),
+                                      };
+
+                syndicationItem.Authors.Add(_feedSettings.Author);
+                syndicationItem.Links.AddRange(externalPermalinks.Select(pl => new SyndicationLink(pl)));
+                return syndicationItem;
             }
             catch (BlogPostExtractionFailedException)
             {
@@ -141,8 +163,8 @@ namespace BlogMonster.Infrastructure
             using (var stream = assembly.GetManifestResourceStream(overrideTitleResourceName))
             {
                 title = stream == null
-                            ? ExtractTitleFromResourceName(resourceName, resourceBasePath)
-                            : new StreamReader(stream).ReadToEnd();
+                    ? ExtractTitleFromResourceName(resourceName, resourceBasePath)
+                    : new StreamReader(stream).ReadToEnd();
             }
 
             return title;
@@ -156,7 +178,7 @@ namespace BlogMonster.Infrastructure
             return title;
         }
 
-        private static IEnumerable<string> ExtractPermalinks(string resourceBasePath, Assembly assembly, string title, string id)
+        private static IEnumerable<string> ExtractInternalPermalinks(string resourceBasePath, Assembly assembly, string title, string id)
         {
             var permalinks = new List<string>();
 
@@ -198,8 +220,8 @@ namespace BlogMonster.Infrastructure
             using (var stream = assembly.GetManifestResourceStream(resourceName))
             {
                 markdown = stream == null
-                               ? string.Empty
-                               : new StreamReader(stream).ReadToEnd();
+                    ? string.Empty
+                    : new StreamReader(stream).ReadToEnd();
             }
 
             var markdownWithImagesRemapped = _imagePathMapper.ReMapImagePaths(markdown, id);

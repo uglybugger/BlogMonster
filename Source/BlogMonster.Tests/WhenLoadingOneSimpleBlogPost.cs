@@ -15,7 +15,7 @@ namespace BlogMonster.Tests
 
         protected override void When()
         {
-            _result = Subject.LoadPosts().ToArray();
+            _result = Subject.LoadFeed().ToArray();
         }
 
         [Test]

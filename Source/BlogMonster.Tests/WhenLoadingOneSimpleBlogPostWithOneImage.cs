@@ -32,7 +32,7 @@ namespace BlogMonster.Tests
 
         protected override EmbeddedResourceBlogPostLoader GivenSubject()
         {
-            Stub<ISiteBaseUrlProvider>().ImageRelativeUrl.ReturnsForAnyArgs(_someImageControllerPath);
+            Stub<IPathFactory>().ImageRelativeUrl.ReturnsForAnyArgs(_someImageControllerPath);
             return base.GivenSubject();
         }
 
@@ -43,7 +43,7 @@ namespace BlogMonster.Tests
 
         protected override void When()
         {
-            _result = Subject.LoadPosts().ToArray();
+            _result = Subject.LoadFeed().ToArray();
         }
 
         [Test]

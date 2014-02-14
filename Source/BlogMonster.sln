@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlogMonster", "BlogMonster\BlogMonster.csproj", "{3ACF4B10-C6B5-47BB-8D83-96DBD2CD86B5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlogMonster.Tests", "BlogMonster.Tests\BlogMonster.Tests.csproj", "{85E35365-B26B-4E57-98FF-6E89AFB11AE3}"
@@ -9,6 +11,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		SolutionInfo.cs = SolutionInfo.cs
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sample", "Sample", "{5B7244EF-7772-4251-98A6-BB2DEF27C3BC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyVeryOwnBlog", "MyVeryOwnBlog\MyVeryOwnBlog.csproj", "{739C30D6-393D-413D-AA3E-D8F115C750F9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyVeryOwnBlog.Posts", "MyVeryOwnBlog.Posts\MyVeryOwnBlog.Posts.csproj", "{823E0424-A9F1-45F3-B7A4-74AB198A2CDD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,8 +32,20 @@ Global
 		{85E35365-B26B-4E57-98FF-6E89AFB11AE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{85E35365-B26B-4E57-98FF-6E89AFB11AE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{85E35365-B26B-4E57-98FF-6E89AFB11AE3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{739C30D6-393D-413D-AA3E-D8F115C750F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{739C30D6-393D-413D-AA3E-D8F115C750F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{739C30D6-393D-413D-AA3E-D8F115C750F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{739C30D6-393D-413D-AA3E-D8F115C750F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{823E0424-A9F1-45F3-B7A4-74AB198A2CDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{823E0424-A9F1-45F3-B7A4-74AB198A2CDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{823E0424-A9F1-45F3-B7A4-74AB198A2CDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{823E0424-A9F1-45F3-B7A4-74AB198A2CDD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{739C30D6-393D-413D-AA3E-D8F115C750F9} = {5B7244EF-7772-4251-98A6-BB2DEF27C3BC}
+		{823E0424-A9F1-45F3-B7A4-74AB198A2CDD} = {5B7244EF-7772-4251-98A6-BB2DEF27C3BC}
 	EndGlobalSection
 EndGlobal

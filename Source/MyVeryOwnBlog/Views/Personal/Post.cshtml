@@ -1,0 +1,10 @@
+﻿@using BlogMonster.Extensions
+@model System.ServiceModel.Syndication.SyndicationItem
+
+<h1>@Model.Title.ToHtml()</h1>
+<h2>@Model.PublishDate</h2>
+<h2>@Model.Authors.First().Name</h2>
+
+<div>
+    @Html.Raw(Model.Content.ToHtml())
+</div>

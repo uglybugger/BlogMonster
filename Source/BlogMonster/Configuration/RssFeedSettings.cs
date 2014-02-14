@@ -1,3 +1,4 @@
+using System;
 using System.ServiceModel.Syndication;
 
 namespace BlogMonster.Configuration
@@ -6,16 +7,18 @@ namespace BlogMonster.Configuration
     {
         private readonly SyndicationPerson _author;
         private readonly string _copyright;
+        private readonly Uri _feedHomeUri;
         private readonly string _description;
         private readonly string _feedId;
         private readonly string _imageUrl;
         private readonly string _language;
         private readonly string _title;
 
-        public RssFeedSettings(string feedId, string title, string description, SyndicationPerson author, string imageUrl, string language, string copyright)
+        public RssFeedSettings(string feedId, string title, string description, SyndicationPerson author, string imageUrl, string language, string copyright, Uri feedHomeUri)
         {
             _author = author;
             _copyright = copyright;
+            _feedHomeUri = feedHomeUri;
             _description = description;
             _feedId = feedId;
             _imageUrl = imageUrl;
@@ -56,6 +59,11 @@ namespace BlogMonster.Configuration
         public string Title
         {
             get { return _title; }
+        }
+
+        public Uri FeedHomeUri
+        {
+            get { return _feedHomeUri; }
         }
     }
 }
