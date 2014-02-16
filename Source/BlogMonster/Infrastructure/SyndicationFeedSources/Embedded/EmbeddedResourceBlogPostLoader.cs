@@ -80,14 +80,16 @@ namespace BlogMonster.Infrastructure.SyndicationFeedSources.Embedded
                 var id = internalPermalinks.First();
                 var postUri = _pathFactory.GetUriForPost(id);
                 var externalPermalinks = internalPermalinks.Select(pl => _pathFactory.GetUriForPost(pl)).ToArray();
-                var html = ExtractHtml(resourceName, assembly, resourceId);
+                string summary;
+                string content;
+                ExtractHtml(resourceName, assembly, resourceId, out summary, out content);
 
-                var syndicationItem = new SyndicationItem(title, html, postUri)
+                var syndicationItem = new SyndicationItem(title, content, postUri)
                                       {
                                           Id = id,
                                           PublishDate = postDate,
                                           LastUpdatedTime = postDate,
-                                          Summary = new TextSyndicationContent(html, TextSyndicationContentKind.XHtml),
+                                          Summary = new TextSyndicationContent(summary, TextSyndicationContentKind.XHtml),
                                       };
 
                 syndicationItem.Authors.Add(_feedSettings.Author);
@@ -219,7 +221,7 @@ namespace BlogMonster.Infrastructure.SyndicationFeedSources.Embedded
             return result;
         }
 
-        private string ExtractHtml(string resourceName, Assembly assembly, string id)
+        private void ExtractHtml(string resourceName, Assembly assembly, string id, out string summary, out string content)
         {
             string markdown;
             using (var stream = assembly.GetManifestResourceStream(resourceName))
@@ -230,8 +232,13 @@ namespace BlogMonster.Infrastructure.SyndicationFeedSources.Embedded
             }
 
             var markdownWithImagesRemapped = _imagePathMapper.ReMapImagePaths(markdown, id);
-            var html = _markDownTransformer.TransformToHtml(markdownWithImagesRemapped);
-            return html;
+
+            var chunks = markdownWithImagesRemapped.Split(new [] { "---"}, StringSplitOptions.RemoveEmptyEntries);
+            var summaryMarkdown = chunks[0];
+            var completeMarkdown = string.Join(string.Empty, chunks);
+
+            summary = _markDownTransformer.TransformToHtml(summaryMarkdown);
+            content = _markDownTransformer.TransformToHtml(completeMarkdown);
         }
     }
 }

@@ -45,5 +45,23 @@ namespace BlogMonster.Tests
         {
             Subject.Feed.Items.Single().Content.ToHtml().ShouldContain(_someImageControllerPath);
         }
+
+        [Test]
+        public void TheSummaryShouldContainTheCorrectContent()
+        {
+            Subject.Feed.Items.Single().Summary.ToHtml().ShouldContain("This should be the summary.");
+        }
+
+        [Test]
+        public void TheContentShouldNotBeIncludedInTheSummary()
+        {
+            Subject.Feed.Items.Single().Summary.ToHtml().ShouldNotContain("This should be in the content.");
+        }
+
+        [Test]
+        public void TheContentShouldBeInTheContent()
+        {
+            Subject.Feed.Items.Single().Content.ToHtml().ShouldContain("This should be in the content.");
+        }
     }
 }
