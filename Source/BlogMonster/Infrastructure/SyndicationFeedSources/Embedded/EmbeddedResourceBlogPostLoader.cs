@@ -81,7 +81,8 @@ namespace BlogMonster.Infrastructure.SyndicationFeedSources.Embedded
                 var externalPermalinks = internalPermalinks.Select(pl => _pathFactory.GetUriForPost(pl)).ToArray();
                 string summary;
                 string content;
-                ExtractHtml(resourceName, assembly, resourceId, out summary, out content);
+                Uri[] imageUris;
+                ExtractHtml(resourceName, assembly, resourceId, out summary, out content, out imageUris);
 
                 var syndicationItem = new SyndicationItem(title, content, postUri)
                                       {
@@ -93,6 +94,7 @@ namespace BlogMonster.Infrastructure.SyndicationFeedSources.Embedded
 
                 syndicationItem.Authors.Add(_feedSettings.Author);
                 syndicationItem.Links.AddRange(externalPermalinks.Select(pl => new SyndicationLink(pl)));
+                syndicationItem.Links.AddRange(imageUris.Select(u => new SyndicationLink(u)));
                 return syndicationItem;
             }
             catch (BlogPostExtractionFailedException)
@@ -220,7 +222,7 @@ namespace BlogMonster.Infrastructure.SyndicationFeedSources.Embedded
             return result;
         }
 
-        private void ExtractHtml(string resourceName, Assembly assembly, string id, out string summary, out string content)
+        private void ExtractHtml(string resourceName, Assembly assembly, string id, out string summary, out string content, out Uri[] imageUris)
         {
             string markdown;
             using (var stream = assembly.GetManifestResourceStream(resourceName))
@@ -230,7 +232,7 @@ namespace BlogMonster.Infrastructure.SyndicationFeedSources.Embedded
                     : new StreamReader(stream).ReadToEnd();
             }
 
-            var markdownWithImagesRemapped = _imagePathMapper.ReMapImagePaths(markdown, id);
+            var markdownWithImagesRemapped = _imagePathMapper.ReMapImagePaths(markdown, id, out imageUris);
 
             var chunks = markdownWithImagesRemapped.Split(new [] { "---"}, StringSplitOptions.RemoveEmptyEntries);
             var summaryMarkdown = chunks[0];
