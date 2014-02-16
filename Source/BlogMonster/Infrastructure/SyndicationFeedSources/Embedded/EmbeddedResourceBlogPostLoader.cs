@@ -58,6 +58,7 @@ namespace BlogMonster.Infrastructure.SyndicationFeedSources.Embedded
         private IEnumerable<SyndicationItem> LoadSyndicationItemsFromAssembly(Assembly assembly)
         {
             var syndicationItems = assembly.GetManifestResourceNames()
+                                           .AsParallel()
                                            .Where(_blogPostResourceNameFilter)
                                            .Select(resourceName => TryLoadSyndicationItem(resourceName, assembly))
                                            .NotNull()
