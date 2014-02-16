@@ -55,10 +55,13 @@
     <Compile Include="Configuration\BlogMonsterBuilder.cs" />
     <Compile Include="Configuration\BlogMonsterConfigurationException.cs" />
     <Compile Include="Configuration\EmbeddedResourceBuilder.cs" />
+    <Compile Include="Configuration\MultiplexedBuilder.cs" />
     <Compile Include="Infrastructure\SyndicationFeedSources\Embedded\EmbeddedSyndicationFeedService.cs" />
+    <Compile Include="Infrastructure\SyndicationFeedSources\FeedBuilder.cs" />
     <Compile Include="Infrastructure\SyndicationFeedSources\Embedded\IEmbeddedSyndicationFeedSource.cs" />
     <Compile Include="Infrastructure\SyndicationFeedSources\ISyndicationFeedSource.cs" />
     <Compile Include="Configuration\RemoteSyndicationFeedSourceBuilder.cs" />
+    <Compile Include="Infrastructure\SyndicationFeedSources\Multiplexing\MultiplexingFeedSource.cs" />
     <Compile Include="Infrastructure\SyndicationFeedSources\Remote\RemoteSyndicationFeedSource.cs" />
     <Compile Include="Configuration\RssFeedSettings.cs" />
     <Compile Include="Infrastructure\SyndicationFeedSources\Embedded\StaticSyndicationFeedSource.cs" />

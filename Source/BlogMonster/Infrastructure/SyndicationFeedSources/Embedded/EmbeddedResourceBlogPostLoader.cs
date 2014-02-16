@@ -41,16 +41,9 @@ namespace BlogMonster.Infrastructure.SyndicationFeedSources.Embedded
                 .OrderByDescending(p => p.PublishDate)
                 .ToArray();
 
-            var feed = new SyndicationFeed(_feedSettings.Title, _feedSettings.Description, _feedSettings.FeedHomeUri, syndicationItems)
-                       {
-                           Id = _feedSettings.FeedId,
-                           ImageUrl = new Uri(_feedSettings.ImageUrl),
-                           Language = _feedSettings.Language,
-                           Copyright = new TextSyndicationContent(_feedSettings.Copyright),
-                           LastUpdatedTime = syndicationItems.FirstOrDefault().Coalesce(item => item.PublishDate, DateTimeOffset.MinValue),
-                       };
-            feed.Authors.Add(_feedSettings.Author);
-            feed.Links.Add(new SyndicationLink(_feedSettings.FeedHomeUri));
+            var feed = new FeedBuilder().Build(_feedSettings, syndicationItems);
+
+
 
             return feed;
         }
