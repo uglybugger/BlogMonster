@@ -46,6 +46,9 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="ThirdDrawer">
+      <HintPath>..\packages\ThirdDrawer.1.0.1.3\lib\net40\ThirdDrawer.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\SolutionInfo.cs">
@@ -65,7 +68,6 @@
     <Compile Include="Infrastructure\SyndicationFeedSources\Remote\RemoteSyndicationFeedSource.cs" />
     <Compile Include="Configuration\RssFeedSettings.cs" />
     <Compile Include="Infrastructure\SyndicationFeedSources\Embedded\StaticSyndicationFeedSource.cs" />
-    <Compile Include="Extensions\CollectionExtensions.cs" />
     <Compile Include="Extensions\SyndicationHelpers.cs" />
     <Compile Include="Infrastructure\IClock.cs" />
     <Compile Include="Infrastructure\SystemClock.cs" />
@@ -77,9 +79,6 @@
     <Compile Include="Infrastructure\SyndicationFeedSources\Embedded\IPathFactory.cs" />
     <Compile Include="Infrastructure\SyndicationFeedSources\Embedded\MarkDownTransformer.cs" />
     <Compile Include="Infrastructure\SyndicationFeedSources\Embedded\PathFactory.cs" />
-    <Compile Include="Extensions\ClassExtensions.cs" />
-    <Compile Include="Extensions\EnumerableExtensions.cs" />
-    <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Web\RssFeedResult.cs" />
   </ItemGroup>

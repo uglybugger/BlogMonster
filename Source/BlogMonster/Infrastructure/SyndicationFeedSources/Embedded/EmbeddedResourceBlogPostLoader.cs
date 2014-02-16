@@ -5,7 +5,8 @@ using System.Linq;
 using System.Reflection;
 using System.ServiceModel.Syndication;
 using BlogMonster.Configuration;
-using BlogMonster.Extensions;
+using ThirdDrawer.Extensions.CollectionExtensionMethods;
+using ThirdDrawer.Extensions.StringExtensionMethods;
 
 namespace BlogMonster.Infrastructure.SyndicationFeedSources.Embedded
 {
@@ -42,8 +43,6 @@ namespace BlogMonster.Infrastructure.SyndicationFeedSources.Embedded
                 .ToArray();
 
             var feed = new FeedBuilder().Build(_feedSettings, syndicationItems);
-
-
 
             return feed;
         }
@@ -227,7 +226,7 @@ namespace BlogMonster.Infrastructure.SyndicationFeedSources.Embedded
 
             var markdownWithImagesRemapped = _imagePathMapper.ReMapImagePaths(markdown, id, out imageUris);
 
-            var chunks = markdownWithImagesRemapped.Split(new [] { "---"}, StringSplitOptions.None);
+            var chunks = markdownWithImagesRemapped.Split(new[] {"---"}, StringSplitOptions.None);
             var summaryMarkdown = chunks[0];
             var completeMarkdown = string.Join(string.Empty, chunks);
 

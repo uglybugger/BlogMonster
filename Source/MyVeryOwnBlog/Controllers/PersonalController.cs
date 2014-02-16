@@ -1,8 +1,8 @@
 using System.IO;
 using System.Linq;
 using System.Web.Mvc;
-using BlogMonster.Extensions;
 using BlogMonster.Web;
+using ThirdDrawer.Extensions.StringExtensionMethods;
 
 namespace MyVeryOwnBlog.Controllers
 {

@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using System.ServiceModel.Syndication;
 using BlogMonster.Configuration;
-using BlogMonster.Extensions;
+using ThirdDrawer.Extensions.ClassExtensionMethods;
 
 namespace BlogMonster.Infrastructure.SyndicationFeedSources
 {
