@@ -124,6 +124,9 @@ namespace BlogMonster.Infrastructure.SyndicationFeedSources.Embedded
                 if (!int.TryParse(slidingTokens[3], out time)) continue;
                 if (!int.TryParse(slidingTokens[4], out offset)) continue;
 
+                if (month > 12) continue;
+                if (offset > 1400) continue;
+
                 var hour = time/100;
                 var minute = time%100;
 
