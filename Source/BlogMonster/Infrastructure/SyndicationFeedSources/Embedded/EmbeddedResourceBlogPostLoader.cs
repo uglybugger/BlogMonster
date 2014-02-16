@@ -234,7 +234,7 @@ namespace BlogMonster.Infrastructure.SyndicationFeedSources.Embedded
 
             var markdownWithImagesRemapped = _imagePathMapper.ReMapImagePaths(markdown, id, out imageUris);
 
-            var chunks = markdownWithImagesRemapped.Split(new [] { "---"}, StringSplitOptions.RemoveEmptyEntries);
+            var chunks = markdownWithImagesRemapped.Split(new [] { "---"}, StringSplitOptions.None);
             var summaryMarkdown = chunks[0];
             var completeMarkdown = string.Join(string.Empty, chunks);
 
