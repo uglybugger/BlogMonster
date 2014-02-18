@@ -1,12 +1,16 @@
-﻿using BlogMonster.Infrastructure.SyndicationFeedSources;
+﻿using System;
+using System.Collections.Generic;
+using System.ServiceModel.Syndication;
+using BlogMonster.Infrastructure.SyndicationFeedSources;
 using BlogMonster.Infrastructure.SyndicationFeedSources.Multiplexing;
 
 namespace BlogMonster.Configuration
 {
     public class MultiplexedBuilder
     {
-        public ISyndicationFeedSource[] SourcesToMultiplex { get; private set; }
-        internal RssFeedSettings FeedSettings { get; set; }
+        internal ISyndicationFeedSource[] SourcesToMultiplex { get; private set; }
+        internal RssFeedSettings FeedSettings { get; private set; }
+        internal Func<IEnumerable<SyndicationItem>, IEnumerable<SyndicationItem>> Filter { get; private set; }
 
         public MultiplexedBuilder(ISyndicationFeedSource[] sourcesToMultiplex)
         {
@@ -19,10 +23,15 @@ namespace BlogMonster.Configuration
             return this;
         }
 
-        public ISyndicationFeedSource Grr()
+        public MultiplexedBuilder WithFilter(Func<IEnumerable<SyndicationItem>, IEnumerable<SyndicationItem>> filter)
         {
-            return new MultiplexingFeedSource(FeedSettings, SourcesToMultiplex);
+            Filter = filter;
+            return this;
         }
 
+        public ISyndicationFeedSource Grr()
+        {
+            return new MultiplexingFeedSource(FeedSettings, SourcesToMultiplex, Filter);
+        }
     }
 }
