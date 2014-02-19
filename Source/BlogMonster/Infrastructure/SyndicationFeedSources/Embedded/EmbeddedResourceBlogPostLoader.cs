@@ -86,7 +86,6 @@ namespace BlogMonster.Infrastructure.SyndicationFeedSources.Embedded
 
                 syndicationItem.Authors.Add(_feedSettings.Author);
                 syndicationItem.Links.AddRange(externalPermalinks.Select(pl => new SyndicationLink(pl)));
-                syndicationItem.Links.AddRange(imageUris.Select(u => new SyndicationLink(u)));
                 return syndicationItem;
             }
             catch (BlogPostExtractionFailedException)
@@ -204,7 +203,7 @@ namespace BlogMonster.Infrastructure.SyndicationFeedSources.Embedded
             permalinks.Add(slug);
 
             // default to the id if nothing else
-            permalinks.Add(id);
+            if (permalinks.None()) permalinks.Add(id);
 
             var result = permalinks
                 .Distinct()

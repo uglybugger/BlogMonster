@@ -15,7 +15,7 @@ namespace BlogMonster.Infrastructure.SyndicationFeedSources.Embedded
 
         public Uri GetUriForPost(string postId)
         {
-            return new Uri(string.Format("{0}/{1}/", _basePostUri, postId), UriKind.RelativeOrAbsolute);
+            return new Uri(string.Format("{0}/{1}", _basePostUri, postId), UriKind.RelativeOrAbsolute);
         }
 
         public Uri GetUriForImage(string imageResourceName)
