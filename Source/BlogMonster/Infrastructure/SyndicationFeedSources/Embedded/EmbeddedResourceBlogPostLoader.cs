@@ -200,7 +200,7 @@ namespace BlogMonster.Infrastructure.SyndicationFeedSources.Embedded
                 .Split(new[] {" "}, StringSplitOptions.RemoveEmptyEntries)
                 .Join("_")
                 ;
-            permalinks.Add(slug);
+            if (!string.IsNullOrWhiteSpace(slug)) permalinks.Add(slug);
 
             // default to the id if nothing else
             if (permalinks.None()) permalinks.Add(id);
