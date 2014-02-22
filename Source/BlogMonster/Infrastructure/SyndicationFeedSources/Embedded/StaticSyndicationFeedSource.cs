@@ -1,5 +1,7 @@
 using System;
+using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using System.ServiceModel.Syndication;
 
 namespace BlogMonster.Infrastructure.SyndicationFeedSources.Embedded
@@ -21,11 +23,14 @@ namespace BlogMonster.Infrastructure.SyndicationFeedSources.Embedded
 
         private SyndicationFeed FilterByDate(SyndicationFeed feed)
         {
+            if (Debugger.IsAttached) return feed;
+
+            var filteredItems = feed.Items
+                                    .Where(item => item.PublishDate >= _clock.UtcNow)
+                                    .ToArray();
             var clone = feed.Clone(false);
-            var syndicationItems = feed.Items
-                                       .Where(item => item.PublishDate >= _clock.UtcNow)
-                                       .ToArray();
-            //clone.Items.AddRange(syndicationItems);
+            var field = clone.GetType().GetField("items", BindingFlags.Instance | BindingFlags.NonPublic);
+            field.SetValue(clone, filteredItems);
 
             return clone;
         }
