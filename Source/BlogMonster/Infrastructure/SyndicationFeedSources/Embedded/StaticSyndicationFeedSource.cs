@@ -26,7 +26,7 @@ namespace BlogMonster.Infrastructure.SyndicationFeedSources.Embedded
             if (Debugger.IsAttached) return feed;
 
             var filteredItems = feed.Items
-                                    .Where(item => item.PublishDate >= _clock.UtcNow)
+                                    .Where(item => item.PublishDate <= _clock.UtcNow)
                                     .ToArray();
             var clone = feed.Clone(false);
             var field = clone.GetType().GetField("items", BindingFlags.Instance | BindingFlags.NonPublic);
