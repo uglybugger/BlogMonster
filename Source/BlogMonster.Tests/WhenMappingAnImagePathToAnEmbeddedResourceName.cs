@@ -53,7 +53,7 @@ namespace BlogMonster.Tests
         {
             foreach (var uri in _remappedImageUris)
             {
-                var resourcePath = uri.LocalPath.Replace("/feed/image/", string.Empty);
+                var resourcePath = uri.LocalPath.Replace("/feed/image/", string.Empty).TrimEnd('/');
                 _manifestResourceNames.ShouldContain(resourcePath);
             }
         }
