@@ -15,15 +15,15 @@ namespace BlogMonster.Infrastructure.SyndicationFeedSources.Embedded
             _pathFactory = pathFactory;
         }
 
-        public string ReMapImagePaths(string markdown, string baseResourceName, out Uri[] remappedImageUris)
+        public string ReMapImagePaths(string markdown, string baseResourceDirectoryName, out Uri[] remappedImageUris)
         {
             var imageUris = new List<Uri>();
-            var result = _pathReplacementRegex.Replace(markdown, s => Evaluator(s, baseResourceName, imageUris));
+            var result = _pathReplacementRegex.Replace(markdown, s => Evaluator(s, baseResourceDirectoryName, imageUris));
             remappedImageUris = imageUris.ToArray();
             return result;
         }
 
-        private string Evaluator(Match match, string dirName, List<Uri> imageUris)
+        private string Evaluator(Match match, string baseResourceDirectoryName, List<Uri> imageUris)
         {
             var group2 = match.Groups[2].Value;
             if (group2.StartsWith("http://"))
@@ -33,7 +33,7 @@ namespace BlogMonster.Infrastructure.SyndicationFeedSources.Embedded
                 return existingAbsoluteUri;
             }
 
-            var imageResourceName = dirName + "." + group2;
+            var imageResourceName = baseResourceDirectoryName + "." + group2;
             var uriForImage = _pathFactory.GetUriForImage(imageResourceName);
             imageUris.Add(uriForImage);
 

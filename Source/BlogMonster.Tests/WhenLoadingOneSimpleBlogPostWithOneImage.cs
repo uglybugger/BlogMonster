@@ -47,6 +47,12 @@ namespace BlogMonster.Tests
         }
 
         [Test]
+        public void TheTitleShouldBeCorrect()
+        {
+            Subject.Feed.Items.Single().Title.ToHtml().ShouldContain("This post has an image");
+        }
+
+        [Test]
         public void TheSummaryShouldContainTheCorrectContent()
         {
             Subject.Feed.Items.Single().Summary.ToHtml().ShouldContain("This should be the summary.");

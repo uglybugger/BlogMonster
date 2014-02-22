@@ -64,6 +64,8 @@ namespace BlogMonster.Infrastructure.SyndicationFeedSources.Embedded
             {
                 string resourceBasePath;
                 DateTimeOffset postDate;
+
+                //FIXME this is messy :(
                 if (!ExtractBaseResourcePathAndPostDate(resourceName, out resourceBasePath, out postDate)) return null;
                 var resourceId = ExtractId(postDate);
                 var title = ExtractTitle(resourceName, resourceBasePath, assembly);
@@ -74,7 +76,7 @@ namespace BlogMonster.Infrastructure.SyndicationFeedSources.Embedded
                 string summary;
                 string content;
                 Uri[] imageUris;
-                ExtractHtml(resourceName, assembly, resourceId, out summary, out content, out imageUris);
+                ExtractHtml(resourceName, assembly, resourceBasePath, out summary, out content, out imageUris);
 
                 var syndicationItem = new SyndicationItem(title, content, postUri)
                                       {
@@ -94,7 +96,7 @@ namespace BlogMonster.Infrastructure.SyndicationFeedSources.Embedded
             }
         }
 
-        private static bool ExtractBaseResourcePathAndPostDate(string resourceName, out string resourcePath, out DateTimeOffset postDate)
+        internal static bool ExtractBaseResourcePathAndPostDate(string resourceName, out string baseResourcePath, out DateTimeOffset postDate)
         {
             var tokens = resourceName.Split('.');
 
@@ -129,7 +131,7 @@ namespace BlogMonster.Infrastructure.SyndicationFeedSources.Embedded
                 {
                     var offsetTimeSpan = new TimeSpan(offset/100, offset%100, 0);
                     postDate = new DateTimeOffset(year, month, day, hour, minute, 0, offsetTimeSpan);
-                    resourcePath = string.Join(".", tokens.Take(i + 5));
+                    baseResourcePath = string.Join(".", tokens.Take(i + 5));
                     return true;
                 }
                 catch (Exception)
@@ -138,7 +140,7 @@ namespace BlogMonster.Infrastructure.SyndicationFeedSources.Embedded
                 }
             }
 
-            resourcePath = null;
+            baseResourcePath = null;
             postDate = DateTimeOffset.MinValue;
             return false;
         }
@@ -213,7 +215,7 @@ namespace BlogMonster.Infrastructure.SyndicationFeedSources.Embedded
             return result;
         }
 
-        private void ExtractHtml(string resourceName, Assembly assembly, string id, out string summary, out string content, out Uri[] imageUris)
+        private void ExtractHtml(string resourceName, Assembly assembly, string resourceBasePath, out string summary, out string content, out Uri[] imageUris)
         {
             string markdown;
             using (var stream = assembly.GetManifestResourceStream(resourceName))
@@ -223,7 +225,7 @@ namespace BlogMonster.Infrastructure.SyndicationFeedSources.Embedded
                     : new StreamReader(stream).ReadToEnd();
             }
 
-            var markdownWithImagesRemapped = _imagePathMapper.ReMapImagePaths(markdown, id, out imageUris);
+            var markdownWithImagesRemapped = _imagePathMapper.ReMapImagePaths(markdown, resourceBasePath, out imageUris);
 
             var chunks = markdownWithImagesRemapped.Split(new[] {"---"}, StringSplitOptions.None);
             var summaryMarkdown = chunks[0];

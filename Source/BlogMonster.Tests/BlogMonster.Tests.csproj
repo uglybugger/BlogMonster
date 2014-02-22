@@ -80,6 +80,7 @@
     <Compile Include="WhenImportingPostsFromAnInstagramFeed.cs" />
     <Compile Include="WhenLoadingOneSimpleBlogPost.cs" />
     <Compile Include="WhenLoadingOneSimpleBlogPostWithOneImage.cs" />
+    <Compile Include="WhenMappingAnImagePathToAnEmbeddedResourceName.cs" />
     <Compile Include="WhenTheTestFrameworkRuns.cs" />
   </ItemGroup>
   <ItemGroup>

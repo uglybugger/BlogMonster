@@ -22,7 +22,7 @@ namespace BlogMonster.Infrastructure.SyndicationFeedSources.Embedded
         public Stream GetStreamForImageResourceName(string resourceName)
         {
             return _resourceNamesAssemblyLookup.Value
-                                               .Where(cacheEntry => cacheEntry.Key.EndsWith(resourceName))
+                                               .Where(cacheEntry => cacheEntry.ResourceName == resourceName)
                                                .Select(cacheEntry => cacheEntry.Assembly.GetManifestResourceStream(cacheEntry.ResourceName))
                                                .FirstOrDefault();
         }
@@ -38,7 +38,6 @@ namespace BlogMonster.Infrastructure.SyndicationFeedSources.Embedded
                 {
                     var cacheEntry = new ResourceNameCacheEntry
                                      {
-                                         Key = resourceName.Replace("_", string.Empty),
                                          ResourceName = resourceName,
                                          Assembly = assembly,
                                      };
@@ -52,7 +51,6 @@ namespace BlogMonster.Infrastructure.SyndicationFeedSources.Embedded
 
         private class ResourceNameCacheEntry
         {
-            public string Key { get; set; }
             public string ResourceName { get; set; }
             public Assembly Assembly { get; set; }
         }

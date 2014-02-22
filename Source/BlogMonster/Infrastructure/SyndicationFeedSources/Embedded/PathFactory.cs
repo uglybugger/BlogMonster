@@ -20,7 +20,9 @@ namespace BlogMonster.Infrastructure.SyndicationFeedSources.Embedded
 
         public Uri GetUriForImage(string imageResourceName)
         {
-            return new Uri(string.Format("{0}/{1}", _baseImageUri, imageResourceName), UriKind.RelativeOrAbsolute);
+            // we put a trailing slash here because the image resource names will contain at least one . about which the
+            // mvc routing engine and IIS get confused.
+            return new Uri(string.Format("{0}/{1}/", _baseImageUri, imageResourceName), UriKind.RelativeOrAbsolute);
         }
     }
 }
