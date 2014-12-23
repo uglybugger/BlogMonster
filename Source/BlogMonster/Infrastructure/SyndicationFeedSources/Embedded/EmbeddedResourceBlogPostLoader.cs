@@ -93,6 +93,7 @@ namespace BlogMonster.Infrastructure.SyndicationFeedSources.Embedded
 
                 syndicationItem.Authors.Add(_feedSettings.Author);
                 syndicationItem.Links.AddRange(externalPermalinks.Select(pl => new SyndicationLink(pl)));
+                syndicationItem.Links.AddRange(imageUris.Select(uri => new SyndicationLink(uri, "image", string.Empty, string.Empty, 0)));
                 return syndicationItem;
             }
             catch (BlogPostExtractionFailedException)
