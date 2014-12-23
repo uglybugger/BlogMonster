@@ -44,6 +44,11 @@ namespace BlogMonster.Infrastructure.SyndicationFeedSources.Embedded
 
             var feed = new FeedBuilder().Build(_feedSettings, syndicationItems);
 
+            foreach (var item in syndicationItems)
+            {
+                item.SourceFeed = feed;
+            }
+
             return feed;
         }
 
