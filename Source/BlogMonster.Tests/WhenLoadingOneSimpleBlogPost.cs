@@ -36,5 +36,17 @@ namespace BlogMonster.Tests
         {
             Subject.Feed.Items.Count().ShouldBe(1);
         }
+
+        [Test]
+        public void AllBlogPostsLinksShouldHaveAbsoluteUris()
+        {
+            foreach (var item in Subject.Feed.Items)
+            {
+                foreach (var link in item.Links)
+                {
+                    link.GetAbsoluteUri().IsAbsoluteUri.ShouldBe(true);
+                }
+            }
+        }
     }
 }
