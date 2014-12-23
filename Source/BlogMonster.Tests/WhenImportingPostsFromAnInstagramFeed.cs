@@ -12,7 +12,7 @@ namespace BlogMonster.Tests
         [Test]
         public void ThereShouldBeAtLeastOnePost()
         {
-            var syndicationFeedSource = BlogMonsterBuilder.FromUrl(new Uri("http://widget.stagram.com/rss/n/yolo"))
+            var syndicationFeedSource = BlogMonsterBuilder.FromUrl(new Uri("http://instagram.heroku.com/users/730570669.atom"))
                                                           .Grr();
 
             syndicationFeedSource.Feed.Items.Count().ShouldBeGreaterThan(0);
