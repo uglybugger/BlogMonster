@@ -51,9 +51,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\SolutionInfo.cs">
-      <Link>Properties\SolutionInfo.cs</Link>
-    </Compile>
     <Compile Include="Cached.cs" />
     <Compile Include="Configuration\BlogMonsterBuilder.cs" />
     <Compile Include="Configuration\BlogMonsterConfigurationException.cs" />
