@@ -1,4 +1,5 @@
 ﻿using System;
+using BlogMonster.Extensions;
 
 namespace BlogMonster.Infrastructure.SyndicationFeedSources.Embedded
 {
@@ -9,20 +10,25 @@ namespace BlogMonster.Infrastructure.SyndicationFeedSources.Embedded
 
         public PathFactory(Uri basePostUri, Uri baseImageUri)
         {
-            _basePostUri = basePostUri;
-            _baseImageUri = baseImageUri;
+            _basePostUri = basePostUri.EnsureTrailingSlash();
+            _baseImageUri = baseImageUri.EnsureTrailingSlash();
         }
 
         public Uri GetUriForPost(string postId)
         {
-            return new Uri(string.Format("{0}/{1}", _basePostUri, postId), UriKind.RelativeOrAbsolute);
+            var uri = new Uri(_basePostUri, new Uri(postId, UriKind.Relative));
+            return uri;
         }
 
         public Uri GetUriForImage(string imageResourceName)
         {
+            var uri = new Uri(_baseImageUri, new Uri(imageResourceName, UriKind.Relative));
+
             // we put a trailing slash here because the image resource names will contain at least one . about which the
             // mvc routing engine and IIS get confused.
-            return new Uri(string.Format("{0}/{1}/", _baseImageUri, imageResourceName), UriKind.RelativeOrAbsolute);
+            var uriWithTrailingSlash = uri.EnsureTrailingSlash();
+
+            return uriWithTrailingSlash;
         }
     }
 }

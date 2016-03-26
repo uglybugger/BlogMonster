@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Reflection;
+using BlogMonster.Extensions;
 using BlogMonster.Infrastructure;
 using BlogMonster.Infrastructure.SyndicationFeedSources.Embedded;
 
@@ -32,8 +33,8 @@ namespace BlogMonster.Configuration
 
         public EmbeddedResourceBuilder WithBaseUris(Uri basePostUri, Uri baseImageUri)
         {
-            BasePostUri = basePostUri;
-            BaseImageUri = baseImageUri;
+            BasePostUri = basePostUri.EnsureTrailingSlash();
+            BaseImageUri = baseImageUri.EnsureTrailingSlash();
             return this;
         }
 

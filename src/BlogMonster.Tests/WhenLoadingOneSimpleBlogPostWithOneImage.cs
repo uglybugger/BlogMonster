@@ -16,18 +16,21 @@ namespace BlogMonster.Tests
 
         protected override IEmbeddedSyndicationFeedSource GivenSubject()
         {
+            var basePostUri = new Uri("http://www.example.com");
+            var baseImageUri = new Uri(new Uri("http://www.example.com/"), new Uri(_someImageControllerPath, UriKind.Relative));
+
             return BlogMonsterBuilder.FromEmbeddedResources(GetType().Assembly)
-                                     .WithResourceNameFilter(s => s.Contains(".SinglePostWithImage.") && s.EndsWith(".markdown"))
-                                     .WithRssSettings(new RssFeedSettings("feedId",
-                                                                          "title",
-                                                                          "description",
-                                                                          new SyndicationPerson(),
-                                                                          "http://www.example.com/image.jpg",
-                                                                          "language",
-                                                                          "copyright",
-                                                                          new Uri("http://www.example.com")))
-                                     .WithBaseUris(new Uri("http://www.example.com"), new Uri("http://www.example.com/" + _someImageControllerPath + "/"))
-                                     .Grr();
+                .WithResourceNameFilter(s => s.Contains(".SinglePostWithImage.") && s.EndsWith(".markdown"))
+                .WithRssSettings(new RssFeedSettings("feedId",
+                    "title",
+                    "description",
+                    new SyndicationPerson(),
+                    "http://www.example.com/image.jpg",
+                    "language",
+                    "copyright",
+                    new Uri("http://www.example.com")))
+                .WithBaseUris(basePostUri, baseImageUri)
+                .Grr();
         }
 
         protected override void When()

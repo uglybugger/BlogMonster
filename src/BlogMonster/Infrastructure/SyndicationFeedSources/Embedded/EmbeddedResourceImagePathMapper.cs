@@ -15,6 +15,16 @@ namespace BlogMonster.Infrastructure.SyndicationFeedSources.Embedded
             _pathFactory = pathFactory;
         }
 
+        public Uri ReMapSingleImage(string imageUriOrShortResourceName, string baseResourceDirectoryName)
+        {
+            if (imageUriOrShortResourceName.StartsWith("http://")) return new Uri(imageUriOrShortResourceName);
+            if (imageUriOrShortResourceName.StartsWith("https://")) return new Uri(imageUriOrShortResourceName);
+
+            var imageResourceName = baseResourceDirectoryName + "." + imageUriOrShortResourceName;
+            var imageUri = _pathFactory.GetUriForImage(imageResourceName);
+            return imageUri;
+        }
+
         public string ReMapImagePaths(string markdown, string baseResourceDirectoryName, out Uri[] remappedImageUris)
         {
             var imageUris = new List<Uri>();

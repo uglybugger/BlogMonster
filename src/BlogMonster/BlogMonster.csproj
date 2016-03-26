@@ -56,6 +56,8 @@
     <Compile Include="Configuration\BlogMonsterConfigurationException.cs" />
     <Compile Include="Configuration\EmbeddedResourceBuilder.cs" />
     <Compile Include="Configuration\MultiplexedBuilder.cs" />
+    <Compile Include="Extensions\UriExtensions.cs" />
+    <Compile Include="Infrastructure\SyndicationFeedSources\Embedded\BlogPostExtractionExtensions.cs" />
     <Compile Include="Infrastructure\SyndicationFeedSources\Embedded\EmbeddedResourceReadingExtensions.cs" />
     <Compile Include="Infrastructure\SyndicationFeedSources\Embedded\EmbeddedSyndicationFeedService.cs" />
     <Compile Include="Extensions\ExceptionExtensions.cs" />

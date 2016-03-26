@@ -26,25 +26,16 @@ namespace BlogMonster.Tests
 
         protected override void When()
         {
-            var resourceName = _manifestResourceNames
-                .Where(n => n.Contains("image"))
+            var postResourceName = _manifestResourceNames
+                .Where(n => n.Contains("This post has an image"))
                 .Where(n => n.EndsWith(".markdown"))
                 .First();
 
             string baseResourcePath;
             DateTimeOffset postDate;
-            EmbeddedResourceBlogPostLoader.ExtractBaseResourcePathAndPostDate(resourceName, out baseResourcePath, out postDate);
+            postResourceName.ExtractBaseResourcePathAndPostDate(out baseResourcePath, out postDate);
 
-            string markdown;
-            using (var stream = _testAssembly.GetManifestResourceStream(resourceName))
-            {
-                using (var ms = new MemoryStream())
-                {
-                    stream.CopyTo(ms);
-                    markdown = Encoding.UTF8.GetString(ms.GetBuffer());
-                }
-            }
-
+            var markdown = _testAssembly.ReadResource(postResourceName);
             Subject.ReMapImagePaths(markdown, baseResourcePath, out _remappedImageUris);
         }
 
