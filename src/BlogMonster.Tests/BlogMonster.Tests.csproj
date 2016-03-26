@@ -74,7 +74,7 @@
     <Compile Include="Properties\AssemblyInfoForUniMockWithNSubstitute.cs" />
     <Compile Include="TestFor.cs" />
     <Compile Include="WhenFetchingACachedValue.cs" />
-    <Compile Include="WhenImportingPostsFromAnInstagramFeed.cs" />
+    <Compile Include="WhenImportingPostsFromAnRssFeed.cs" />
     <Compile Include="WhenLoadingOneSimpleBlogPost.cs" />
     <Compile Include="WhenLoadingOneSimpleBlogPostWithOneImage.cs" />
     <Compile Include="WhenMappingAnImagePathToAnEmbeddedResourceName.cs" />
