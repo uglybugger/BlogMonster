@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.ServiceModel.Syndication;
@@ -20,11 +19,11 @@ namespace BlogMonster.Infrastructure.SyndicationFeedSources.Embedded
         private readonly IEmbeddedResourceImagePathMapper _imagePathMapper;
 
         public EmbeddedResourceBlogPostLoader(IPathFactory pathFactory,
-                                              IMarkDownTransformer markDownTransformer,
-                                              Assembly[] assemblies,
-                                              RssFeedSettings feedSettings,
-                                              Func<string, bool> blogPostResourceNameFilter,
-                                              IEmbeddedResourceImagePathMapper imagePathMapper)
+            IMarkDownTransformer markDownTransformer,
+            Assembly[] assemblies,
+            RssFeedSettings feedSettings,
+            Func<string, bool> blogPostResourceNameFilter,
+            IEmbeddedResourceImagePathMapper imagePathMapper)
         {
             _pathFactory = pathFactory;
             _markDownTransformer = markDownTransformer;
@@ -55,10 +54,10 @@ namespace BlogMonster.Infrastructure.SyndicationFeedSources.Embedded
         private IEnumerable<SyndicationItem> LoadSyndicationItemsFromAssembly(Assembly assembly)
         {
             var syndicationItems = assembly.GetManifestResourceNames()
-                                           .Where(_blogPostResourceNameFilter)
-                                           .Select(resourceName => TryLoadSyndicationItem(resourceName, assembly))
-                                           .NotNull()
-                                           .ToArray();
+                .Where(_blogPostResourceNameFilter)
+                .Select(resourceName => TryLoadSyndicationItem(resourceName, assembly))
+                .NotNull()
+                .ToArray();
 
             return syndicationItems;
         }
@@ -84,12 +83,12 @@ namespace BlogMonster.Infrastructure.SyndicationFeedSources.Embedded
                 ExtractHtml(resourceName, assembly, resourceBasePath, out summary, out content, out imageUris);
 
                 var syndicationItem = new SyndicationItem(title, content, postUri)
-                                      {
-                                          Id = id,
-                                          PublishDate = postDate,
-                                          LastUpdatedTime = postDate,
-                                          Summary = new TextSyndicationContent(summary, TextSyndicationContentKind.XHtml),
-                                      };
+                {
+                    Id = id,
+                    PublishDate = postDate,
+                    LastUpdatedTime = postDate,
+                    Summary = new TextSyndicationContent(summary, TextSyndicationContentKind.XHtml),
+                };
 
                 syndicationItem.Authors.Add(_feedSettings.Author);
                 syndicationItem.Links.AddRange(externalPermalinks.Select(pl => new SyndicationLink(pl)));
@@ -154,26 +153,19 @@ namespace BlogMonster.Infrastructure.SyndicationFeedSources.Embedded
         private static string ExtractId(DateTimeOffset postDate)
         {
             var id = "{0:0000}.{1:00}.{2:00}.{3:00}{4:00}.{5:00}{6:00}".FormatWith(postDate.Year,
-                                                                                   postDate.Month,
-                                                                                   postDate.Day,
-                                                                                   postDate.Hour,
-                                                                                   postDate.Minute,
-                                                                                   postDate.Offset.Hours,
-                                                                                   postDate.Offset.Minutes);
+                postDate.Month,
+                postDate.Day,
+                postDate.Hour,
+                postDate.Minute,
+                postDate.Offset.Hours,
+                postDate.Offset.Minutes);
             return id;
         }
 
         private static string ExtractTitle(string resourceName, string resourceBasePath, Assembly assembly)
         {
-            string title;
             var overrideTitleResourceName = "{0}.Title.txt".FormatWith(resourceBasePath);
-            using (var stream = assembly.GetManifestResourceStream(overrideTitleResourceName))
-            {
-                title = stream == null
-                    ? ExtractTitleFromResourceName(resourceName, resourceBasePath)
-                    : new StreamReader(stream).ReadToEnd();
-            }
-
+            var title = assembly.TryReadResource(overrideTitleResourceName) ?? ExtractTitleFromResourceName(resourceName, resourceBasePath);
             return title;
         }
 
@@ -191,13 +183,10 @@ namespace BlogMonster.Infrastructure.SyndicationFeedSources.Embedded
 
             // add links provided by author. these take precedence
             var permalinkResourceName = "{0}.Permalinks.txt".FormatWith(resourceBasePath);
-            using (var stream = assembly.GetManifestResourceStream(permalinkResourceName))
+            var blob = assembly.TryReadResource(permalinkResourceName);
+            if (blob != null)
             {
-                if (stream != null)
-                {
-                    var blob = new StreamReader(stream).ReadToEnd();
-                    permalinks.AddRange(blob.Split('\r', '\n'));
-                }
+                permalinks.AddRange(blob.Split('\r', '\n'));
             }
 
             // see if we can figure one out
@@ -223,13 +212,7 @@ namespace BlogMonster.Infrastructure.SyndicationFeedSources.Embedded
 
         private void ExtractHtml(string resourceName, Assembly assembly, string resourceBasePath, out string summary, out string content, out Uri[] imageUris)
         {
-            string markdown;
-            using (var stream = assembly.GetManifestResourceStream(resourceName))
-            {
-                markdown = stream == null
-                    ? string.Empty
-                    : new StreamReader(stream).ReadToEnd();
-            }
+            var markdown = assembly.TryReadResource(resourceName) ?? string.Empty;
 
             var markdownWithImagesRemapped = _imagePathMapper.ReMapImagePaths(markdown, resourceBasePath, out imageUris);
 

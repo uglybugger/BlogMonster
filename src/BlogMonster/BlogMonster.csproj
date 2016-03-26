@@ -56,7 +56,10 @@
     <Compile Include="Configuration\BlogMonsterConfigurationException.cs" />
     <Compile Include="Configuration\EmbeddedResourceBuilder.cs" />
     <Compile Include="Configuration\MultiplexedBuilder.cs" />
+    <Compile Include="Infrastructure\SyndicationFeedSources\Embedded\EmbeddedResourceReadingExtensions.cs" />
     <Compile Include="Infrastructure\SyndicationFeedSources\Embedded\EmbeddedSyndicationFeedService.cs" />
+    <Compile Include="Extensions\ExceptionExtensions.cs" />
+    <Compile Include="Infrastructure\SyndicationFeedSources\Embedded\MissingAssemblyResourceException.cs" />
     <Compile Include="Infrastructure\SyndicationFeedSources\FeedBuilder.cs" />
     <Compile Include="Infrastructure\SyndicationFeedSources\Embedded\IEmbeddedSyndicationFeedSource.cs" />
     <Compile Include="Infrastructure\SyndicationFeedSources\ISyndicationFeedSource.cs" />
