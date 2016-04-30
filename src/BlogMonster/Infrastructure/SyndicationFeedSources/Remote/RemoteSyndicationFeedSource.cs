@@ -32,7 +32,17 @@ namespace BlogMonster.Infrastructure.SyndicationFeedSources.Remote
             request.Timeout = (int) _requestTimeout.TotalMilliseconds;
             request.UserAgent = $"BlogMonster {GetType().Assembly.GetName().Version} https://github.com/uglybugger/BlogMonster";
 
-            var response = (HttpWebResponse) request.GetResponse();
+            HttpWebResponse response;
+            try
+            {
+                response = (HttpWebResponse) request.GetResponse();
+            }
+            catch (WebException ex)
+            {
+                throw new RemoteSyndicationFeedFailedException("Loading remote syndication feed timed out", ex)
+                    .WithData("FeedUri", _feedUri);
+            }
+
             if (response.StatusCode != HttpStatusCode.OK)
             {
                 using (var stream = response.GetResponseStream())
