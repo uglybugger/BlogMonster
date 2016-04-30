@@ -12,10 +12,12 @@ namespace BlogMonster.Configuration
             FeedUri = feedUri;
             CacheTimeout = TimeSpan.FromMinutes(10);
             Filter = si => true;
+            RequestTimeout = TimeSpan.FromMinutes(1);
         }
 
-        internal Uri FeedUri { get; private set; }
-        internal TimeSpan CacheTimeout { get; set; }
+        internal Uri FeedUri { get; }
+        internal TimeSpan CacheTimeout { get; private set; }
+        internal TimeSpan RequestTimeout { get; private set; }
         internal Func<SyndicationItem, bool> Filter { get; private set; }
 
         public RemoteSyndicationFeedSourceBuilder WithCacheTimeout(TimeSpan cacheTimeout)
@@ -30,10 +32,16 @@ namespace BlogMonster.Configuration
             return this;
         }
 
+        public RemoteSyndicationFeedSourceBuilder WithRequestTimeout(TimeSpan requestTimeout)
+        {
+            RequestTimeout = requestTimeout;
+            return this;
+        }
+
         public RemoteSyndicationFeedSource Grr()
         {
             var clock = new SystemClock();
-            return new RemoteSyndicationFeedSource(clock, CacheTimeout, FeedUri, Filter);
+            return new RemoteSyndicationFeedSource(clock, CacheTimeout, RequestTimeout, FeedUri, Filter);
         }
     }
 }

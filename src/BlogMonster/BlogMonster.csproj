@@ -67,6 +67,7 @@
     <Compile Include="Infrastructure\SyndicationFeedSources\ISyndicationFeedSource.cs" />
     <Compile Include="Configuration\RemoteSyndicationFeedSourceBuilder.cs" />
     <Compile Include="Infrastructure\SyndicationFeedSources\Multiplexing\MultiplexingFeedSource.cs" />
+    <Compile Include="Infrastructure\SyndicationFeedSources\Remote\RemoteSyndicationFeedFailedException.cs" />
     <Compile Include="Infrastructure\SyndicationFeedSources\Remote\RemoteSyndicationFeedSource.cs" />
     <Compile Include="Configuration\RssFeedSettings.cs" />
     <Compile Include="Infrastructure\SyndicationFeedSources\Embedded\StaticSyndicationFeedSource.cs" />
