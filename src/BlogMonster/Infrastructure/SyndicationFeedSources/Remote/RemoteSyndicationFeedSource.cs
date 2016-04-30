@@ -33,9 +33,18 @@ namespace BlogMonster.Infrastructure.SyndicationFeedSources.Remote
             request.UserAgent = $"BlogMonster {GetType().Assembly.GetName().Version} https://github.com/uglybugger/BlogMonster";
 
             HttpWebResponse response;
+            string responseContent;
             try
             {
                 response = (HttpWebResponse) request.GetResponse();
+
+                using (var stream = response.GetResponseStream())
+                {
+                    using (var streamReader = new StreamReader(stream))
+                    {
+                        responseContent = streamReader.ReadToEnd();
+                    }
+                }
             }
             catch (WebException ex)
             {
@@ -45,21 +54,14 @@ namespace BlogMonster.Infrastructure.SyndicationFeedSources.Remote
 
             if (response.StatusCode != HttpStatusCode.OK)
             {
-                using (var stream = response.GetResponseStream())
-                {
-                    using (var streamReader = new StreamReader(stream))
-                    {
-                        var responseContent = streamReader.ReadToEnd();
-                        throw new RemoteSyndicationFeedFailedException("Loading remote syndication feed failed.")
-                            .WithData("FeedUri", _feedUri)
-                            .WithData("HttpStatusCode", (int) response.StatusCode)
-                            .WithData("HttpStatusDescription", response.StatusDescription)
-                            .WithData("ResponseContent", responseContent);
-                    }
-                }
+                throw new RemoteSyndicationFeedFailedException("Loading remote syndication feed failed.")
+                    .WithData("FeedUri", _feedUri)
+                    .WithData("HttpStatusCode", (int) response.StatusCode)
+                    .WithData("HttpStatusDescription", response.StatusDescription)
+                    .WithData("ResponseContent", responseContent);
             }
 
-            using (var stream = response.GetResponseStream())
+            using (var stream = new StringReader(responseContent))
             {
                 using (var reader = XmlReader.Create(stream))
                 {
