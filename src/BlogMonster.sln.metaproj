@@ -19,18 +19,18 @@
     <WindowsSDK80Path>C:\Program Files (x86)\Windows Kits\8.1\</WindowsSDK80Path>
     <Platform>Any CPU</Platform>
     <AspNetConfiguration>Release</AspNetConfiguration>
-    <SolutionDir>D:\TeamCity\buildAgent3\work\93a02139ed4c11a4\src\</SolutionDir>
+    <SolutionDir>D:\TeamCity\buildAgent1\work\93a02139ed4c11a4\src\</SolutionDir>
     <SolutionExt>.sln</SolutionExt>
     <SolutionFileName>BlogMonster.sln</SolutionFileName>
     <SolutionName>BlogMonster</SolutionName>
-    <SolutionPath>D:\TeamCity\buildAgent3\work\93a02139ed4c11a4\src\BlogMonster.sln</SolutionPath>
+    <SolutionPath>D:\TeamCity\buildAgent1\work\93a02139ed4c11a4\src\BlogMonster.sln</SolutionPath>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <CurrentSolutionConfigurationContents>
       <SolutionConfiguration xmlns="">
-  <ProjectConfiguration Project="{3ACF4B10-C6B5-47BB-8D83-96DBD2CD86B5}" AbsolutePath="D:\TeamCity\buildAgent3\work\93a02139ed4c11a4\src\BlogMonster\BlogMonster.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
-  <ProjectConfiguration Project="{85E35365-B26B-4E57-98FF-6E89AFB11AE3}" AbsolutePath="D:\TeamCity\buildAgent3\work\93a02139ed4c11a4\src\BlogMonster.Tests\BlogMonster.Tests.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
-  <ProjectConfiguration Project="{739C30D6-393D-413D-AA3E-D8F115C750F9}" AbsolutePath="D:\TeamCity\buildAgent3\work\93a02139ed4c11a4\src\MyVeryOwnBlog\MyVeryOwnBlog.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
-  <ProjectConfiguration Project="{823E0424-A9F1-45F3-B7A4-74AB198A2CDD}" AbsolutePath="D:\TeamCity\buildAgent3\work\93a02139ed4c11a4\src\MyVeryOwnBlog.Posts\MyVeryOwnBlog.Posts.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{3ACF4B10-C6B5-47BB-8D83-96DBD2CD86B5}" AbsolutePath="D:\TeamCity\buildAgent1\work\93a02139ed4c11a4\src\BlogMonster\BlogMonster.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{85E35365-B26B-4E57-98FF-6E89AFB11AE3}" AbsolutePath="D:\TeamCity\buildAgent1\work\93a02139ed4c11a4\src\BlogMonster.Tests\BlogMonster.Tests.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{739C30D6-393D-413D-AA3E-D8F115C750F9}" AbsolutePath="D:\TeamCity\buildAgent1\work\93a02139ed4c11a4\src\MyVeryOwnBlog\MyVeryOwnBlog.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{823E0424-A9F1-45F3-B7A4-74AB198A2CDD}" AbsolutePath="D:\TeamCity\buildAgent1\work\93a02139ed4c11a4\src\MyVeryOwnBlog.Posts\MyVeryOwnBlog.Posts.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
 </SolutionConfiguration>
     </CurrentSolutionConfigurationContents>
   </PropertyGroup>
@@ -41,10 +41,10 @@
       <Platform>Any CPU</Platform>
       <Content>
         <SolutionConfiguration xmlns="">
-  <ProjectConfiguration Project="{3ACF4B10-C6B5-47BB-8D83-96DBD2CD86B5}" AbsolutePath="D:\TeamCity\buildAgent3\work\93a02139ed4c11a4\src\BlogMonster\BlogMonster.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
-  <ProjectConfiguration Project="{85E35365-B26B-4E57-98FF-6E89AFB11AE3}" AbsolutePath="D:\TeamCity\buildAgent3\work\93a02139ed4c11a4\src\BlogMonster.Tests\BlogMonster.Tests.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
-  <ProjectConfiguration Project="{739C30D6-393D-413D-AA3E-D8F115C750F9}" AbsolutePath="D:\TeamCity\buildAgent3\work\93a02139ed4c11a4\src\MyVeryOwnBlog\MyVeryOwnBlog.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
-  <ProjectConfiguration Project="{823E0424-A9F1-45F3-B7A4-74AB198A2CDD}" AbsolutePath="D:\TeamCity\buildAgent3\work\93a02139ed4c11a4\src\MyVeryOwnBlog.Posts\MyVeryOwnBlog.Posts.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{3ACF4B10-C6B5-47BB-8D83-96DBD2CD86B5}" AbsolutePath="D:\TeamCity\buildAgent1\work\93a02139ed4c11a4\src\BlogMonster\BlogMonster.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{85E35365-B26B-4E57-98FF-6E89AFB11AE3}" AbsolutePath="D:\TeamCity\buildAgent1\work\93a02139ed4c11a4\src\BlogMonster.Tests\BlogMonster.Tests.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{739C30D6-393D-413D-AA3E-D8F115C750F9}" AbsolutePath="D:\TeamCity\buildAgent1\work\93a02139ed4c11a4\src\MyVeryOwnBlog\MyVeryOwnBlog.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{823E0424-A9F1-45F3-B7A4-74AB198A2CDD}" AbsolutePath="D:\TeamCity\buildAgent1\work\93a02139ed4c11a4\src\MyVeryOwnBlog.Posts\MyVeryOwnBlog.Posts.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
 </SolutionConfiguration>
       </Content>
     </SolutionConfiguration>
@@ -53,16 +53,16 @@
       <Platform>Any CPU</Platform>
       <Content>
         <SolutionConfiguration xmlns="">
-  <ProjectConfiguration Project="{3ACF4B10-C6B5-47BB-8D83-96DBD2CD86B5}" AbsolutePath="D:\TeamCity\buildAgent3\work\93a02139ed4c11a4\src\BlogMonster\BlogMonster.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
-  <ProjectConfiguration Project="{85E35365-B26B-4E57-98FF-6E89AFB11AE3}" AbsolutePath="D:\TeamCity\buildAgent3\work\93a02139ed4c11a4\src\BlogMonster.Tests\BlogMonster.Tests.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
-  <ProjectConfiguration Project="{739C30D6-393D-413D-AA3E-D8F115C750F9}" AbsolutePath="D:\TeamCity\buildAgent3\work\93a02139ed4c11a4\src\MyVeryOwnBlog\MyVeryOwnBlog.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
-  <ProjectConfiguration Project="{823E0424-A9F1-45F3-B7A4-74AB198A2CDD}" AbsolutePath="D:\TeamCity\buildAgent3\work\93a02139ed4c11a4\src\MyVeryOwnBlog.Posts\MyVeryOwnBlog.Posts.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{3ACF4B10-C6B5-47BB-8D83-96DBD2CD86B5}" AbsolutePath="D:\TeamCity\buildAgent1\work\93a02139ed4c11a4\src\BlogMonster\BlogMonster.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{85E35365-B26B-4E57-98FF-6E89AFB11AE3}" AbsolutePath="D:\TeamCity\buildAgent1\work\93a02139ed4c11a4\src\BlogMonster.Tests\BlogMonster.Tests.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{739C30D6-393D-413D-AA3E-D8F115C750F9}" AbsolutePath="D:\TeamCity\buildAgent1\work\93a02139ed4c11a4\src\MyVeryOwnBlog\MyVeryOwnBlog.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{823E0424-A9F1-45F3-B7A4-74AB198A2CDD}" AbsolutePath="D:\TeamCity\buildAgent1\work\93a02139ed4c11a4\src\MyVeryOwnBlog.Posts\MyVeryOwnBlog.Posts.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
 </SolutionConfiguration>
       </Content>
     </SolutionConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="D:\TeamCity\buildAgent3\work\93a02139ed4c11a4\src\BlogMonster\BlogMonster.csproj">
+    <ProjectReference Include="D:\TeamCity\buildAgent1\work\93a02139ed4c11a4\src\BlogMonster\BlogMonster.csproj">
       <ToolsVersion>
       </ToolsVersion>
       <SkipNonexistentProjects>False</SkipNonexistentProjects>
@@ -70,7 +70,7 @@
       <Configuration>Release</Configuration>
       <Platform>AnyCPU</Platform>
     </ProjectReference>
-    <ProjectReference Include="D:\TeamCity\buildAgent3\work\93a02139ed4c11a4\src\BlogMonster.Tests\BlogMonster.Tests.csproj">
+    <ProjectReference Include="D:\TeamCity\buildAgent1\work\93a02139ed4c11a4\src\BlogMonster.Tests\BlogMonster.Tests.csproj">
       <ToolsVersion>
       </ToolsVersion>
       <SkipNonexistentProjects>False</SkipNonexistentProjects>
@@ -78,7 +78,7 @@
       <Configuration>Release</Configuration>
       <Platform>AnyCPU</Platform>
     </ProjectReference>
-    <ProjectReference Include="D:\TeamCity\buildAgent3\work\93a02139ed4c11a4\src\MyVeryOwnBlog\MyVeryOwnBlog.csproj">
+    <ProjectReference Include="D:\TeamCity\buildAgent1\work\93a02139ed4c11a4\src\MyVeryOwnBlog\MyVeryOwnBlog.csproj">
       <ToolsVersion>
       </ToolsVersion>
       <SkipNonexistentProjects>False</SkipNonexistentProjects>
@@ -86,7 +86,7 @@
       <Configuration>Release</Configuration>
       <Platform>AnyCPU</Platform>
     </ProjectReference>
-    <ProjectReference Include="D:\TeamCity\buildAgent3\work\93a02139ed4c11a4\src\MyVeryOwnBlog.Posts\MyVeryOwnBlog.Posts.csproj">
+    <ProjectReference Include="D:\TeamCity\buildAgent1\work\93a02139ed4c11a4\src\MyVeryOwnBlog.Posts\MyVeryOwnBlog.Posts.csproj">
       <ToolsVersion>
       </ToolsVersion>
       <SkipNonexistentProjects>False</SkipNonexistentProjects>
@@ -122,67 +122,67 @@
     <MSBuild Projects="@(ProjectReference)" Targets="Publish" BuildInParallel="True" Properties="BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" SkipNonexistentProjects="%(ProjectReference.SkipNonexistentProjects)" />
   </Target>
   <Target Name="BlogMonster" Outputs="@(BlogMonsterBuildOutput)">
-    <MSBuild Condition="'%(ProjectReference.Identity)' == 'D:\TeamCity\buildAgent3\work\93a02139ed4c11a4\src\BlogMonster\BlogMonster.csproj'" Projects="@(ProjectReference)" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Release; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'D:\TeamCity\buildAgent1\work\93a02139ed4c11a4\src\BlogMonster\BlogMonster.csproj'" Projects="@(ProjectReference)" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Release; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)">
       <Output TaskParameter="TargetOutputs" ItemName="BlogMonsterBuildOutput" />
     </MSBuild>
   </Target>
   <Target Name="BlogMonster:Clean">
-    <MSBuild Condition="'%(ProjectReference.Identity)' == 'D:\TeamCity\buildAgent3\work\93a02139ed4c11a4\src\BlogMonster\BlogMonster.csproj'" Projects="@(ProjectReference)" Targets="Clean" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Release; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" />
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'D:\TeamCity\buildAgent1\work\93a02139ed4c11a4\src\BlogMonster\BlogMonster.csproj'" Projects="@(ProjectReference)" Targets="Clean" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Release; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" />
   </Target>
   <Target Name="BlogMonster:Rebuild" Outputs="@(BlogMonsterBuildOutput)">
-    <MSBuild Condition="'%(ProjectReference.Identity)' == 'D:\TeamCity\buildAgent3\work\93a02139ed4c11a4\src\BlogMonster\BlogMonster.csproj'" Projects="@(ProjectReference)" Targets="Rebuild" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Release; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'D:\TeamCity\buildAgent1\work\93a02139ed4c11a4\src\BlogMonster\BlogMonster.csproj'" Projects="@(ProjectReference)" Targets="Rebuild" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Release; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)">
       <Output TaskParameter="TargetOutputs" ItemName="BlogMonsterBuildOutput" />
     </MSBuild>
   </Target>
   <Target Name="BlogMonster:Publish">
-    <MSBuild Condition="'%(ProjectReference.Identity)' == 'D:\TeamCity\buildAgent3\work\93a02139ed4c11a4\src\BlogMonster\BlogMonster.csproj'" Projects="@(ProjectReference)" Targets="Publish" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Release; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" />
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'D:\TeamCity\buildAgent1\work\93a02139ed4c11a4\src\BlogMonster\BlogMonster.csproj'" Projects="@(ProjectReference)" Targets="Publish" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Release; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" />
   </Target>
   <Target Name="BlogMonster_Tests" Outputs="@(BlogMonster_TestsBuildOutput)">
-    <MSBuild Condition="'%(ProjectReference.Identity)' == 'D:\TeamCity\buildAgent3\work\93a02139ed4c11a4\src\BlogMonster.Tests\BlogMonster.Tests.csproj'" Projects="@(ProjectReference)" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Release; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'D:\TeamCity\buildAgent1\work\93a02139ed4c11a4\src\BlogMonster.Tests\BlogMonster.Tests.csproj'" Projects="@(ProjectReference)" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Release; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)">
       <Output TaskParameter="TargetOutputs" ItemName="BlogMonster_TestsBuildOutput" />
     </MSBuild>
   </Target>
   <Target Name="BlogMonster_Tests:Clean">
-    <MSBuild Condition="'%(ProjectReference.Identity)' == 'D:\TeamCity\buildAgent3\work\93a02139ed4c11a4\src\BlogMonster.Tests\BlogMonster.Tests.csproj'" Projects="@(ProjectReference)" Targets="Clean" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Release; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" />
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'D:\TeamCity\buildAgent1\work\93a02139ed4c11a4\src\BlogMonster.Tests\BlogMonster.Tests.csproj'" Projects="@(ProjectReference)" Targets="Clean" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Release; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" />
   </Target>
   <Target Name="BlogMonster_Tests:Rebuild" Outputs="@(BlogMonster_TestsBuildOutput)">
-    <MSBuild Condition="'%(ProjectReference.Identity)' == 'D:\TeamCity\buildAgent3\work\93a02139ed4c11a4\src\BlogMonster.Tests\BlogMonster.Tests.csproj'" Projects="@(ProjectReference)" Targets="Rebuild" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Release; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'D:\TeamCity\buildAgent1\work\93a02139ed4c11a4\src\BlogMonster.Tests\BlogMonster.Tests.csproj'" Projects="@(ProjectReference)" Targets="Rebuild" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Release; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)">
       <Output TaskParameter="TargetOutputs" ItemName="BlogMonster_TestsBuildOutput" />
     </MSBuild>
   </Target>
   <Target Name="BlogMonster_Tests:Publish">
-    <MSBuild Condition="'%(ProjectReference.Identity)' == 'D:\TeamCity\buildAgent3\work\93a02139ed4c11a4\src\BlogMonster.Tests\BlogMonster.Tests.csproj'" Projects="@(ProjectReference)" Targets="Publish" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Release; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" />
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'D:\TeamCity\buildAgent1\work\93a02139ed4c11a4\src\BlogMonster.Tests\BlogMonster.Tests.csproj'" Projects="@(ProjectReference)" Targets="Publish" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Release; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" />
   </Target>
   <Target Name="Sample\MyVeryOwnBlog" Outputs="@(Sample_MyVeryOwnBlogBuildOutput)">
-    <MSBuild Condition="'%(ProjectReference.Identity)' == 'D:\TeamCity\buildAgent3\work\93a02139ed4c11a4\src\MyVeryOwnBlog\MyVeryOwnBlog.csproj'" Projects="@(ProjectReference)" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Release; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'D:\TeamCity\buildAgent1\work\93a02139ed4c11a4\src\MyVeryOwnBlog\MyVeryOwnBlog.csproj'" Projects="@(ProjectReference)" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Release; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)">
       <Output TaskParameter="TargetOutputs" ItemName="Sample_MyVeryOwnBlogBuildOutput" />
     </MSBuild>
   </Target>
   <Target Name="Sample\MyVeryOwnBlog:Clean">
-    <MSBuild Condition="'%(ProjectReference.Identity)' == 'D:\TeamCity\buildAgent3\work\93a02139ed4c11a4\src\MyVeryOwnBlog\MyVeryOwnBlog.csproj'" Projects="@(ProjectReference)" Targets="Clean" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Release; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" />
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'D:\TeamCity\buildAgent1\work\93a02139ed4c11a4\src\MyVeryOwnBlog\MyVeryOwnBlog.csproj'" Projects="@(ProjectReference)" Targets="Clean" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Release; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" />
   </Target>
   <Target Name="Sample\MyVeryOwnBlog:Rebuild" Outputs="@(Sample_MyVeryOwnBlogBuildOutput)">
-    <MSBuild Condition="'%(ProjectReference.Identity)' == 'D:\TeamCity\buildAgent3\work\93a02139ed4c11a4\src\MyVeryOwnBlog\MyVeryOwnBlog.csproj'" Projects="@(ProjectReference)" Targets="Rebuild" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Release; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'D:\TeamCity\buildAgent1\work\93a02139ed4c11a4\src\MyVeryOwnBlog\MyVeryOwnBlog.csproj'" Projects="@(ProjectReference)" Targets="Rebuild" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Release; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)">
       <Output TaskParameter="TargetOutputs" ItemName="Sample_MyVeryOwnBlogBuildOutput" />
     </MSBuild>
   </Target>
   <Target Name="Sample\MyVeryOwnBlog:Publish">
-    <MSBuild Condition="'%(ProjectReference.Identity)' == 'D:\TeamCity\buildAgent3\work\93a02139ed4c11a4\src\MyVeryOwnBlog\MyVeryOwnBlog.csproj'" Projects="@(ProjectReference)" Targets="Publish" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Release; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" />
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'D:\TeamCity\buildAgent1\work\93a02139ed4c11a4\src\MyVeryOwnBlog\MyVeryOwnBlog.csproj'" Projects="@(ProjectReference)" Targets="Publish" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Release; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" />
   </Target>
   <Target Name="Sample\MyVeryOwnBlog_Posts" Outputs="@(Sample_MyVeryOwnBlog_PostsBuildOutput)">
-    <MSBuild Condition="'%(ProjectReference.Identity)' == 'D:\TeamCity\buildAgent3\work\93a02139ed4c11a4\src\MyVeryOwnBlog.Posts\MyVeryOwnBlog.Posts.csproj'" Projects="@(ProjectReference)" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Release; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'D:\TeamCity\buildAgent1\work\93a02139ed4c11a4\src\MyVeryOwnBlog.Posts\MyVeryOwnBlog.Posts.csproj'" Projects="@(ProjectReference)" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Release; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)">
       <Output TaskParameter="TargetOutputs" ItemName="Sample_MyVeryOwnBlog_PostsBuildOutput" />
     </MSBuild>
   </Target>
   <Target Name="Sample\MyVeryOwnBlog_Posts:Clean">
-    <MSBuild Condition="'%(ProjectReference.Identity)' == 'D:\TeamCity\buildAgent3\work\93a02139ed4c11a4\src\MyVeryOwnBlog.Posts\MyVeryOwnBlog.Posts.csproj'" Projects="@(ProjectReference)" Targets="Clean" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Release; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" />
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'D:\TeamCity\buildAgent1\work\93a02139ed4c11a4\src\MyVeryOwnBlog.Posts\MyVeryOwnBlog.Posts.csproj'" Projects="@(ProjectReference)" Targets="Clean" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Release; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" />
   </Target>
   <Target Name="Sample\MyVeryOwnBlog_Posts:Rebuild" Outputs="@(Sample_MyVeryOwnBlog_PostsBuildOutput)">
-    <MSBuild Condition="'%(ProjectReference.Identity)' == 'D:\TeamCity\buildAgent3\work\93a02139ed4c11a4\src\MyVeryOwnBlog.Posts\MyVeryOwnBlog.Posts.csproj'" Projects="@(ProjectReference)" Targets="Rebuild" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Release; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)">
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'D:\TeamCity\buildAgent1\work\93a02139ed4c11a4\src\MyVeryOwnBlog.Posts\MyVeryOwnBlog.Posts.csproj'" Projects="@(ProjectReference)" Targets="Rebuild" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Release; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)">
       <Output TaskParameter="TargetOutputs" ItemName="Sample_MyVeryOwnBlog_PostsBuildOutput" />
     </MSBuild>
   </Target>
   <Target Name="Sample\MyVeryOwnBlog_Posts:Publish">
-    <MSBuild Condition="'%(ProjectReference.Identity)' == 'D:\TeamCity\buildAgent3\work\93a02139ed4c11a4\src\MyVeryOwnBlog.Posts\MyVeryOwnBlog.Posts.csproj'" Projects="@(ProjectReference)" Targets="Publish" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Release; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" />
+    <MSBuild Condition="'%(ProjectReference.Identity)' == 'D:\TeamCity\buildAgent1\work\93a02139ed4c11a4\src\MyVeryOwnBlog.Posts\MyVeryOwnBlog.Posts.csproj'" Projects="@(ProjectReference)" Targets="Publish" BuildInParallel="True" ToolsVersion="$(ProjectToolsVersion)" Properties="Configuration=Release; Platform=AnyCPU;BuildingSolutionFile=true; CurrentSolutionConfigurationContents=$(CurrentSolutionConfigurationContents); SolutionDir=$(SolutionDir); SolutionExt=$(SolutionExt); SolutionFileName=$(SolutionFileName); SolutionName=$(SolutionName); SolutionPath=$(SolutionPath)" />
   </Target>
 </Project>
