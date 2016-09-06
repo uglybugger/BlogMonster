@@ -52,28 +52,19 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="UniMock.Core, Version=2.0.0.1, Culture=neutral, PublicKeyToken=792d774958d966cc, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\UniMock.Core.2.0.0.1\lib\net40\UniMock.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="UniMock.WithNSubstitute, Version=2.0.0.1, Culture=neutral, PublicKeyToken=792d774958d966cc, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\UniMock.WithNSubstitute.2.0.0.1\lib\net40\UniMock.WithNSubstitute.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\AssemblyInfoForUniMock.cs" />
-    <Compile Include="Properties\AssemblyInfoForUniMockWithNSubstitute.cs" />
     <Compile Include="TestFor.cs" />
     <Compile Include="WhenFetchingACachedValue.cs" />
     <Compile Include="WhenImportingPostsFromAnRssFeed.cs" />
     <Compile Include="WhenLoadingOneSimpleBlogPost.cs" />
     <Compile Include="WhenLoadingOneSimpleBlogPostWithOneImage.cs" />
     <Compile Include="WhenMappingAnImagePathToAnEmbeddedResourceName.cs" />
-    <Compile Include="WhenTheTestFrameworkRuns.cs" />
+    <Compile Include="WhenTheTestHarnessRuns.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
     <EmbeddedResource Include="SinglePost\2012.08.09.2242.1000\First Post.markdown" />
     <EmbeddedResource Include="SinglePostWithImage\2012.08.19.2116.1000\This post has an image.markdown" />
@@ -88,7 +79,6 @@
     <EmbeddedResource Include="SinglePostWithImage\2012.08.19.2116.1000\ImageInception.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="LICENCE.txt" />
     <EmbeddedResource Include="SinglePostWithImage\2012.08.19.2116.1000\Permalinks.txt" />
     <EmbeddedResource Include="SinglePostWithImage\2012.08.19.2116.1000\Images.txt" />
   </ItemGroup>

@@ -1,41 +1,24 @@
 using NUnit.Framework;
-using UniMock.Core;
-using UniMock.Core.BaseTests;
 
 namespace BlogMonster.Tests
 {
-    /*
-     * Hi, and welcome to UniMock!
-     * 
-     * UniMock is designed to give your tests a simple look and feel
-     * You'll need to remove the inappropriate attributes from here and include the namespace of your favourite testing framework.  -andrewh
-     * 
-     * 
-     */
-
     [TestFixture]
-    public abstract class TestFor<TSubject> : TestFor<TSubject, NullScenario>
-        where TSubject : class
-    {
-    }
-
-    [TestFixture]
-    public abstract class TestFor<TSubject, TScenario> : UniverseFor<TSubject, TScenario>
-        where TSubject : class where TScenario : IScenario
+    public abstract class TestFor<TSubject> where TSubject : class
     {
         [SetUp]
-        public virtual void Initialize()
+        public virtual void SetUp()
         {
-            BigBang();
+            Subject = Given();
             When();
         }
 
-        protected abstract void When();
-
         [TearDown]
-        public void Cleanup()
+        public virtual void TearDown()
         {
-            BigCrunch();
         }
+
+        protected TSubject Subject { get; private set; }
+        protected abstract TSubject Given();
+        protected abstract void When();
     }
 }

@@ -11,7 +11,7 @@ namespace BlogMonster.Tests
     [TestFixture]
     public class WhenLoadingOneSimpleBlogPost : TestFor<IEmbeddedSyndicationFeedSource>
     {
-        protected override IEmbeddedSyndicationFeedSource GivenSubject()
+        protected override IEmbeddedSyndicationFeedSource Given()
         {
             return BlogMonsterBuilder.FromEmbeddedResources(GetType().Assembly)
                                      .WithResourceNameFilter(s => s.Contains(".SinglePost.") && s.EndsWith(".markdown"))

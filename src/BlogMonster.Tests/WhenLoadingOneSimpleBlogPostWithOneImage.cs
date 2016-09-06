@@ -14,7 +14,7 @@ namespace BlogMonster.Tests
     {
         private const string _someImageControllerPath = "/Some/Image";
 
-        protected override IEmbeddedSyndicationFeedSource GivenSubject()
+        protected override IEmbeddedSyndicationFeedSource Given()
         {
             var basePostUri = new Uri("http://www.example.com");
             var baseImageUri = new Uri(new Uri("http://www.example.com/"), new Uri(_someImageControllerPath, UriKind.Relative));
