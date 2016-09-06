@@ -32,23 +32,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Autofac, Version=2.6.3.862, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Autofac.2.6.3.862\lib\NET40\Autofac.dll</HintPath>
+    <Reference Include="Autofac">
+      <HintPath>..\packages\Autofac.4.1.0\lib\netstandard1.1\Autofac.dll</HintPath>
     </Reference>
-    <Reference Include="Autofac.Configuration, Version=2.6.3.862, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Autofac.2.6.3.862\lib\NET40\Autofac.Configuration.dll</HintPath>
+    <Reference Include="NSubstitute">
+      <HintPath>..\packages\NSubstitute.1.10.0.0\lib\net40\NSubstitute.dll</HintPath>
     </Reference>
-    <Reference Include="NSubstitute, Version=1.4.3.0, Culture=neutral, PublicKeyToken=92dd2e9066daa5ca, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\NSubstitute.1.4.3.0\lib\NET40\NSubstitute.dll</HintPath>
-    </Reference>
-    <Reference Include="nunit.framework, Version=2.6.1.12217, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
-      <HintPath>..\packages\NUnit.2.6.1\lib\nunit.framework.dll</HintPath>
+    <Reference Include="nunit.framework">
+      <HintPath>..\packages\NUnit.3.4.1\lib\net40\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="Shouldly">
-      <HintPath>..\packages\Shouldly.1.1.1.1\lib\35\Shouldly.dll</HintPath>
+      <HintPath>..\packages\Shouldly.2.8.2\lib\net40\Shouldly.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -58,28 +52,19 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="UniMock.Core, Version=2.0.0.1, Culture=neutral, PublicKeyToken=792d774958d966cc, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\UniMock.Core.2.0.0.1\lib\net40\UniMock.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="UniMock.WithNSubstitute, Version=2.0.0.1, Culture=neutral, PublicKeyToken=792d774958d966cc, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\UniMock.WithNSubstitute.2.0.0.1\lib\net40\UniMock.WithNSubstitute.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\AssemblyInfoForUniMock.cs" />
-    <Compile Include="Properties\AssemblyInfoForUniMockWithNSubstitute.cs" />
     <Compile Include="TestFor.cs" />
     <Compile Include="WhenFetchingACachedValue.cs" />
     <Compile Include="WhenImportingPostsFromAnRssFeed.cs" />
     <Compile Include="WhenLoadingOneSimpleBlogPost.cs" />
     <Compile Include="WhenLoadingOneSimpleBlogPostWithOneImage.cs" />
     <Compile Include="WhenMappingAnImagePathToAnEmbeddedResourceName.cs" />
-    <Compile Include="WhenTheTestFrameworkRuns.cs" />
+    <Compile Include="WhenTheTestHarnessRuns.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
     <EmbeddedResource Include="SinglePost\2012.08.09.2242.1000\First Post.markdown" />
     <EmbeddedResource Include="SinglePostWithImage\2012.08.19.2116.1000\This post has an image.markdown" />
@@ -94,7 +79,6 @@
     <EmbeddedResource Include="SinglePostWithImage\2012.08.19.2116.1000\ImageInception.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="LICENCE.txt" />
     <EmbeddedResource Include="SinglePostWithImage\2012.08.19.2116.1000\Permalinks.txt" />
     <EmbeddedResource Include="SinglePostWithImage\2012.08.19.2116.1000\Images.txt" />
   </ItemGroup>

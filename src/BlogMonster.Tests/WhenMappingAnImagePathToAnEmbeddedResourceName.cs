@@ -17,7 +17,7 @@ namespace BlogMonster.Tests
 
         private Uri[] _remappedImageUris;
 
-        protected override EmbeddedResourceImagePathMapper GivenSubject()
+        protected override EmbeddedResourceImagePathMapper Given()
         {
             _testAssembly = Assembly.GetExecutingAssembly();
             _manifestResourceNames = _testAssembly.GetManifestResourceNames();
