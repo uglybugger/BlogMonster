@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build" InitialTargets="ValidateSolutionConfiguration;ValidateToolsVersions;ValidateProjects">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\SolutionFile\ImportBefore\*" Condition="'$(ImportByWildcardBeforeSolution)' != 'false' and exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\SolutionFile\ImportBefore')" />
+  <Import Project="D:\TeamCity\buildAgent3\work\93a02139ed4c11a4\src\before.BlogMonster.sln.targets" Condition="exists('D:\TeamCity\buildAgent3\work\93a02139ed4c11a4\src\before.BlogMonster.sln.targets')" />
+  <PropertyGroup Condition=" '$(Configuration)' == '' ">
+    <Configuration>Debug</Configuration>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == '' ">
+    <Platform>Any CPU</Platform>
+  </PropertyGroup>
+  <PropertyGroup Condition=" ('$(AspNetConfiguration)' == '') ">
+    <AspNetConfiguration>$(Configuration)</AspNetConfiguration>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SolutionDir>D:\TeamCity\buildAgent3\work\93a02139ed4c11a4\src\</SolutionDir>
+    <SolutionExt>.sln</SolutionExt>
+    <SolutionFileName>BlogMonster.sln</SolutionFileName>
+    <SolutionName>BlogMonster</SolutionName>
+    <SolutionPath>D:\TeamCity\buildAgent3\work\93a02139ed4c11a4\src\BlogMonster.sln</SolutionPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetFrameworkVersion Condition="'$(TargetFrameworkVersion)' == '' and '$(MSBuildToolsVersion)' == '2.0'">v2.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion Condition="'$(TargetFrameworkVersion)' == '' and ('$(MSBuildToolsVersion)' == '3.5' or '$(MSBuildToolsVersion)' == '3.0')">v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion Condition="'$(TargetFrameworkVersion)' == '' and !('$(MSBuildToolsVersion)' == '3.5' or '$(MSBuildToolsVersion)' == '3.0' or '$(MSBuildToolsVersion)' == '2.0')">v4.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" ('$(Configuration)' == 'Debug') and ('$(Platform)' == 'Any CPU') ">
+    <CurrentSolutionConfigurationContents>
+      <SolutionConfiguration xmlns="">
+  <ProjectConfiguration Project="{3ACF4B10-C6B5-47BB-8D83-96DBD2CD86B5}" AbsolutePath="D:\TeamCity\buildAgent3\work\93a02139ed4c11a4\src\BlogMonster\BlogMonster.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{85E35365-B26B-4E57-98FF-6E89AFB11AE3}" AbsolutePath="D:\TeamCity\buildAgent3\work\93a02139ed4c11a4\src\BlogMonster.Tests\BlogMonster.Tests.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{739C30D6-393D-413D-AA3E-D8F115C750F9}" AbsolutePath="D:\TeamCity\buildAgent3\work\93a02139ed4c11a4\src\MyVeryOwnBlog\MyVeryOwnBlog.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{823E0424-A9F1-45F3-B7A4-74AB198A2CDD}" AbsolutePath="D:\TeamCity\buildAgent3\work\93a02139ed4c11a4\src\MyVeryOwnBlog.Posts\MyVeryOwnBlog.Posts.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+</SolutionConfiguration>
+    </CurrentSolutionConfigurationContents>
+  </PropertyGroup>
+  <ItemGroup>
+    <SolutionConfiguration Include="Debug|Any CPU">
+      <Configuration>Debug</Configuration>
+      <Platform>Any CPU</Platform>
+      <Content>
+        <SolutionConfiguration xmlns="">
+  <ProjectConfiguration Project="{3ACF4B10-C6B5-47BB-8D83-96DBD2CD86B5}" AbsolutePath="D:\TeamCity\buildAgent3\work\93a02139ed4c11a4\src\BlogMonster\BlogMonster.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{85E35365-B26B-4E57-98FF-6E89AFB11AE3}" AbsolutePath="D:\TeamCity\buildAgent3\work\93a02139ed4c11a4\src\BlogMonster.Tests\BlogMonster.Tests.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{739C30D6-393D-413D-AA3E-D8F115C750F9}" AbsolutePath="D:\TeamCity\buildAgent3\work\93a02139ed4c11a4\src\MyVeryOwnBlog\MyVeryOwnBlog.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{823E0424-A9F1-45F3-B7A4-74AB198A2CDD}" AbsolutePath="D:\TeamCity\buildAgent3\work\93a02139ed4c11a4\src\MyVeryOwnBlog.Posts\MyVeryOwnBlog.Posts.csproj" BuildProjectInSolution="True">Debug|AnyCPU</ProjectConfiguration>
+</SolutionConfiguration>
+      </Content>
+    </SolutionConfiguration>
+    <SolutionConfiguration Include="Release|Any CPU">
+      <Configuration>Release</Configuration>
+      <Platform>Any CPU</Platform>
+      <Content>
+        <SolutionConfiguration xmlns="">
+  <ProjectConfiguration Project="{3ACF4B10-C6B5-47BB-8D83-96DBD2CD86B5}" AbsolutePath="D:\TeamCity\buildAgent3\work\93a02139ed4c11a4\src\BlogMonster\BlogMonster.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{85E35365-B26B-4E57-98FF-6E89AFB11AE3}" AbsolutePath="D:\TeamCity\buildAgent3\work\93a02139ed4c11a4\src\BlogMonster.Tests\BlogMonster.Tests.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{739C30D6-393D-413D-AA3E-D8F115C750F9}" AbsolutePath="D:\TeamCity\buildAgent3\work\93a02139ed4c11a4\src\MyVeryOwnBlog\MyVeryOwnBlog.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{823E0424-A9F1-45F3-B7A4-74AB198A2CDD}" AbsolutePath="D:\TeamCity\buildAgent3\work\93a02139ed4c11a4\src\MyVeryOwnBlog.Posts\MyVeryOwnBlog.Posts.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+</SolutionConfiguration>
+      </Content>
+    </SolutionConfiguration>
+  </ItemGroup>
+  <PropertyGroup Condition=" ('$(Configuration)' == 'Release') and ('$(Platform)' == 'Any CPU') ">
+    <CurrentSolutionConfigurationContents>
+      <SolutionConfiguration xmlns="">
+  <ProjectConfiguration Project="{3ACF4B10-C6B5-47BB-8D83-96DBD2CD86B5}" AbsolutePath="D:\TeamCity\buildAgent3\work\93a02139ed4c11a4\src\BlogMonster\BlogMonster.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{85E35365-B26B-4E57-98FF-6E89AFB11AE3}" AbsolutePath="D:\TeamCity\buildAgent3\work\93a02139ed4c11a4\src\BlogMonster.Tests\BlogMonster.Tests.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{739C30D6-393D-413D-AA3E-D8F115C750F9}" AbsolutePath="D:\TeamCity\buildAgent3\work\93a02139ed4c11a4\src\MyVeryOwnBlog\MyVeryOwnBlog.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+  <ProjectConfiguration Project="{823E0424-A9F1-45F3-B7A4-74AB198A2CDD}" AbsolutePath="D:\TeamCity\buildAgent3\work\93a02139ed4c11a4\src\MyVeryOwnBlog.Posts\MyVeryOwnBlog.Posts.csproj" BuildProjectInSolution="True">Release|AnyCPU</ProjectConfiguration>
+</SolutionConfiguration>
+    </CurrentSolutionConfigurationContents>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\SolutionFile\ImportAfter\*" Condition="'$(ImportByWildcardBeforeSolution)' != 'false' and exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\SolutionFile\ImportAfter')" />
+  <Import Project="D:\TeamCity\buildAgent3\work\93a02139ed4c11a4\src\after.BlogMonster.sln.targets" Condition="exists('D:\TeamCity\buildAgent3\work\93a02139ed4c11a4\src\after.BlogMonster.sln.targets')" />
+  <Target Name="Build" />
+  <Target Name="Rebuild" />
+  <Target Name="Clean" />
+  <Target Name="Publish" />
+</Project>
