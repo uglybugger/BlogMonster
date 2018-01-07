@@ -1,0 +1,38 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <DebugType Condition="'$(TargetFramework)' != '' AND '$(TargetFramework)' != 'netcoreapp2.0'">Full</DebugType>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="SinglePostWithImage\2012.08.19.2116.1000\ImageInception.png" />
+    <None Remove="SinglePostWithImage\2012.08.19.2116.1000\Images.txt" />
+    <None Remove="SinglePostWithImage\2012.08.19.2116.1000\Permalinks.txt" />
+    <None Remove="SinglePostWithImage\2012.08.19.2116.1000\This post has an image.markdown" />
+    <None Remove="SinglePost\2012.08.09.2242.1000\First Post.markdown" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="SinglePostWithImage\2012.08.19.2116.1000\ImageInception.png" />
+    <EmbeddedResource Include="SinglePostWithImage\2012.08.19.2116.1000\Images.txt" />
+    <EmbeddedResource Include="SinglePostWithImage\2012.08.19.2116.1000\Permalinks.txt" />
+    <EmbeddedResource Include="SinglePostWithImage\2012.08.19.2116.1000\This post has an image.markdown" />
+    <EmbeddedResource Include="SinglePost\2012.08.09.2242.1000\First Post.markdown" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.5.0" />
+    <PackageReference Include="NSubstitute" Version="3.1.0" />
+    <PackageReference Include="NUnit" Version="3.9.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.9.0" />
+    <PackageReference Include="Shouldly" Version="2.8.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BlogMonster.Standard\BlogMonster.Standard.csproj" />
+  </ItemGroup>
+
+  <Import Project="..\BlogMonster.TestsShared\BlogMonster.TestsShared.projitems" Label="Shared" />
+</Project>
