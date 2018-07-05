@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlogMonster", "BlogMonster\BlogMonster.csproj", "{3ACF4B10-C6B5-47BB-8D83-96DBD2CD86B5}"
 EndProject
@@ -15,7 +15,21 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyVeryOwnBlog", "MyVeryOwnB
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyVeryOwnBlog.Posts", "MyVeryOwnBlog.Posts\MyVeryOwnBlog.Posts.csproj", "{823E0424-A9F1-45F3-B7A4-74AB198A2CDD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlogMonster.Standard", "BlogMonster.Standard\BlogMonster.Standard.csproj", "{F9AB5FB4-A9C6-4518-BD83-38ECF6716EA8}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "BlogMonster.Shared", "BlogMonster.Shared\BlogMonster.Shared.shproj", "{7035E3C6-BB25-4755-8161-15A388654F97}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlogMonster.TestsStandard", "BlogMonster.TestsStandard\BlogMonster.TestsStandard.csproj", "{FB981C0B-CC76-44FA-B2FA-ABCC8D0151EF}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "BlogMonster.TestsShared", "BlogMonster.TestsShared\BlogMonster.TestsShared.shproj", "{03F10AD6-9308-4D3B-9384-FA2A912E7628}"
+EndProject
 Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		BlogMonster.TestsShared\BlogMonster.TestsShared.projitems*{03f10ad6-9308-4d3b-9384-fa2a912e7628}*SharedItemsImports = 13
+		BlogMonster.Shared\BlogMonster.Shared.projitems*{3acf4b10-c6b5-47bb-8d83-96dbd2cd86b5}*SharedItemsImports = 4
+		BlogMonster.Shared\BlogMonster.Shared.projitems*{7035e3c6-bb25-4755-8161-15a388654f97}*SharedItemsImports = 13
+		BlogMonster.TestsShared\BlogMonster.TestsShared.projitems*{85e35365-b26b-4e57-98ff-6e89afb11ae3}*SharedItemsImports = 4
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -37,6 +51,14 @@ Global
 		{823E0424-A9F1-45F3-B7A4-74AB198A2CDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{823E0424-A9F1-45F3-B7A4-74AB198A2CDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{823E0424-A9F1-45F3-B7A4-74AB198A2CDD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9AB5FB4-A9C6-4518-BD83-38ECF6716EA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9AB5FB4-A9C6-4518-BD83-38ECF6716EA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9AB5FB4-A9C6-4518-BD83-38ECF6716EA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9AB5FB4-A9C6-4518-BD83-38ECF6716EA8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB981C0B-CC76-44FA-B2FA-ABCC8D0151EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB981C0B-CC76-44FA-B2FA-ABCC8D0151EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB981C0B-CC76-44FA-B2FA-ABCC8D0151EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB981C0B-CC76-44FA-B2FA-ABCC8D0151EF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -44,5 +66,8 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{739C30D6-393D-413D-AA3E-D8F115C750F9} = {5B7244EF-7772-4251-98A6-BB2DEF27C3BC}
 		{823E0424-A9F1-45F3-B7A4-74AB198A2CDD} = {5B7244EF-7772-4251-98A6-BB2DEF27C3BC}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CB70EE22-C4FB-4D40-A923-EC8A49E1D539}
 	EndGlobalSection
 EndGlobal

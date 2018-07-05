@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>03f10ad6-9308-4d3b-9384-fa2a912e7628</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>BlogMonster.TestsShared</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)TestFor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)WhenFetchingACachedValue.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)WhenImportingPostsFromAnRssFeed.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)WhenLoadingOneSimpleBlogPost.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)WhenLoadingOneSimpleBlogPostWithOneImage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)WhenMappingAnImagePathToAnEmbeddedResourceName.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)WhenTheTestHarnessRuns.cs" />
+  </ItemGroup>
+</Project>

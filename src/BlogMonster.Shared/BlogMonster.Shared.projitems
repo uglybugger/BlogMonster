@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>7035e3c6-bb25-4755-8161-15a388654f97</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>BlogMonster.Shared</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Cached.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Configuration\BlogMonsterBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Configuration\BlogMonsterConfigurationException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Configuration\EmbeddedResourceBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Configuration\MultiplexedBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Configuration\RemoteSyndicationFeedSourceBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Configuration\RssFeedSettings.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\ExceptionExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\SyndicationHelpers.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\UriExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\IClock.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\SyndicationFeedSources\Embedded\BlogPostExtractionExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\SyndicationFeedSources\Embedded\BlogPostExtractionFailedException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\SyndicationFeedSources\Embedded\EmbeddedResourceBlogPostLoader.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\SyndicationFeedSources\Embedded\EmbeddedResourceImagePathMapper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\SyndicationFeedSources\Embedded\EmbeddedResourceReadingExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\SyndicationFeedSources\Embedded\EmbeddedSyndicationFeedService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\SyndicationFeedSources\Embedded\IEmbeddedResourceImagePathMapper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\SyndicationFeedSources\Embedded\IEmbeddedSyndicationFeedSource.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\SyndicationFeedSources\Embedded\IMarkDownTransformer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\SyndicationFeedSources\Embedded\IPathFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\SyndicationFeedSources\Embedded\MarkDownTransformer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\SyndicationFeedSources\Embedded\MissingAssemblyResourceException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\SyndicationFeedSources\Embedded\PathFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\SyndicationFeedSources\Embedded\StaticSyndicationFeedSource.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\SyndicationFeedSources\FeedBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\SyndicationFeedSources\ISyndicationFeedSource.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\SyndicationFeedSources\Multiplexing\MultiplexingFeedSource.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\SyndicationFeedSources\Remote\RemoteSyndicationFeedFailedException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\SyndicationFeedSources\Remote\RemoteSyndicationFeedSource.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Infrastructure\SystemClock.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Web\RssFeedResult.cs" />
+  </ItemGroup>
+</Project>

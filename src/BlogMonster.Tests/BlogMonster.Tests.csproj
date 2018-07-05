@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -22,6 +22,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -30,6 +31,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="NSubstitute">
@@ -52,13 +54,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TestFor.cs" />
-    <Compile Include="WhenFetchingACachedValue.cs" />
-    <Compile Include="WhenImportingPostsFromAnRssFeed.cs" />
-    <Compile Include="WhenLoadingOneSimpleBlogPost.cs" />
-    <Compile Include="WhenLoadingOneSimpleBlogPostWithOneImage.cs" />
-    <Compile Include="WhenMappingAnImagePathToAnEmbeddedResourceName.cs" />
-    <Compile Include="WhenTheTestHarnessRuns.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -67,18 +62,19 @@
     <EmbeddedResource Include="SinglePostWithImage\2012.08.19.2116.1000\This post has an image.markdown" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BlogMonster\BlogMonster.csproj">
-      <Project>{3ACF4B10-C6B5-47BB-8D83-96DBD2CD86B5}</Project>
-      <Name>BlogMonster</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="SinglePostWithImage\2012.08.19.2116.1000\ImageInception.png" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="SinglePostWithImage\2012.08.19.2116.1000\Permalinks.txt" />
     <EmbeddedResource Include="SinglePostWithImage\2012.08.19.2116.1000\Images.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BlogMonster\BlogMonster.csproj">
+      <Project>{3acf4b10-c6b5-47bb-8d83-96dbd2cd86b5}</Project>
+      <Name>BlogMonster</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="..\BlogMonster.TestsShared\BlogMonster.TestsShared.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
