@@ -15,7 +15,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyVeryOwnBlog.Posts", "MyVe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlogMonster", "BlogMonster\BlogMonster.csproj", "{D396F42B-74D8-4CDC-837C-DE4AE1E6EDC3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlogMonster.Mvc4", "BlogMonster.Legacy\BlogMonster.Mvc4.csproj", "{3ACF4B10-C6B5-47BB-8D83-96DBD2CD86B5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlogMonster.Mvc4", "BlogMonster.Mvc4\BlogMonster.Mvc4.csproj", "{3ACF4B10-C6B5-47BB-8D83-96DBD2CD86B5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlogMonster.AspNetCore", "BlogMonster.AspNetCore\BlogMonster.AspNetCore.csproj", "{5C0ABCAF-E6D9-4ECB-82D0-95F9D66C3120}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -43,6 +45,10 @@ Global
 		{3ACF4B10-C6B5-47BB-8D83-96DBD2CD86B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3ACF4B10-C6B5-47BB-8D83-96DBD2CD86B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3ACF4B10-C6B5-47BB-8D83-96DBD2CD86B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C0ABCAF-E6D9-4ECB-82D0-95F9D66C3120}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C0ABCAF-E6D9-4ECB-82D0-95F9D66C3120}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C0ABCAF-E6D9-4ECB-82D0-95F9D66C3120}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C0ABCAF-E6D9-4ECB-82D0-95F9D66C3120}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
