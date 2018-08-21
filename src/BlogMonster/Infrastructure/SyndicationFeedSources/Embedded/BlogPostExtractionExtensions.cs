@@ -2,8 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using ThirdDrawer.Extensions.CollectionExtensionMethods;
-using ThirdDrawer.Extensions.StringExtensionMethods;
+using BlogMonster.Extensions;
 using static System.String;
 
 namespace BlogMonster.Infrastructure.SyndicationFeedSources.Embedded
@@ -12,13 +11,7 @@ namespace BlogMonster.Infrastructure.SyndicationFeedSources.Embedded
     {
         public static string ExtractId(this DateTimeOffset postDate)
         {
-            var id = "{0:0000}.{1:00}.{2:00}.{3:00}{4:00}.{5:00}{6:00}".FormatWith(postDate.Year,
-                postDate.Month,
-                postDate.Day,
-                postDate.Hour,
-                postDate.Minute,
-                postDate.Offset.Hours,
-                postDate.Offset.Minutes);
+            var id = $"{postDate.Year:0000}.{postDate.Month:00}.{postDate.Day:00}.{postDate.Hour:00}{postDate.Minute:00}.{postDate.Offset.Hours:00}{postDate.Offset.Minutes:00}";
             return id;
         }
 
@@ -35,17 +28,11 @@ namespace BlogMonster.Infrastructure.SyndicationFeedSources.Embedded
                     .Select(t => t.Trim('_'))
                     .ToArray();
 
-                int year;
-                int month;
-                int day;
-                int time;
-                int offset;
-
-                if (!int.TryParse(slidingTokens[0], out year)) continue;
-                if (!int.TryParse(slidingTokens[1], out month)) continue;
-                if (!int.TryParse(slidingTokens[2], out day)) continue;
-                if (!int.TryParse(slidingTokens[3], out time)) continue;
-                if (!int.TryParse(slidingTokens[4], out offset)) continue;
+                if (!int.TryParse(slidingTokens[0], out var year)) continue;
+                if (!int.TryParse(slidingTokens[1], out var month)) continue;
+                if (!int.TryParse(slidingTokens[2], out var day)) continue;
+                if (!int.TryParse(slidingTokens[3], out var time)) continue;
+                if (!int.TryParse(slidingTokens[4], out var offset)) continue;
 
                 if (month > 12) continue;
                 if (offset > 1400) continue;
@@ -73,7 +60,7 @@ namespace BlogMonster.Infrastructure.SyndicationFeedSources.Embedded
 
         public static string ExtractTitle(this Assembly assembly, string resourceName, string resourceBasePath)
         {
-            var overrideTitleResourceName = "{0}.Title.txt".FormatWith(resourceBasePath);
+            var overrideTitleResourceName = $"{resourceBasePath}.Title.txt";
             var title = assembly.TryReadResource(overrideTitleResourceName) ?? ExtractTitleFromResourceName(resourceName, resourceBasePath);
             return title;
         }
@@ -109,7 +96,7 @@ namespace BlogMonster.Infrastructure.SyndicationFeedSources.Embedded
             var permalinks = new List<string>();
 
             // add links provided by author. these take precedence
-            var permalinkResourceName = "{0}.Permalinks.txt".FormatWith(resourceBasePath);
+            var permalinkResourceName = $"{resourceBasePath}.Permalinks.txt";
             var blob = assembly.TryReadResource(permalinkResourceName);
             if (blob != null)
             {

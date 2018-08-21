@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
-using ThirdDrawer.Extensions.StringExtensionMethods;
 
 namespace BlogMonster.Infrastructure.SyndicationFeedSources.Embedded
 {
@@ -48,7 +47,7 @@ namespace BlogMonster.Infrastructure.SyndicationFeedSources.Embedded
             imageUris.Add(uriForImage);
 
             var group1 = match.Groups[1].Value;
-            var replacement = "![{0}]({1})".FormatWith(group1, uriForImage);
+            var replacement = $"![{group1}]({uriForImage})";
             return replacement;
         }
     }

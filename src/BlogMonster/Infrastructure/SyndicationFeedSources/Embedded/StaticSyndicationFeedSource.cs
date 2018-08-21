@@ -3,6 +3,8 @@ using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.ServiceModel.Syndication;
+using BlogMonster.Infrastructure.Caching;
+using BlogMonster.Infrastructure.Time;
 
 namespace BlogMonster.Infrastructure.SyndicationFeedSources.Embedded
 {

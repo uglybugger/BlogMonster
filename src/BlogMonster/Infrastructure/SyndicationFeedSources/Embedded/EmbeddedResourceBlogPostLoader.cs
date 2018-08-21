@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.ServiceModel.Syndication;
 using BlogMonster.Configuration;
-using ThirdDrawer.Extensions.CollectionExtensionMethods;
+using BlogMonster.Extensions;
 
 namespace BlogMonster.Infrastructure.SyndicationFeedSources.Embedded
 {

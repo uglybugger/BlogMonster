@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.ServiceModel.Syndication;
+using BlogMonster.Infrastructure.Time;
 
 namespace BlogMonster.Infrastructure.SyndicationFeedSources.Embedded
 {

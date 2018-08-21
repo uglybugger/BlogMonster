@@ -2,6 +2,7 @@ using System;
 using System.ServiceModel.Syndication;
 using BlogMonster.Infrastructure;
 using BlogMonster.Infrastructure.SyndicationFeedSources.Remote;
+using BlogMonster.Infrastructure.Time;
 
 namespace BlogMonster.Configuration
 {

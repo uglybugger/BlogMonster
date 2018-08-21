@@ -1,6 +1,6 @@
 using System;
 
-namespace BlogMonster.Infrastructure.SyndicationFeedSources.Embedded
+namespace BlogMonster.Extensions
 {
     internal static class ExceptionExtensions
     {
