@@ -2,7 +2,6 @@ using System.IO;
 using System.Linq;
 using System.Web.Mvc;
 using BlogMonster.Web;
-using ThirdDrawer.Extensions.StringExtensionMethods;
 
 namespace MyVeryOwnBlog.Controllers
 {
@@ -16,7 +15,7 @@ namespace MyVeryOwnBlog.Controllers
         public ActionResult Image(string id)
         {
             var tokens = id.Split('.');
-            var mimeType = "image/{0}".FormatWith(tokens.Last()).ToLowerInvariant();
+            var mimeType = $"image/{tokens.Last()}".ToLowerInvariant();
 
             using (var stream = FeedSources.Personal.GetStreamForImageResourceName(id))
             {
@@ -34,8 +33,8 @@ namespace MyVeryOwnBlog.Controllers
         public ActionResult Post(string id)
         {
             var syndicationItem = FeedSources.Personal.Feed.Items
-                                             .Where(item => item.Id == id)
-                                             .FirstOrDefault();
+                .Where(item => item.Id == id)
+                .FirstOrDefault();
 
             return View(syndicationItem);
         }

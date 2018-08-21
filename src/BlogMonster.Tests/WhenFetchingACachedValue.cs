@@ -1,5 +1,6 @@
 ﻿using System;
-using BlogMonster.Infrastructure;
+using BlogMonster.Infrastructure.Caching;
+using BlogMonster.Infrastructure.Time;
 using NSubstitute;
 using NUnit.Framework;
 using Shouldly;
@@ -31,12 +32,12 @@ namespace BlogMonster.Tests
             var clock = Substitute.For<IClock>();
             clock.UtcNow.Returns(new DateTimeOffset(2013, 11, 30, 17, 16, 00, TimeSpan.FromHours(10)));
             var cached = new Cached<object>(TimeSpan.FromSeconds(10),
-                                            clock,
-                                            delegate
-                                            {
-                                                _calls++;
-                                                return new object();
-                                            });
+                clock,
+                delegate
+                {
+                    _calls++;
+                    return new object();
+                });
 
             cached.Value.ShouldNotBe(null);
             _calls.ShouldBe(1);
